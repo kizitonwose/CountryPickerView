@@ -8,18 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		004CA2F01F7056E700B690B8 /* CountryPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 004CA2EE1F7056E700B690B8 /* CountryPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		004CA3221F70609900B690B8 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004CA3211F70609900B690B8 /* CountryView.swift */; };
-		004CA32D1F70666B00B690B8 /* NG.png in Resources */ = {isa = PBXBuildFile; fileRef = 004CA32C1F70666B00B690B8 /* NG.png */; };
-		004CA32F1F706DF500B690B8 /* CountryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004CA32E1F706DF500B690B8 /* CountryView.xib */; };
+		004CA3221F70609900B690B8 /* CountryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004CA3211F70609900B690B8 /* CountryPickerView.swift */; };
+		004CA32F1F706DF500B690B8 /* CountryPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004CA32E1F706DF500B690B8 /* CountryPickerView.xib */; };
+		004CA3311F70782400B690B8 /* CountryPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004CA3301F70782400B690B8 /* CountryPickerTableViewController.swift */; };
+		004CA3331F70787200B690B8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004CA3321F70787200B690B8 /* Extensions.swift */; };
+		004CA33A1F710B5900B690B8 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 004CA3381F710B5900B690B8 /* CountryPicker.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		004CA2EB1F7056E700B690B8 /* CountryPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CountryPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		004CA2EE1F7056E700B690B8 /* CountryPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryPicker.h; sourceTree = "<group>"; };
 		004CA2EF1F7056E700B690B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		004CA3211F70609900B690B8 /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryView.swift; sourceTree = "<group>"; };
-		004CA32C1F70666B00B690B8 /* NG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NG.png; sourceTree = "<group>"; };
-		004CA32E1F706DF500B690B8 /* CountryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryView.xib; sourceTree = "<group>"; };
+		004CA3211F70609900B690B8 /* CountryPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryPickerView.swift; sourceTree = "<group>"; };
+		004CA32E1F706DF500B690B8 /* CountryPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryPickerView.xib; sourceTree = "<group>"; };
+		004CA3301F70782400B690B8 /* CountryPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryPickerTableViewController.swift; sourceTree = "<group>"; };
+		004CA3321F70787200B690B8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		004CA3381F710B5900B690B8 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,13 +56,23 @@
 		004CA2ED1F7056E700B690B8 /* CountryPicker */ = {
 			isa = PBXGroup;
 			children = (
-				004CA32C1F70666B00B690B8 /* NG.png */,
+				004CA3361F710B5900B690B8 /* Assets */,
 				004CA2EE1F7056E700B690B8 /* CountryPicker.h */,
 				004CA2EF1F7056E700B690B8 /* Info.plist */,
-				004CA3211F70609900B690B8 /* CountryView.swift */,
-				004CA32E1F706DF500B690B8 /* CountryView.xib */,
+				004CA3211F70609900B690B8 /* CountryPickerView.swift */,
+				004CA32E1F706DF500B690B8 /* CountryPickerView.xib */,
+				004CA3301F70782400B690B8 /* CountryPickerTableViewController.swift */,
+				004CA3321F70787200B690B8 /* Extensions.swift */,
 			);
 			path = CountryPicker;
+			sourceTree = "<group>";
+		};
+		004CA3361F710B5900B690B8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				004CA3381F710B5900B690B8 /* CountryPicker.bundle */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,8 +146,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				004CA32D1F70666B00B690B8 /* NG.png in Resources */,
-				004CA32F1F706DF500B690B8 /* CountryView.xib in Resources */,
+				004CA33A1F710B5900B690B8 /* CountryPicker.bundle in Resources */,
+				004CA32F1F706DF500B690B8 /* CountryPickerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +158,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				004CA3221F70609900B690B8 /* CountryView.swift in Sources */,
+				004CA3311F70782400B690B8 /* CountryPickerTableViewController.swift in Sources */,
+				004CA3331F70787200B690B8 /* Extensions.swift in Sources */,
+				004CA3221F70609900B690B8 /* CountryPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
