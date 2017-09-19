@@ -9,66 +9,85 @@
 import UIKit
 
 class CountryPickerTableViewController: UITableViewController {
-
+    
+    weak var countryPickerView: CountryPickerView! {
+        didSet { prepare() }
+    }
+    var sectionsTitles = [String]()
+    var countries = [String: [Country]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         //tableView.reloadData()
-        print(CountryPickerTableViewController.countries)
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 4
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "name") ?? UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "name")
-        
-        //cell.imageView?.image = UIImage(named: "NG", in: Bundle(for: type(of: self)), compatibleWith: nil)
-
-        return cell
+        print(sectionsTitles)
     }
     
-    static var countries: [String: [String]] {
-        let names = ["Emmanuel", "Olivia", "Frances", "Frank", "Kizito"]
+    func prepare()  {
+        let countriesArray = countryPickerView.countries
         
         var header = Set<String>()
-        names.forEach{
-            header.insert(String($0[$0.startIndex]))
+        countriesArray.forEach{
+            let name = $0.name
+            header.insert(String(name[name.startIndex]))
         }
         
-        var data = [String: [String]]()
+        var data = [String: [Country]]()
         
-        names.forEach({
-            let index = String($0[$0.startIndex])
-            var dictValue = data[index] ?? [String]()
+        countriesArray.forEach({
+            let name = $0.name
+            let index = String(name[name.startIndex])
+            var dictValue = data[index] ?? [Country]()
             dictValue.append($0)
             
             data[index] = dictValue
         })
         
-        data.forEach{ data[$0] = $1.sorted() }
+        // Sort the sections
+        data.forEach{ key, value in
+            data[key] = value.sorted(by: { (lhs, rhs) -> Bool in
+                return lhs.name < rhs.name
+            })
+        }
         
-        return data
+        sectionsTitles = header.sorted()
+        countries = data
+        if let preferredTitle = countryPickerView.preferredCountriesSectionTitle(),
+            countryPickerView.preferredCountries().count > 0 {
+            sectionsTitles[0] = preferredTitle
+            countries[preferredTitle] = countryPickerView.preferredCountries()
+        }
     }
+   
+}
+
+extension CountryPickerTableViewController {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        print(sectionsTitles.count)
+        return sectionsTitles.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return countries[sectionsTitles[section]]!.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "name") ?? UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "name")
+        let country = countries[sectionsTitles[indexPath.section]]![indexPath.row]
+        
+        cell.imageView?.image = country.flag
+        cell.textLabel?.text = country.name
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionsTitles[section]
+    }
+}
+
+extension CountryPickerTableViewController {
+
+    
 }

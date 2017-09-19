@@ -9,17 +9,27 @@
 import Foundation
 import UIKit
 
-struct Country {
-    var name: String?
-    var code: String?
-    var phoneCode: String?
+public protocol CountryPickerViewDelegate: NSObjectProtocol {
+    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
+}
+
+public protocol CountryPickerViewDataSource: NSObjectProtocol {
+    func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]
+    func preferredCountriesSectionTitle(in countryPickerView: CountryPickerView) -> String?
+    func navigationTitle(in countryPickerView: CountryPickerView) -> String?
+}
+
+public struct Country {
+    var name: String
+    var code: String
+    var phoneCode: String
     var flag: UIImage? {
-        guard let code = self.code else { return nil }
+        //guard let code = self.code else { return nil }
         return UIImage(named: "CountryPicker.bundle/Images/\(code.uppercased())",
             in: Bundle(for: CountryPickerView.self), compatibleWith: nil)
     }
     
-    init(name: String?, code: String?, phoneCode: String?) {
+   internal init(name: String, code: String, phoneCode: String) {
         self.name = name
         self.code = code
         self.phoneCode = phoneCode
@@ -41,11 +51,13 @@ public class CountryPickerView: NibView {
         didSet { setup() }
     }
     
-    var showPhoneCodeInList = false 
+    var showPhoneCodeInList = false
     
+    weak var dataSource: CountryPickerViewDataSource?
+    weak var delegate: CountryPickerViewDelegate?
     
     private var _selectedCountry: Country?
-    internal(set) var selectedCountry: Country {
+    internal(set) public var selectedCountry: Country {
         get {
             return _selectedCountry ?? countries.first(where: { $0.code == "US" })!
         }
@@ -69,19 +81,56 @@ public class CountryPickerView: NibView {
         flagImageView.image = selectedCountry.flag
         
         var text: String = ""
-        if showCodeInView, let code = selectedCountry.code {
-            text = "(\(code)) "
+        if showCodeInView {
+            text = "(\(selectedCountry.code)) "
         }
         
-        if showPhoneCodeInView, let phoneCode = selectedCountry.phoneCode {
-            text = "\(text)\(phoneCode)"
+        if showPhoneCodeInView {
+            text = "\(text)\(selectedCountry.phoneCode)"
         }
 
         countryDetailsLabel.text = text
     }
     
     @IBAction func openCountryPickerController(_ sender: Any) {
-        window?.topViewController?.present(CountryPickerTableViewController(), animated: true, completion: nil)
+        let vc = CountryPickerTableViewController(style: .grouped)
+        vc.countryPickerView = self
+        window?.topViewController?.present(vc, animated: true, completion: nil)
+    }
+}
+
+extension CountryPickerView {
+    func countryPickerView(didSelectCountry country: Country) {
+        selectedCountry = country
+        delegate?.countryPickerView(self, didSelectCountry: country)
+    }
+}
+
+extension CountryPickerView {
+    func preferredCountries() -> [Country] {
+      return dataSource?.preferredCountries(in: self) ?? [Country]()
+    }
+    
+    func preferredCountriesSectionTitle() -> String? {
+        return dataSource?.preferredCountriesSectionTitle(in: self)
+    }
+    
+    func navigationTitle() -> String? {
+        return dataSource?.navigationTitle(in: self) ?? "Select a Country"
+    }
+}
+
+extension CountryPickerView {
+    func getCountryByName(_ name: String) -> Country? {
+        return countries.first(where: { $0.name == name })
+    }
+    
+    func getCountryByPhoneCode(_ phoneCode: String) -> Country? {
+        return countries.first(where: { $0.phoneCode == phoneCode })
+    }
+    
+    func getCountryByCode(_ code: String) -> Country? {
+        return countries.first(where: { $0.code == code })
     }
     
     var countries: [Country] {
@@ -89,9 +138,9 @@ public class CountryPickerView: NibView {
         let bundle = Bundle(for: type(of: self))
         guard let jsonPath = bundle.path(forResource: "CountryPicker.bundle/Data/CountryCodes", ofType: "json"),
             let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
-            return countries
+                return countries
         }
-       
+        
         if let jsonObjects = (try? JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization
             .ReadingOptions.allowFragments)) as? Array<Any> {
             
@@ -115,8 +164,6 @@ public class CountryPickerView: NibView {
         
         return countries
     }
-    
-    
 }
 
 
