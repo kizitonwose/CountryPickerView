@@ -24,7 +24,6 @@ public struct Country {
     var code: String
     var phoneCode: String
     var flag: UIImage? {
-        //guard let code = self.code else { return nil }
         return UIImage(named: "CountryPicker.bundle/Images/\(code.uppercased())",
             in: Bundle(for: CountryPickerView.self), compatibleWith: nil)
     }
@@ -34,6 +33,13 @@ public struct Country {
         self.code = code
         self.phoneCode = phoneCode
     }
+}
+
+public func ==(lhs: Country, rhs: Country) -> Bool {
+    return lhs.code == rhs.code
+}
+public func !=(lhs: Country, rhs: Country) -> Bool {
+    return lhs.code != rhs.code
 }
 
 public class CountryPickerView: NibView {
@@ -93,9 +99,19 @@ public class CountryPickerView: NibView {
     }
     
     @IBAction func openCountryPickerController(_ sender: Any) {
-        let vc = CountryPickerTableViewController(style: .grouped)
-        vc.countryPickerView = self
-        window?.topViewController?.present(vc, animated: true, completion: nil)
+        if let vc = window?.topViewController {
+            showCountriesList(from: vc)
+        }
+    }
+    
+    public func showCountriesList(from viewController: UIViewController) {
+        let countryVc = CountryPickerTableViewController(style: .grouped)
+        countryVc.countryPickerView = self
+        if let viewController = viewController as? UINavigationController {
+            viewController.pushViewController(countryVc, animated: true)
+        } else {
+            viewController.present(UINavigationController(rootViewController: countryVc), animated: true, completion: nil)
+        }
     }
 }
 

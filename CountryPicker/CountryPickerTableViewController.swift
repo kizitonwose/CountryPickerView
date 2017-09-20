@@ -11,19 +11,31 @@ import UIKit
 class CountryPickerTableViewController: UITableViewController {
     
     weak var countryPickerView: CountryPickerView! {
-        didSet { prepare() }
+        didSet { prepareTableItems() }
     }
     var sectionsTitles = [String]()
     var countries = [String: [Country]]()
+    var isRoot: Bool {
+        return navigationController?.viewControllers.count == 1
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //tableView.reloadData()
         print(sectionsTitles)
+        prepareNavItem()
+        prepareSearchBar()
+        
     }
+   
+}
+
+
+// UI Setup
+extension CountryPickerTableViewController {
     
-    func prepare()  {
+    func prepareTableItems()  {
         let countriesArray = countryPickerView.countries
         
         var header = Set<String>()
@@ -58,9 +70,27 @@ class CountryPickerTableViewController: UITableViewController {
             countries[preferredTitle] = countryPickerView.preferredCountries()
         }
     }
-   
+    
+    func prepareNavItem() {
+        // Add a close button if this is the root view controller
+        if isRoot {
+            let closeButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(close))
+            navigationItem.rightBarButtonItem = closeButton
+        }
+        navigationItem.title = countryPickerView.navigationTitle()
+    }
+    
+    func prepareSearchBar() {
+        
+    }
+    
+    @objc private func close() {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
 }
 
+
+//MARK: UITableViewDataSource
 extension CountryPickerTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -73,12 +103,13 @@ extension CountryPickerTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "name") ?? UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "name")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "name")
+            ?? UITableViewCell(style: .default, reuseIdentifier: "name")
         let country = countries[sectionsTitles[indexPath.section]]![indexPath.row]
         
         cell.imageView?.image = country.flag
         cell.textLabel?.text = country.name
-        
+        cell.accessoryType = country == countryPickerView.selectedCountry ? .checkmark : .none
         return cell
     }
     
@@ -87,7 +118,20 @@ extension CountryPickerTableViewController {
     }
 }
 
+
+//MARK: UITableViewDelegate
 extension CountryPickerTableViewController {
 
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        }
+    }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let country = countries[sectionsTitles[indexPath.section]]![indexPath.row]
+        countryPickerView.countryPickerView(didSelectCountry: country)
+        tableView.deselectRow(at: indexPath, animated: true)
+        dismiss(animated: true, completion: nil)
+    }
 }
