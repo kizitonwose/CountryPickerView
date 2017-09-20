@@ -24,7 +24,7 @@ public struct Country {
     var code: String
     var phoneCode: String
     var flag: UIImage? {
-        return UIImage(named: "CountryPicker.bundle/Images/\(code.uppercased())",
+        return UIImage(named: "CountryPickerView.bundle/Images/\(code.uppercased())",
             in: Bundle(for: CountryPickerView.self), compatibleWith: nil)
     }
     
@@ -152,7 +152,7 @@ extension CountryPickerView {
     var countries: [Country] {
         var countries = [Country]()
         let bundle = Bundle(for: type(of: self))
-        guard let jsonPath = bundle.path(forResource: "CountryPicker.bundle/Data/CountryCodes", ofType: "json"),
+        guard let jsonPath = bundle.path(forResource: "CountryPickerView.bundle/Data/CountryCodes", ofType: "json"),
             let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
                 return countries
         }
