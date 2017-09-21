@@ -10,28 +10,25 @@ import UIKit
 
 class CountryPickerTableViewController: UITableViewController {
     
-    weak var countryPickerView: CountryPickerView! {
-        didSet { prepareTableItems() }
-    }
-    var sectionsTitles = [String]()
-    var countries = [String: [Country]]()
-//    var isRoot: Bool {
-//        return navigationController?.viewControllers.count == 1
-//    }
-    
-    var hasPreferredSection: Bool {
+    fileprivate var searchController: UISearchController!
+    fileprivate var searchResults = [Country]()
+    fileprivate var isSearchMode = false
+    fileprivate var sectionsTitles = [String]()
+    fileprivate var countries = [String: [Country]]()
+    fileprivate var hasPreferredSection: Bool {
         return countryPickerView.preferredCountries().count > 0
     }
     
+    weak var countryPickerView: CountryPickerView! {
+        didSet { prepareTableItems() }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //tableView.reloadData()
         print(sectionsTitles)
         prepareNavItem()
         prepareSearchBar()
-        
     }
    
 }
@@ -77,7 +74,6 @@ extension CountryPickerTableViewController {
         
         tableView.sectionIndexBackgroundColor = .clear
         tableView.sectionIndexTrackingBackgroundColor = .clear
-//        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     func prepareNavItem() {
@@ -87,7 +83,11 @@ extension CountryPickerTableViewController {
     }
     
     func prepareSearchBar() {
-        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false
+        tableView.tableHeaderView = searchController.searchBar
     }
     
     @objc private func close() {
@@ -96,21 +96,21 @@ extension CountryPickerTableViewController {
 }
 
 
-//MARK: UITableViewDataSource
+//MARK:- UITableViewDataSource
 extension CountryPickerTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionsTitles.count
+        return isSearchMode ? 1 : sectionsTitles.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countries[sectionsTitles[section]]!.count
+        return isSearchMode ? searchResults.count : countries[sectionsTitles[section]]!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
             ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
-        let country = countries[sectionsTitles[indexPath.section]]![indexPath.row]
+        let country = isSearchMode ? searchResults[indexPath.row] : countries[sectionsTitles[indexPath.section]]![indexPath.row]
         
         cell.imageView?.image = country.flag
         cell.textLabel?.text = country.name
@@ -120,14 +120,18 @@ extension CountryPickerTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionsTitles[section]
+        return isSearchMode ? nil : sectionsTitles[section]
     }
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        if hasPreferredSection {
-            return Array<String>(sectionsTitles.dropFirst())
+        if isSearchMode {
+            return nil
+        } else {
+            if hasPreferredSection {
+                return Array<String>(sectionsTitles.dropFirst())
+            }
+            return sectionsTitles
         }
-        return sectionsTitles
     }
     
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
@@ -136,7 +140,7 @@ extension CountryPickerTableViewController {
 }
 
 
-//MARK: UITableViewDelegate
+//MARK:- UITableViewDelegate
 extension CountryPickerTableViewController {
 
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -147,8 +151,33 @@ extension CountryPickerTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let country = countries[sectionsTitles[indexPath.section]]![indexPath.row]
+        let country = isSearchMode ? searchResults[indexPath.row] : countries[sectionsTitles[indexPath.section]]![indexPath.row]
         countryPickerView.didSelectCountry(country)
+        searchController.dismiss(animated: true, completion: nil)
         dismiss(animated: true, completion: nil)
+    }
+}
+
+
+// MARK:- UISearchResultsUpdating
+extension CountryPickerTableViewController: UISearchResultsUpdating {
+    public func updateSearchResults(for searchController: UISearchController) {
+        searchResults.removeAll()
+        if let text = searchController.searchBar.text, text.characters.count > 0,
+            let indexArray = countries[String(text[text.startIndex])] {
+            searchResults.append(contentsOf: indexArray.filter({ $0.name.hasPrefix(text) }))
+        }
+        tableView.reloadData()
+    }
+}
+
+// MARK:- UISearchControllerDelegate
+extension CountryPickerTableViewController: UISearchControllerDelegate {
+    public func didPresentSearchController(_ searchController: UISearchController) {
+        isSearchMode = true
+    }
+    
+    public func willDismissSearchController(_ searchController: UISearchController) {
+        isSearchMode = false
     }
 }
