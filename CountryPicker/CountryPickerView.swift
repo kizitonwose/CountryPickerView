@@ -15,8 +15,10 @@ public protocol CountryPickerViewDelegate: NSObjectProtocol {
 
 public protocol CountryPickerViewDataSource: NSObjectProtocol {
     func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]
-    func preferredCountriesSectionTitle(in countryPickerView: CountryPickerView) -> String?
+    func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
+//    func closeButtonTitle(in countryPickerView: CountryPickerView) -> String?
+//    func closeButtonImage(in countryPickerView: CountryPickerView) -> UIImage?
 }
 
 public struct Country {
@@ -116,7 +118,7 @@ public class CountryPickerView: NibView {
 }
 
 extension CountryPickerView {
-    func countryPickerView(didSelectCountry country: Country) {
+    func didSelectCountry(_ country: Country) {
         selectedCountry = country
         delegate?.countryPickerView(self, didSelectCountry: country)
     }
@@ -124,16 +126,24 @@ extension CountryPickerView {
 
 extension CountryPickerView {
     func preferredCountries() -> [Country] {
-      return dataSource?.preferredCountries(in: self) ?? [Country]()
+      return dataSource?.preferredCountries(in: self) ?? [getCountryByCode("NG")!, getCountryByCode("US")!, getCountryByCode("KE")!]
     }
     
     func preferredCountriesSectionTitle() -> String? {
-        return dataSource?.preferredCountriesSectionTitle(in: self)
+        return dataSource?.sectionTitleForPreferredCountries(in: self) ?? "Locations"
     }
     
     func navigationTitle() -> String? {
         return dataSource?.navigationTitle(in: self) ?? "Select a Country"
     }
+//    
+//    func closeButtonTitle() -> String? {
+//        return dataSource?.closeButtonTitle(in: self) ?? "Close"
+//    }
+//    
+//    func closeButtonImage() -> UIImage? {
+//        return dataSource?.closeButtonImage(in: self)
+//    }
 }
 
 extension CountryPickerView {
