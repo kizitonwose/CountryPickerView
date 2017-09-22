@@ -16,7 +16,8 @@ class CountryPickerTableViewController: UITableViewController {
     fileprivate var sectionsTitles = [String]()
     fileprivate var countries = [String: [Country]]()
     fileprivate var hasPreferredSection: Bool {
-        return countryPickerView.preferredCountries().count > 0
+        return countryPickerView.preferredCountriesSectionTitle() != nil &&
+            countryPickerView.preferredCountries().count > 0
     }
     
     weak var countryPickerView: CountryPickerView!
@@ -66,8 +67,7 @@ extension CountryPickerTableViewController {
         countries = data
         
         // Add preferred section if data is available
-        if let preferredTitle = countryPickerView.preferredCountriesSectionTitle(),
-            countryPickerView.preferredCountries().count > 0 {
+        if hasPreferredSection, let preferredTitle = countryPickerView.preferredCountriesSectionTitle() {
             sectionsTitles.insert(preferredTitle, at: sectionsTitles.startIndex)
             countries[preferredTitle] = countryPickerView.preferredCountries()
         }
@@ -129,8 +129,9 @@ extension CountryPickerTableViewController {
         let country = isSearchMode ? searchResults[indexPath.row] :
             countries[sectionsTitles[indexPath.section]]![indexPath.row]
         
+        let name = countryPickerView.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
         cell.imageView?.image = country.flag
-        cell.textLabel?.text = country.name
+        cell.textLabel?.text = name
         cell.accessoryType = country == countryPickerView.selectedCountry ? .checkmark : .none
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return cell

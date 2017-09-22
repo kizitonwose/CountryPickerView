@@ -14,7 +14,7 @@ public protocol CountryPickerViewDelegate: NSObjectProtocol {
 }
 
 public protocol CountryPickerViewDataSource: NSObjectProtocol {
-    func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]
+    func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]?
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
     func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
@@ -116,7 +116,8 @@ public class CountryPickerView: NibView {
         if let viewController = viewController as? UINavigationController {
             viewController.pushViewController(countryVc, animated: true)
         } else {
-            viewController.present(UINavigationController(rootViewController: countryVc), animated: true, completion: nil)
+            viewController.present(UINavigationController(rootViewController: countryVc),
+                                   animated: true, completion: nil)
         }
     }
 }
@@ -130,15 +131,15 @@ extension CountryPickerView {
 
 extension CountryPickerView {
     func preferredCountries() -> [Country] {
-      return dataSource?.preferredCountries(in: self) ?? [getCountryByCode("NG")!, getCountryByCode("US")!, getCountryByCode("KE")!]
+      return dataSource?.preferredCountries(in: self) ?? [Country]()
     }
     
     func preferredCountriesSectionTitle() -> String? {
-        return dataSource?.sectionTitleForPreferredCountries(in: self) ?? "Locations"
+        return dataSource?.sectionTitleForPreferredCountries(in: self)
     }
     
     func navigationTitle() -> String? {
-        return dataSource?.navigationTitle(in: self) ?? "Select a Country"
+        return dataSource?.navigationTitle(in: self)
     }
     
     func closeButtonNavigationItem() -> UIBarButtonItem {
@@ -162,7 +163,7 @@ extension CountryPickerView {
         return countries.first(where: { $0.code == code })
     }
     
-    var countries: [Country] {
+     var countries: [Country] {
         var countries = [Country]()
         let bundle = Bundle(for: type(of: self))
         guard let jsonPath = bundle.path(forResource: "CountryPickerView.bundle/Data/CountryCodes", ofType: "json"),
