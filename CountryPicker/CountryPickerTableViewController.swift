@@ -19,14 +19,12 @@ class CountryPickerTableViewController: UITableViewController {
         return countryPickerView.preferredCountries().count > 0
     }
     
-    weak var countryPickerView: CountryPickerView! {
-        didSet { prepareTableItems() }
-    }
+    weak var countryPickerView: CountryPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(sectionsTitles)
+        prepareTableItems()
         prepareNavItem()
         prepareSearchBar()
     }
@@ -66,6 +64,8 @@ extension CountryPickerTableViewController {
         
         sectionsTitles = header.sorted()
         countries = data
+        
+        // Add preferred section if data is available
         if let preferredTitle = countryPickerView.preferredCountriesSectionTitle(),
             countryPickerView.preferredCountries().count > 0 {
             sectionsTitles.insert(preferredTitle, at: sectionsTitles.startIndex)
@@ -95,11 +95,11 @@ extension CountryPickerTableViewController {
         }
         searchController = UISearchController(searchResultsController:  nil)
         searchController?.searchResultsUpdater = self
-        searchController?.delegate = self
         searchController?.dimsBackgroundDuringPresentation = false
         searchController?.hidesNavigationBarDuringPresentation = searchBarPosition == .tableViewHeader
+        searchController?.searchBar.delegate = self
 
-        switch countryPickerView.searchBarPosition {
+        switch searchBarPosition {
         case .tableViewHeader: tableView.tableHeaderView = searchController?.searchBar
         case .navigationBar: navigationItem.titleView = searchController?.searchBar
         default: break
@@ -179,22 +179,32 @@ extension CountryPickerTableViewController {
 // MARK:- UISearchResultsUpdating
 extension CountryPickerTableViewController: UISearchResultsUpdating {
     public func updateSearchResults(for searchController: UISearchController) {
-        searchResults.removeAll()
+        isSearchMode = false
         if let text = searchController.searchBar.text, text.characters.count > 0,
             let indexArray = countries[String(text[text.startIndex])] {
+            isSearchMode = true
+            searchResults.removeAll()
             searchResults.append(contentsOf: indexArray.filter({ $0.name.hasPrefix(text) }))
         }
         tableView.reloadData()
     }
 }
 
-// MARK:- UISearchControllerDelegate
-extension CountryPickerTableViewController: UISearchControllerDelegate {
-    public func didPresentSearchController(_ searchController: UISearchController) {
-        isSearchMode = true
+
+// MARK:- UISearchBarDelegate
+extension CountryPickerTableViewController: UISearchBarDelegate {
+    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        // Hide the back/left navigationItem button
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
     }
     
-    public func willDismissSearchController(_ searchController: UISearchController) {
-        isSearchMode = false
+    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // Show the back/left navigationItem button
+        prepareNavItem()
+        navigationItem.hidesBackButton = false
     }
+    
 }
+
+
