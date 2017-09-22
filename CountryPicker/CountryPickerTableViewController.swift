@@ -133,7 +133,7 @@ extension CountryPickerTableViewController {
         cell.imageView?.image = country.flag
         cell.textLabel?.text = name
         cell.accessoryType = country == countryPickerView.selectedCountry ? .checkmark : .none
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        cell.separatorInset = UIEdgeInsets.zero
         return cell
     }
     
@@ -172,7 +172,13 @@ extension CountryPickerTableViewController {
         let country = isSearchMode ? searchResults[indexPath.row] : countries[sectionsTitles[indexPath.section]]![indexPath.row]
         countryPickerView.didSelectCountry(country)
         searchController?.dismiss(animated: true, completion: nil)
-        dismiss(animated: true, completion: nil)
+        
+        // If this is root, dismiss, else pop
+        if navigationController?.viewControllers.count == 1 {
+            navigationController?.dismiss(animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
 }
 

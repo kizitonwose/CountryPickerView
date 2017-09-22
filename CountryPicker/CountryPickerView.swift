@@ -47,8 +47,9 @@ public enum SearchBarPosition {
    case tableViewHeader, navigationBar, hidden
 }
 
+
 public class CountryPickerView: NibView {
-    
+    @IBOutlet weak var spacingConstraint: NSLayoutConstraint!
     @IBOutlet weak var flagImageView: UIImageView!
     @IBOutlet weak var countryDetailsLabel: UILabel!
     
@@ -56,9 +57,6 @@ public class CountryPickerView: NibView {
         didSet { setup() }
     }
     public var showPhoneCodeInView = true {
-        didSet { setup() }
-    }
-    public var showFlagInView = true  {
         didSet { setup() }
     }
     
@@ -91,17 +89,17 @@ public class CountryPickerView: NibView {
     
     func setup() {
         flagImageView.image = selectedCountry.flag
-        
-        var text: String = ""
-        if showCodeInView {
-            text = "(\(selectedCountry.code)) "
+        if showPhoneCodeInView && showCodeInView {
+            countryDetailsLabel.text = "(\(selectedCountry.code)) \(selectedCountry.phoneCode)"
+            return
         }
         
-        if showPhoneCodeInView {
-            text = "\(text)\(selectedCountry.phoneCode)"
+        if showCodeInView || showPhoneCodeInView {
+            countryDetailsLabel.text = showCodeInView ? selectedCountry.code : selectedCountry.phoneCode
+        } else {
+            countryDetailsLabel.text = nil
         }
-
-        countryDetailsLabel.text = text
+        
     }
     
     @IBAction func openCountryPickerController(_ sender: Any) {
@@ -163,7 +161,7 @@ extension CountryPickerView {
         return countries.first(where: { $0.code == code })
     }
     
-     var countries: [Country] {
+    var countries: [Country] {
         var countries = [Country]()
         let bundle = Bundle(for: type(of: self))
         guard let jsonPath = bundle.path(forResource: "CountryPickerView.bundle/Data/CountryCodes", ofType: "json"),
@@ -195,38 +193,3 @@ extension CountryPickerView {
         return countries
     }
 }
-
-
-public class NibView: UIView {
-    
-    weak var view: UIView!
-    
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
-        nibSetup()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        nibSetup()
-    }
-    
-    fileprivate func nibSetup() {
-        view = loadViewFromNib()
-        view.frame = bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        addSubview(view)
-    }
-    
-    fileprivate func loadViewFromNib() -> UIView {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
-        let nibView = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        
-        return nibView
-    }
-    
-}
-
-
