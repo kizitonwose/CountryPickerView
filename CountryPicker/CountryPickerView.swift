@@ -17,8 +17,7 @@ public protocol CountryPickerViewDataSource: NSObjectProtocol {
     func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
-//    func closeButtonTitle(in countryPickerView: CountryPickerView) -> String?
-//    func closeButtonImage(in countryPickerView: CountryPickerView) -> UIImage?
+    func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
 }
 
 public struct Country {
@@ -44,30 +43,35 @@ public func !=(lhs: Country, rhs: Country) -> Bool {
     return lhs.code != rhs.code
 }
 
+public enum SearchBarPosition {
+   case tableViewHeader, navigationBar, hidden
+}
+
 public class CountryPickerView: NibView {
     
     @IBOutlet weak var flagImageView: UIImageView!
     @IBOutlet weak var countryDetailsLabel: UILabel!
     
-    var showCodeInView = true {
+    public var showCodeInView = true {
         didSet { setup() }
     }
-    var showPhoneCodeInView = true {
+    public var showPhoneCodeInView = true {
         didSet { setup() }
     }
-    var showFlagInView = true  {
+    public var showFlagInView = true  {
         didSet { setup() }
     }
     
-    var showPhoneCodeInList = false
+    public var showPhoneCodeInList = false
+    public var searchBarPosition = SearchBarPosition.tableViewHeader
     
-    weak var dataSource: CountryPickerViewDataSource?
-    weak var delegate: CountryPickerViewDelegate?
+    weak public var dataSource: CountryPickerViewDataSource?
+    weak public var delegate: CountryPickerViewDelegate?
     
     private var _selectedCountry: Country?
     internal(set) public var selectedCountry: Country {
         get {
-            return _selectedCountry ?? countries.first(where: { $0.code == "US" })!
+            return _selectedCountry ?? countries.first(where: { $0.code == "NG" })!
         }
         set {
             _selectedCountry = newValue
@@ -136,14 +140,13 @@ extension CountryPickerView {
     func navigationTitle() -> String? {
         return dataSource?.navigationTitle(in: self) ?? "Select a Country"
     }
-//    
-//    func closeButtonTitle() -> String? {
-//        return dataSource?.closeButtonTitle(in: self) ?? "Close"
-//    }
-//    
-//    func closeButtonImage() -> UIImage? {
-//        return dataSource?.closeButtonImage(in: self)
-//    }
+    
+    func closeButtonNavigationItem() -> UIBarButtonItem {
+        guard let button = dataSource?.closeButtonNavigationItem(in: self) else {
+            return UIBarButtonItem(title: "Close", style: .done, target: nil, action: nil)
+        }
+        return button
+    }
 }
 
 extension CountryPickerView {

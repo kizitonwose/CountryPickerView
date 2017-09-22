@@ -10,7 +10,7 @@ import UIKit
 
 class CountryPickerTableViewController: UITableViewController {
     
-    fileprivate var searchController: UISearchController!
+    fileprivate var searchController: UISearchController?
     fileprivate var searchResults = [Country]()
     fileprivate var isSearchMode = false
     fileprivate var sectionsTitles = [String]()
@@ -77,17 +77,33 @@ extension CountryPickerTableViewController {
     }
     
     func prepareNavItem() {
-        let closeButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
-        navigationItem.rightBarButtonItem = closeButton
         navigationItem.title = countryPickerView.navigationTitle()
+
+        // Add a close button if this is the root view controller
+        if navigationController?.viewControllers.count == 1 {
+            let closeButton = countryPickerView.closeButtonNavigationItem()
+            closeButton.target = self
+            closeButton.action = #selector(close)
+            navigationItem.leftBarButtonItem = closeButton
+        }
     }
     
     func prepareSearchBar() {
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.delegate = self
-        searchController.dimsBackgroundDuringPresentation = false
-        tableView.tableHeaderView = searchController.searchBar
+        let searchBarPosition = countryPickerView.searchBarPosition
+        if searchBarPosition == .hidden  {
+            return
+        }
+        searchController = UISearchController(searchResultsController:  nil)
+        searchController?.searchResultsUpdater = self
+        searchController?.delegate = self
+        searchController?.dimsBackgroundDuringPresentation = false
+        searchController?.hidesNavigationBarDuringPresentation = searchBarPosition == .tableViewHeader
+
+        switch countryPickerView.searchBarPosition {
+        case .tableViewHeader: tableView.tableHeaderView = searchController?.searchBar
+        case .navigationBar: navigationItem.titleView = searchController?.searchBar
+        default: break
+        }
     }
     
     @objc private func close() {
@@ -110,7 +126,8 @@ extension CountryPickerTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
             ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
-        let country = isSearchMode ? searchResults[indexPath.row] : countries[sectionsTitles[indexPath.section]]![indexPath.row]
+        let country = isSearchMode ? searchResults[indexPath.row] :
+            countries[sectionsTitles[indexPath.section]]![indexPath.row]
         
         cell.imageView?.image = country.flag
         cell.textLabel?.text = country.name
@@ -153,7 +170,7 @@ extension CountryPickerTableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let country = isSearchMode ? searchResults[indexPath.row] : countries[sectionsTitles[indexPath.section]]![indexPath.row]
         countryPickerView.didSelectCountry(country)
-        searchController.dismiss(animated: true, completion: nil)
+        searchController?.dismiss(animated: true, completion: nil)
         dismiss(animated: true, completion: nil)
     }
 }
