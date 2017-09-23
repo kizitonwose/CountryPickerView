@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "004CA2FE1F705DD600B690B8"
-               BuildableName = "CountryPickerSample.app"
-               BlueprintName = "CountryPickerSample"
+               BuildableName = "CountryPickerViewDemo.app"
+               BlueprintName = "CountryPickerViewDemo"
                ReferencedContainer = "container:CountryPickerViewDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "004CA2FE1F705DD600B690B8"
-            BuildableName = "CountryPickerSample.app"
-            BlueprintName = "CountryPickerSample"
+            BuildableName = "CountryPickerViewDemo.app"
+            BlueprintName = "CountryPickerViewDemo"
             ReferencedContainer = "container:CountryPickerViewDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "004CA2FE1F705DD600B690B8"
-            BuildableName = "CountryPickerSample.app"
-            BlueprintName = "CountryPickerSample"
+            BuildableName = "CountryPickerViewDemo.app"
+            BlueprintName = "CountryPickerViewDemo"
             ReferencedContainer = "container:CountryPickerViewDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "004CA2FE1F705DD600B690B8"
-            BuildableName = "CountryPickerSample.app"
-            BlueprintName = "CountryPickerSample"
+            BuildableName = "CountryPickerViewDemo.app"
+            BlueprintName = "CountryPickerViewDemo"
             ReferencedContainer = "container:CountryPickerViewDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

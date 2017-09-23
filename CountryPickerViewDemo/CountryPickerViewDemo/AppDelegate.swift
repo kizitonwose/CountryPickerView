@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  CountryPickerSample
+//  CountryPickerViewDemo
 //
 //  Created by Kizito Nwose on 18/09/2017.
 //  Copyright © 2017 Kizito Nwose. All rights reserved.
