@@ -17,7 +17,7 @@
                BlueprintIdentifier = "004CA2FE1F705DD600B690B8"
                BuildableName = "CountryPickerSample.app"
                BlueprintName = "CountryPickerSample"
-               ReferencedContainer = "container:CountryPickerSample.xcodeproj">
+               ReferencedContainer = "container:CountryPickerViewDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "004CA2FE1F705DD600B690B8"
             BuildableName = "CountryPickerSample.app"
             BlueprintName = "CountryPickerSample"
-            ReferencedContainer = "container:CountryPickerSample.xcodeproj">
+            ReferencedContainer = "container:CountryPickerViewDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "004CA2FE1F705DD600B690B8"
             BuildableName = "CountryPickerSample.app"
             BlueprintName = "CountryPickerSample"
-            ReferencedContainer = "container:CountryPickerSample.xcodeproj">
+            ReferencedContainer = "container:CountryPickerViewDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "004CA2FE1F705DD600B690B8"
             BuildableName = "CountryPickerSample.app"
             BlueprintName = "CountryPickerSample"
-            ReferencedContainer = "container:CountryPickerSample.xcodeproj">
+            ReferencedContainer = "container:CountryPickerViewDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
