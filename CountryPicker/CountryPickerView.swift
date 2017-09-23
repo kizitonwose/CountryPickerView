@@ -21,10 +21,10 @@ public protocol CountryPickerViewDataSource: NSObjectProtocol {
 }
 
 public struct Country {
-    var name: String
-    var code: String
-    var phoneCode: String
-    var flag: UIImage? {
+   public var name: String
+   public var code: String
+   public var phoneCode: String
+   public var flag: UIImage? {
         return UIImage(named: "CountryPickerView.bundle/Images/\(code.uppercased())",
             in: Bundle(for: CountryPickerView.self), compatibleWith: nil)
     }
@@ -157,19 +157,19 @@ extension CountryPickerView {
 }
 
 extension CountryPickerView {
-    func getCountryByName(_ name: String) -> Country? {
+    public func getCountryByName(_ name: String) -> Country? {
         return countries.first(where: { $0.name == name })
     }
     
-    func getCountryByPhoneCode(_ phoneCode: String) -> Country? {
+    public func getCountryByPhoneCode(_ phoneCode: String) -> Country? {
         return countries.first(where: { $0.phoneCode == phoneCode })
     }
     
-    func getCountryByCode(_ code: String) -> Country? {
+    public func getCountryByCode(_ code: String) -> Country? {
         return countries.first(where: { $0.code == code })
     }
     
-    var countries: [Country] {
+    public var countries: [Country] {
         var countries = [Country]()
         let bundle = Bundle(for: type(of: self))
         guard let jsonPath = bundle.path(forResource: "CountryPickerView.bundle/Data/CountryCodes", ofType: "json"),

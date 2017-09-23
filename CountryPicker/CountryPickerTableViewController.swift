@@ -170,14 +170,17 @@ extension CountryPickerTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let country = isSearchMode ? searchResults[indexPath.row] : countries[sectionsTitles[indexPath.section]]![indexPath.row]
-        countryPickerView.didSelectCountry(country)
-        searchController?.dismiss(animated: true, completion: nil)
+        // countryPickerView.didSelectCountry(country)
+        searchController?.dismiss(animated: false, completion: nil)
         
+        let completion = {
+            self.countryPickerView.didSelectCountry(country)
+        }
         // If this is root, dismiss, else pop
         if navigationController?.viewControllers.count == 1 {
-            navigationController?.dismiss(animated: true)
+            navigationController?.dismiss(animated: true, completion: completion)
         } else {
-            navigationController?.popViewController(animated: true)
+            navigationController?.popViewController(animated: true, completion: completion)
         }
     }
 }
