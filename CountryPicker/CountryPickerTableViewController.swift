@@ -133,7 +133,7 @@ extension CountryPickerTableViewController {
         cell.imageView?.image = country.flag
         cell.textLabel?.text = name
         cell.accessoryType = country == countryPickerView.selectedCountry ? .checkmark : .none
-        cell.separatorInset = UIEdgeInsets.zero
+        cell.separatorInset = .zero
         return cell
     }
     

@@ -53,11 +53,19 @@ public class CountryPickerView: NibView {
     @IBOutlet weak var flagImageView: UIImageView!
     @IBOutlet weak var countryDetailsLabel: UILabel!
     
-    public var showCodeInView = true {
+    public var showCountryCodeInView = true {
         didSet { setup() }
     }
     public var showPhoneCodeInView = true {
         didSet { setup() }
+    }
+    public var flagSpacingInView: CGFloat {
+        get {
+            return spacingConstraint.constant
+        }
+        set {
+            spacingConstraint.constant = newValue
+        }
     }
     
     public var showPhoneCodeInList = false
@@ -89,13 +97,13 @@ public class CountryPickerView: NibView {
     
     func setup() {
         flagImageView.image = selectedCountry.flag
-        if showPhoneCodeInView && showCodeInView {
+        if showPhoneCodeInView && showCountryCodeInView {
             countryDetailsLabel.text = "(\(selectedCountry.code)) \(selectedCountry.phoneCode)"
             return
         }
         
-        if showCodeInView || showPhoneCodeInView {
-            countryDetailsLabel.text = showCodeInView ? selectedCountry.code : selectedCountry.phoneCode
+        if showCountryCodeInView || showPhoneCodeInView {
+            countryDetailsLabel.text = showCountryCodeInView ? selectedCountry.code : selectedCountry.phoneCode
         } else {
             countryDetailsLabel.text = nil
         }
