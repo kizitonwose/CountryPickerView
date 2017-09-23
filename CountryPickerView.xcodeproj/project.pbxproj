@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		004CA2EB1F7056E700B690B8 /* CountryPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CountryPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		004CA2EB1F7056E700B690B8 /* CountryPickerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CountryPickerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		004CA2EE1F7056E700B690B8 /* CountryPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryPicker.h; sourceTree = "<group>"; };
 		004CA2EF1F7056E700B690B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		004CA3211F70609900B690B8 /* CountryPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryPickerView.swift; sourceTree = "<group>"; };
@@ -42,7 +42,7 @@
 		004CA2E11F7056E600B690B8 = {
 			isa = PBXGroup;
 			children = (
-				004CA2ED1F7056E700B690B8 /* CountryPicker */,
+				004CA2ED1F7056E700B690B8 /* CountryPickerView */,
 				004CA2EC1F7056E700B690B8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,12 +50,12 @@
 		004CA2EC1F7056E700B690B8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				004CA2EB1F7056E700B690B8 /* CountryPicker.framework */,
+				004CA2EB1F7056E700B690B8 /* CountryPickerView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		004CA2ED1F7056E700B690B8 /* CountryPicker */ = {
+		004CA2ED1F7056E700B690B8 /* CountryPickerView */ = {
 			isa = PBXGroup;
 			children = (
 				004CA3361F710B5900B690B8 /* Assets */,
@@ -67,7 +67,7 @@
 				004CA3321F70787200B690B8 /* Extensions.swift */,
 				00B095FB1F75AD6200860F82 /* NibView.swift */,
 			);
-			path = CountryPicker;
+			path = CountryPickerView;
 			sourceTree = "<group>";
 		};
 		004CA3361F710B5900B690B8 /* Assets */ = {
@@ -92,9 +92,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		004CA2EA1F7056E700B690B8 /* CountryPicker */ = {
+		004CA2EA1F7056E700B690B8 /* CountryPickerView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 004CA2F31F7056E700B690B8 /* Build configuration list for PBXNativeTarget "CountryPicker" */;
+			buildConfigurationList = 004CA2F31F7056E700B690B8 /* Build configuration list for PBXNativeTarget "CountryPickerView" */;
 			buildPhases = (
 				004CA2E61F7056E700B690B8 /* Sources */,
 				004CA2E71F7056E700B690B8 /* Frameworks */,
@@ -105,9 +105,9 @@
 			);
 			dependencies = (
 			);
-			name = CountryPicker;
+			name = CountryPickerView;
 			productName = CountryPicker;
-			productReference = 004CA2EB1F7056E700B690B8 /* CountryPicker.framework */;
+			productReference = 004CA2EB1F7056E700B690B8 /* CountryPickerView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -127,7 +127,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 004CA2E51F7056E700B690B8 /* Build configuration list for PBXProject "CountryPicker" */;
+			buildConfigurationList = 004CA2E51F7056E700B690B8 /* Build configuration list for PBXProject "CountryPickerView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -139,7 +139,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				004CA2EA1F7056E700B690B8 /* CountryPicker */,
+				004CA2EA1F7056E700B690B8 /* CountryPickerView */,
 			);
 		};
 /* End PBXProject section */
@@ -282,10 +282,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CountryPicker/Info.plist;
+				INFOPLIST_FILE = CountryPickerView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kizitonwose.CountryPicker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kizitonwose.CountryPickerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -303,10 +303,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CountryPicker/Info.plist;
+				INFOPLIST_FILE = CountryPickerView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kizitonwose.CountryPicker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kizitonwose.CountryPickerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -316,7 +316,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		004CA2E51F7056E700B690B8 /* Build configuration list for PBXProject "CountryPicker" */ = {
+		004CA2E51F7056E700B690B8 /* Build configuration list for PBXProject "CountryPickerView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				004CA2F11F7056E700B690B8 /* Debug */,
@@ -325,7 +325,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		004CA2F31F7056E700B690B8 /* Build configuration list for PBXNativeTarget "CountryPicker" */ = {
+		004CA2F31F7056E700B690B8 /* Build configuration list for PBXNativeTarget "CountryPickerView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				004CA2F41F7056E700B690B8 /* Debug */,
