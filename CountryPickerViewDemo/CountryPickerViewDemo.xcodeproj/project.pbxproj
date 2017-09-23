@@ -12,7 +12,26 @@
 		004CA3081F705DD600B690B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004CA3061F705DD600B690B8 /* Main.storyboard */; };
 		004CA30A1F705DD600B690B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 004CA3091F705DD600B690B8 /* Assets.xcassets */; };
 		004CA30D1F705DD600B690B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004CA30B1F705DD600B690B8 /* LaunchScreen.storyboard */; };
+		00B096181F771DC300860F82 /* CountryPickerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B096171F771DA500860F82 /* CountryPickerView.framework */; };
+		00B096191F771DC300860F82 /* CountryPickerView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00B096171F771DA500860F82 /* CountryPickerView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00B096161F771DA500860F82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B096121F771DA500860F82 /* CountryPickerView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 004CA2EB1F7056E700B690B8;
+			remoteInfo = CountryPickerView;
+		};
+		00B0961A1F771DC300860F82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B096121F771DA500860F82 /* CountryPickerView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 004CA2EA1F7056E700B690B8;
+			remoteInfo = CountryPickerView;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		004CA3291F70617A00B690B8 /* Embed Frameworks */ = {
@@ -21,6 +40,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				00B096191F771DC300860F82 /* CountryPickerView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,6 +55,7 @@
 		004CA3091F705DD600B690B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		004CA30C1F705DD600B690B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		004CA30E1F705DD600B690B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00B096121F771DA500860F82 /* CountryPickerView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CountryPickerView.xcodeproj; path = ../CountryPickerView.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00B096181F771DC300860F82 /* CountryPickerView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +73,7 @@
 		004CA2F61F705DD600B690B8 = {
 			isa = PBXGroup;
 			children = (
+				00B096121F771DA500860F82 /* CountryPickerView.xcodeproj */,
 				004CA3011F705DD600B690B8 /* CountryPickerViewDemo */,
 				004CA3001F705DD600B690B8 /* Products */,
 			);
@@ -77,6 +100,14 @@
 			path = CountryPickerViewDemo;
 			sourceTree = "<group>";
 		};
+		00B096131F771DA500860F82 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00B096171F771DA500860F82 /* CountryPickerView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -92,6 +123,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				00B0961B1F771DC300860F82 /* PBXTargetDependency */,
 			);
 			name = CountryPickerViewDemo;
 			productName = CountryPickerSample;
@@ -126,12 +158,28 @@
 			mainGroup = 004CA2F61F705DD600B690B8;
 			productRefGroup = 004CA3001F705DD600B690B8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 00B096131F771DA500860F82 /* Products */;
+					ProjectRef = 00B096121F771DA500860F82 /* CountryPickerView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				004CA2FE1F705DD600B690B8 /* CountryPickerViewDemo */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		00B096171F771DA500860F82 /* CountryPickerView.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CountryPickerView.framework;
+			remoteRef = 00B096161F771DA500860F82 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		004CA2FD1F705DD600B690B8 /* Resources */ = {
@@ -157,6 +205,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00B0961B1F771DC300860F82 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CountryPickerView;
+			targetProxy = 00B0961A1F771DC300860F82 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		004CA3061F705DD600B690B8 /* Main.storyboard */ = {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CountryPicker
+import CountryPickerView
 
 class DemoViewController: UITableViewController {
    

@@ -1,6 +1,6 @@
 //
-//  CountryView.swift
-//  CountryPicker
+//  CountryPickerView.swift
+//  CountryPickerView
 //
 //  Created by Kizito Nwose on 18/09/2017.
 //  Copyright © 2017 Kizito Nwose. All rights reserved.
@@ -117,7 +117,7 @@ public class CountryPickerView: NibView {
     }
     
     public func showCountriesList(from viewController: UIViewController) {
-        let countryVc = CountryPickerTableViewController(style: .grouped)
+        let countryVc = CountryPickerViewTableViewController(style: .grouped)
         countryVc.countryPickerView = self
         if let viewController = viewController as? UINavigationController {
             viewController.pushViewController(countryVc, animated: true)

@@ -1,6 +1,6 @@
 //
-//  CountryPickerTableViewController.swift
-//  CountryPicker
+//  CountryPickerViewTableViewController.swift
+//  CountryPickerView
 //
 //  Created by Kizito Nwose on 18/09/2017.
 //  Copyright © 2017 Kizito Nwose. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CountryPickerTableViewController: UITableViewController {
+class CountryPickerViewTableViewController: UITableViewController {
     
     fileprivate var searchController: UISearchController?
     fileprivate var searchResults = [Country]()
@@ -34,7 +34,7 @@ class CountryPickerTableViewController: UITableViewController {
 
 
 // UI Setup
-extension CountryPickerTableViewController {
+extension CountryPickerViewTableViewController {
     
     func prepareTableItems()  {
         let countriesArray = countryPickerView.countries
@@ -113,7 +113,7 @@ extension CountryPickerTableViewController {
 
 
 //MARK:- UITableViewDataSource
-extension CountryPickerTableViewController {
+extension CountryPickerViewTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return isSearchMode ? 1 : sectionsTitles.count
@@ -159,7 +159,7 @@ extension CountryPickerTableViewController {
 
 
 //MARK:- UITableViewDelegate
-extension CountryPickerTableViewController {
+extension CountryPickerViewTableViewController {
 
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header = view as? UITableViewHeaderFooterView {
@@ -187,7 +187,7 @@ extension CountryPickerTableViewController {
 
 
 // MARK:- UISearchResultsUpdating
-extension CountryPickerTableViewController: UISearchResultsUpdating {
+extension CountryPickerViewTableViewController: UISearchResultsUpdating {
     public func updateSearchResults(for searchController: UISearchController) {
         isSearchMode = false
         if let text = searchController.searchBar.text, text.characters.count > 0,
@@ -202,7 +202,7 @@ extension CountryPickerTableViewController: UISearchResultsUpdating {
 
 
 // MARK:- UISearchBarDelegate
-extension CountryPickerTableViewController: UISearchBarDelegate {
+extension CountryPickerViewTableViewController: UISearchBarDelegate {
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         // Hide the back/left navigationItem button
         navigationItem.leftBarButtonItem = nil
