@@ -123,7 +123,7 @@ public class CountryPickerView: NibView {
     }
     
     public func showCountriesList(from viewController: UIViewController) {
-        let countryVc = CountryPickerViewTableViewController(style: .grouped)
+        let countryVc = CountryPickerViewController(style: .grouped)
         countryVc.countryPickerView = self
         if let viewController = viewController as? UINavigationController {
             viewController.pushViewController(countryVc, animated: true)
