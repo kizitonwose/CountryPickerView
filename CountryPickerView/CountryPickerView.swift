@@ -73,10 +73,12 @@ public class CountryPickerView: NibView {
     weak public var dataSource: CountryPickerViewDataSource?
     weak public var delegate: CountryPickerViewDelegate?
     
-    private var _selectedCountry: Country?
+    fileprivate var _selectedCountry: Country?
     internal(set) public var selectedCountry: Country {
         get {
-            return _selectedCountry ?? countries.first(where: { $0.code == "NG" })!
+            return _selectedCountry
+                ?? countries.first(where: { $0.code == Locale.current.regionCode })
+                ?? countries.first(where: { $0.code == "NG" })!
         }
         set {
             _selectedCountry = newValue
@@ -125,6 +127,38 @@ public class CountryPickerView: NibView {
                                    animated: true, completion: nil)
         }
     }
+    
+    public var countries: [Country] = {
+        var countries = [Country]()
+        let bundle = Bundle(for: CountryPickerView.self)
+        guard let jsonPath = bundle.path(forResource: "CountryPickerView.bundle/Data/CountryCodes", ofType: "json"),
+            let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
+                return countries
+        }
+        
+        if let jsonObjects = (try? JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization
+            .ReadingOptions.allowFragments)) as? Array<Any> {
+            
+            for jsonObject in jsonObjects {
+                
+                guard let countryObj = jsonObject as? Dictionary<String, Any> else {
+                    continue
+                }
+                
+                guard let name = countryObj["name"] as? String,
+                    let code = countryObj["code"] as? String,
+                    let phoneCode = countryObj["dial_code"] as? String else {
+                        continue
+                }
+                
+                let country = Country(name: name, code: code, phoneCode: phoneCode)
+                countries.append(country)
+            }
+            
+        }
+        
+        return countries
+    }()
 }
 
 extension CountryPickerView {
@@ -164,6 +198,24 @@ extension CountryPickerView {
 }
 
 extension CountryPickerView {
+    public func setCountryByName(_ name: String) {
+        if let country = countries.first(where: { $0.name == name }){
+            selectedCountry = country
+        }
+    }
+    
+    public func setCountryByPhoneCode(_ phoneCode: String) {
+        if let country = countries.first(where: { $0.phoneCode == phoneCode }) {
+            selectedCountry = country
+        }
+    }
+    
+    public func setCountryByCode(_ code: String) {
+        if let country = countries.first(where: { $0.code == code }) {
+            selectedCountry = country
+        }
+    }
+    
     public func getCountryByName(_ name: String) -> Country? {
         return countries.first(where: { $0.name == name })
     }
@@ -174,37 +226,5 @@ extension CountryPickerView {
     
     public func getCountryByCode(_ code: String) -> Country? {
         return countries.first(where: { $0.code == code })
-    }
-    
-    public var countries: [Country] {
-        var countries = [Country]()
-        let bundle = Bundle(for: type(of: self))
-        guard let jsonPath = bundle.path(forResource: "CountryPickerView.bundle/Data/CountryCodes", ofType: "json"),
-            let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
-                return countries
-        }
-        
-        if let jsonObjects = (try? JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization
-            .ReadingOptions.allowFragments)) as? Array<Any> {
-            
-            for jsonObject in jsonObjects {
-                
-                guard let countryObj = jsonObject as? Dictionary<String, Any> else {
-                    continue
-                }
-                
-                guard let name = countryObj["name"] as? String,
-                    let code = countryObj["code"] as? String,
-                    let phoneCode = countryObj["dial_code"] as? String else {
-                        continue
-                }
-                
-                let country = Country(name: name, code: code, phoneCode: phoneCode)
-                countries.append(country)
-            }
-            
-        }
-        
-        return countries
     }
 }

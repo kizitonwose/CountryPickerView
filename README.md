@@ -98,43 +98,36 @@ The delegate function will be called when the user selects a country from the li
 #### CountryPickerViewDataSource
 The datasource functions define the internal(country list) view controler's behavior. Run the demo project to play around with the options.
 
-- An array of countries you wish to show at the top of the list. This is useful if your app is targeted towards people in specific countries.
-
-- ```swift
+- An array of countries you wish to show at the top of the list. This is useful if your app is targeted towards people in specific countries. 
+  ```swift
     func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]?
-``` 
-
+  ``` 
 - The desired title for the preferred section. 
-
-- ```swift  
+  ```swift  
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
- ```
-Note that you have to return a non-empty array of countries as well as the section title if you wish to show preferred countries on the list. Returning only the array will not work, the section title is required.
+  ```
+  Note that you have to return a non-empty array of countries as well as the section title if you wish to show preferred countries on the list. Returning only the array will not work, the section title is required.
  
 - The navigation item title when the internal view controller is pushed/presented.
-
-- ```swift   
+  ```swift   
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
- ``` 
+  ``` 
  
 - A navigation item button to be used if the internal view controller is presented(not pushed). If nil is returned, a default "Close" button is used.
- 
-- ```swift    
+  ```swift    
     func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
- ```
+  ```
 
 - Desired position for the search bar.
- 
-- ```swift    
+  ```swift    
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
- ```
-Posible values are: `.tableViewHeader`, `.navigationBar` and `.hidden`
+  ```
+  Posible values are: `.tableViewHeader`, `.navigationBar` and `.hidden`
  
 - Show the phone code alongside the country name on the list. e.g Nigeria (+234) 
-
-- ```swift    
+  ```swift    
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool? 
- ```
+  ```
 
 ### Using CountryPickerView with UITextField
 
