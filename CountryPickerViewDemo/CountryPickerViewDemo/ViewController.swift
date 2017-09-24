@@ -51,7 +51,10 @@ class DemoViewController: UITableViewController {
         }
         
         selectCountryButton.addTarget(self, action: #selector(selectCountryAction(_:)), for: .touchUpInside)
+        
+        phoneNumberField.showDoneButtonOnKeyboard()
     }
+    
     
     func switchValueChanged(_ sender: UISwitch) {
         switch sender {
@@ -101,7 +104,7 @@ extension DemoViewController: CountryPickerViewDataSource {
     
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String? {
         if countryPickerView.tag == countryPickerViewMain.tag && showPreferredCountries.isOn {
-            return "Preferred Countries"
+            return "Preferred title"
         }
         return nil
     }
@@ -127,3 +130,20 @@ extension DemoViewController: CountryPickerViewDataSource {
     }
 }
 
+
+extension UITextField {
+    func showDoneButtonOnKeyboard() {
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(resignFirstResponder))
+        
+        var toolBarItems = [UIBarButtonItem]()
+        toolBarItems.append(flexSpace)
+        toolBarItems.append(doneButton)
+        
+        let doneToolbar = UIToolbar()
+        doneToolbar.items = toolBarItems
+        doneToolbar.sizeToFit()
+        
+        inputAccessoryView = doneToolbar
+    }
+}
