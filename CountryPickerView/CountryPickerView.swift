@@ -113,7 +113,12 @@ public class CountryPickerView: NibView {
     
     @IBAction func openCountryPickerController(_ sender: Any) {
         if let vc = window?.topViewController {
-            showCountriesList(from: vc)
+            if let tabVc = vc as? UITabBarController,
+                let selectedVc = tabVc.selectedViewController {
+                showCountriesList(from: selectedVc)
+            } else {
+                showCountriesList(from: vc)
+            }
         }
     }
     
@@ -124,7 +129,7 @@ public class CountryPickerView: NibView {
             viewController.pushViewController(countryVc, animated: true)
         } else {
             viewController.present(UINavigationController(rootViewController: countryVc),
-                                   animated: true, completion: nil)
+                                   animated: true)
         }
     }
     

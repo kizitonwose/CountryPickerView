@@ -102,6 +102,7 @@ The datasource functions define the internal(country list) view controler's beha
   ```swift
     func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]?
   ``` 
+  
 - The desired title for the preferred section. 
   ```swift  
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
