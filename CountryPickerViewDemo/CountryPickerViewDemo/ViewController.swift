@@ -10,7 +10,7 @@ import UIKit
 import CountryPickerView
 
 class DemoViewController: UITableViewController {
-   
+
     @IBOutlet weak var searchBarPosition: UISegmentedControl!
     @IBOutlet weak var showPhoneCodeInView: UISwitch!
     @IBOutlet weak var showCountryCodeInView: UISwitch!
@@ -23,6 +23,9 @@ class DemoViewController: UITableViewController {
     @IBOutlet weak var countryPickerViewIndependent: CountryPickerView!
     let countryPickerInternal = CountryPickerView()
     
+    @IBOutlet weak var presentationStyle: UISegmentedControl!
+    @IBOutlet weak var selectCountryButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -35,15 +38,40 @@ class DemoViewController: UITableViewController {
         countryPickerViewTextField.tag = 2
         countryPickerViewIndependent.tag = 3
         
-        [countryPickerViewMain, countryPickerViewTextField,countryPickerViewIndependent].forEach {
+        [countryPickerViewMain, countryPickerViewTextField,
+         countryPickerViewIndependent, countryPickerInternal].forEach {
             $0?.dataSource = self
         }
         
+        countryPickerInternal.delegate = self
+        countryPickerViewMain.countryDetailsLabel.font = UIFont.systemFont(ofSize: 20)
+        
+        [showPhoneCodeInView, showCountryCodeInView].forEach {
+            $0.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+        }
+        
+        selectCountryButton.addTarget(self, action: #selector(selectCountryAction(_:)), for: .touchUpInside)
     }
     
-    @IBAction func sectectCountryButtonAction(_ sender: Any) {
-        countryPickerInternal.delegate = self
-        countryPickerInternal.showCountriesList(from: navigationController!)
+    func switchValueChanged(_ sender: UISwitch) {
+        switch sender {
+        case showCountryCodeInView:
+            countryPickerViewMain.showCountryCodeInView = sender.isOn
+        case showPhoneCodeInView:
+            countryPickerViewMain.showPhoneCodeInView = sender.isOn
+        default: break
+        }
+    }
+    
+    func selectCountryAction(_ sender: Any) {
+        switch presentationStyle.selectedSegmentIndex {
+        case 0:
+            if let nav = navigationController {
+                countryPickerInternal.showCountriesList(from: nav)
+            }
+        case 1: countryPickerInternal.showCountriesList(from: self)
+        default: break
+        }
     }
 }
 
@@ -84,6 +112,18 @@ extension DemoViewController: CountryPickerViewDataSource {
     
     func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem? {
         return nil
+    }
+    
+    func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition {
+        switch searchBarPosition.selectedSegmentIndex {
+        case 0: return .tableViewHeader
+        case 1: return .navigationBar
+        default: return .hidden
+        }
+    }
+    
+    func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool? {
+        return showPhoneCodeInList.isOn
     }
 }
 

@@ -18,6 +18,8 @@ public protocol CountryPickerViewDataSource: NSObjectProtocol {
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
     func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
+    func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
+    func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool?
 }
 
 public struct Country {
@@ -50,8 +52,8 @@ public enum SearchBarPosition {
 
 public class CountryPickerView: NibView {
     @IBOutlet weak var spacingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var flagImageView: UIImageView!
-    @IBOutlet weak var countryDetailsLabel: UILabel!
+    @IBOutlet public weak var flagImageView: UIImageView!
+    @IBOutlet public weak var countryDetailsLabel: UILabel!
     
     public var showCountryCodeInView = true {
         didSet { setup() }
@@ -67,9 +69,6 @@ public class CountryPickerView: NibView {
             spacingConstraint.constant = newValue
         }
     }
-    
-    public var showPhoneCodeInList = false
-    public var searchBarPosition = SearchBarPosition.tableViewHeader
     
     weak public var dataSource: CountryPickerViewDataSource?
     weak public var delegate: CountryPickerViewDelegate?
@@ -136,23 +135,31 @@ extension CountryPickerView {
 }
 
 extension CountryPickerView {
-    func preferredCountries() -> [Country] {
+    var preferredCountries: [Country] {
       return dataSource?.preferredCountries(in: self) ?? [Country]()
     }
     
-    func preferredCountriesSectionTitle() -> String? {
+    var preferredCountriesSectionTitle: String? {
         return dataSource?.sectionTitleForPreferredCountries(in: self)
     }
     
-    func navigationTitle() -> String? {
+    var navigationTitle: String? {
         return dataSource?.navigationTitle(in: self)
     }
     
-    func closeButtonNavigationItem() -> UIBarButtonItem {
+    var closeButtonNavigationItem: UIBarButtonItem {
         guard let button = dataSource?.closeButtonNavigationItem(in: self) else {
             return UIBarButtonItem(title: "Close", style: .done, target: nil, action: nil)
         }
         return button
+    }
+    
+    var searchBarPosition: SearchBarPosition {
+        return dataSource?.searchBarPosition(in: self) ?? .tableViewHeader
+    }
+    
+    var showPhoneCodeInList: Bool {
+        return dataSource?.showPhoneCodeInList(in: self) ?? false
     }
 }
 

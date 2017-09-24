@@ -16,8 +16,8 @@ class CountryPickerViewTableViewController: UITableViewController {
     fileprivate var sectionsTitles = [String]()
     fileprivate var countries = [String: [Country]]()
     fileprivate var hasPreferredSection: Bool {
-        return countryPickerView.preferredCountriesSectionTitle() != nil &&
-            countryPickerView.preferredCountries().count > 0
+        return countryPickerView.preferredCountriesSectionTitle != nil &&
+            countryPickerView.preferredCountries.count > 0
     }
     
     weak var countryPickerView: CountryPickerView!
@@ -67,9 +67,9 @@ extension CountryPickerViewTableViewController {
         countries = data
         
         // Add preferred section if data is available
-        if hasPreferredSection, let preferredTitle = countryPickerView.preferredCountriesSectionTitle() {
+        if hasPreferredSection, let preferredTitle = countryPickerView.preferredCountriesSectionTitle {
             sectionsTitles.insert(preferredTitle, at: sectionsTitles.startIndex)
-            countries[preferredTitle] = countryPickerView.preferredCountries()
+            countries[preferredTitle] = countryPickerView.preferredCountries
         }
         
         tableView.sectionIndexBackgroundColor = .clear
@@ -77,11 +77,11 @@ extension CountryPickerViewTableViewController {
     }
     
     func prepareNavItem() {
-        navigationItem.title = countryPickerView.navigationTitle()
+        navigationItem.title = countryPickerView.navigationTitle
 
         // Add a close button if this is the root view controller
         if navigationController?.viewControllers.count == 1 {
-            let closeButton = countryPickerView.closeButtonNavigationItem()
+            let closeButton = countryPickerView.closeButtonNavigationItem
             closeButton.target = self
             closeButton.action = #selector(close)
             navigationItem.leftBarButtonItem = closeButton
