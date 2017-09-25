@@ -107,7 +107,13 @@ The datasource functions define the internal(country list) view controler's beha
   ```swift  
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
   ```
-  Note that you have to return a non-empty array of countries as well as the section title if you wish to show preferred countries on the list. Returning only the array will not work, the section title is required.
+  Note that you have to return a non-empty array of countries as well as the section title if you wish to show preferred countries on the list. Returning only the array will not work, the section title is required. 
+  
+- Show **ONLY** the preferred countries section on the list. 
+  ```swift  
+    func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool?
+  ``` 
+  Return `true` to hide the internal list so your users can only choose from the preferred countries list. 
  
 - The navigation item title when the internal view controller is pushed/presented.
   ```swift   
@@ -127,7 +133,7 @@ The datasource functions define the internal(country list) view controler's beha
  
 - Show the phone code alongside the country name on the list. e.g Nigeria (+234) 
   ```swift    
-    func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool? 
+    func ShowPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool? 
   ```
 
 ### Using CountryPickerView with UITextField
