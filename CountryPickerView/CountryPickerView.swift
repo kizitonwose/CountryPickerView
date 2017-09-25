@@ -15,6 +15,7 @@ public protocol CountryPickerViewDelegate: NSObjectProtocol {
 public protocol CountryPickerViewDataSource: NSObjectProtocol {
     func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]?
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
+    func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool?
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
     func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
@@ -181,6 +182,10 @@ extension CountryPickerView {
         return dataSource?.sectionTitleForPreferredCountries(in: self)
     }
     
+    var showOnlyPreferredSection: Bool {
+        return dataSource?.showOnlyPreferredSection(in: self) ?? false
+    }
+    
     var navigationTitle: String? {
         return dataSource?.navigationTitle(in: self)
     }
@@ -199,6 +204,7 @@ extension CountryPickerView {
     var showPhoneCodeInList: Bool {
         return dataSource?.showPhoneCodeInList(in: self) ?? false
     }
+
 }
 
 extension CountryPickerView {
