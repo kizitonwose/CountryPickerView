@@ -6,7 +6,6 @@
 //  Copyright © 2017 Kizito Nwose. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension UIWindow {
