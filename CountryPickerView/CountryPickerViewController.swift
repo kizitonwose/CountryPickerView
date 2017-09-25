@@ -19,6 +19,9 @@ class CountryPickerViewController: UITableViewController {
         return countryPickerView.preferredCountriesSectionTitle != nil &&
             countryPickerView.preferredCountries.count > 0
     }
+    fileprivate var showOnlyPreferredSection: Bool {
+        return countryPickerView.showOnlyPreferredSection
+    }
     
     weak var countryPickerView: CountryPickerView!
     
@@ -38,7 +41,7 @@ extension CountryPickerViewController {
     
     func prepareTableItems()  {
         
-        if !countryPickerView.showOnlyPreferredSection {
+        if !showOnlyPreferredSection {
             
             let countriesArray = countryPickerView.countries
             
@@ -194,10 +197,19 @@ extension CountryPickerViewController {
 extension CountryPickerViewController: UISearchResultsUpdating {
     public func updateSearchResults(for searchController: UISearchController) {
         isSearchMode = false
-        if let text = searchController.searchBar.text, text.characters.count > 0,
-            let indexArray = countries[String(text[text.startIndex])] {
+        if let text = searchController.searchBar.text, text.characters.count > 0 {
             isSearchMode = true
             searchResults.removeAll()
+            
+            var indexArray = [Country]()
+            
+            if showOnlyPreferredSection && hasPreferredSection,
+                let array = countries[countryPickerView.preferredCountriesSectionTitle!] {
+                indexArray = array
+            } else if let array = countries[String(text[text.startIndex])] {
+                indexArray = array
+            }
+
             searchResults.append(contentsOf: indexArray.filter({ $0.name.hasPrefix(text) }))
         }
         tableView.reloadData()
