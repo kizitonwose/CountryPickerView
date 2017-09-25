@@ -15,6 +15,7 @@ class DemoViewController: UITableViewController {
     @IBOutlet weak var showPhoneCodeInView: UISwitch!
     @IBOutlet weak var showCountryCodeInView: UISwitch!
     @IBOutlet weak var showPreferredCountries: UISwitch!
+    @IBOutlet weak var showOnlyPreferredCountries: UISwitch!
     @IBOutlet weak var showPhoneCodeInList: UISwitch!
     @IBOutlet weak var countryPickerViewMain: CountryPickerView!
     
@@ -46,7 +47,8 @@ class DemoViewController: UITableViewController {
         countryPickerInternal.delegate = self
         countryPickerViewMain.countryDetailsLabel.font = UIFont.systemFont(ofSize: 20)
         
-        [showPhoneCodeInView, showCountryCodeInView].forEach {
+        [showPhoneCodeInView, showCountryCodeInView,
+         showPreferredCountries,  showOnlyPreferredCountries].forEach {
             $0.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
         }
         
@@ -62,6 +64,17 @@ class DemoViewController: UITableViewController {
             countryPickerViewMain.showCountryCodeInView = sender.isOn
         case showPhoneCodeInView:
             countryPickerViewMain.showPhoneCodeInView = sender.isOn
+        case showPreferredCountries:
+            if !sender.isOn && showOnlyPreferredCountries.isOn {
+                showOnlyPreferredCountries.setOn(false, animated: true)
+            }
+        case showOnlyPreferredCountries:
+            if sender.isOn && !showPreferredCountries.isOn {
+                let title = "Missing requirement"
+                let message = "You must select the \"Show preferred countries section\" option."
+                showAlert(title: title, message: message)
+                sender.isOn = false
+            }
         default: break
         }
     }
@@ -76,15 +89,21 @@ class DemoViewController: UITableViewController {
         default: break
         }
     }
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
 }
 
 extension DemoViewController: CountryPickerViewDelegate {
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
         // Only countryPickerInternal has it's delegate set
+        let title = "Selected Country"
         let message = "Name: \(country.name) \nCode: \(country.code) \nPhone: \(country.phoneCode)"
-        let alert = UIAlertController(title: "Selected Country", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
+        showAlert(title: title, message: message)
     }
 }
 
@@ -107,6 +126,10 @@ extension DemoViewController: CountryPickerViewDataSource {
             return "Preferred title"
         }
         return nil
+    }
+    
+    func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool? {
+        return showOnlyPreferredCountries.isOn
     }
     
     func navigationTitle(in countryPickerView: CountryPickerView) -> String? {
