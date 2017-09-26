@@ -1,0 +1,8 @@
+platform :ios, '8.0'
+
+target 'CountryPickerViewDemo' do
+  use_frameworks!
+
+  pod 'CountryPickerView', :path => '../'  
+
+end

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DemoViewController.swift
 //  CountryPickerViewDemo
 //
 //  Created by Kizito Nwose on 18/09/2017.
@@ -141,11 +141,14 @@ extension DemoViewController: CountryPickerViewDataSource {
     }
     
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition {
-        switch searchBarPosition.selectedSegmentIndex {
-        case 0: return .tableViewHeader
-        case 1: return .navigationBar
-        default: return .hidden
+        if countryPickerView.tag == countryPickerViewMain.tag {
+            switch searchBarPosition.selectedSegmentIndex {
+            case 0: return .tableViewHeader
+            case 1: return .navigationBar
+            default: return .hidden
+            }
         }
+        return .tableViewHeader
     }
     
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool? {

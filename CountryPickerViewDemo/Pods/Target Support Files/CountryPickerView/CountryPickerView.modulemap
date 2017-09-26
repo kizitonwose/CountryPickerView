@@ -1,0 +1,6 @@
+framework module CountryPickerView {
+  umbrella header "CountryPickerView-umbrella.h"
+
+  export *
+  module * { export * }
+}
