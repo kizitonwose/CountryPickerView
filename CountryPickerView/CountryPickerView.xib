@@ -24,11 +24,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOy-96-GKY">
                     <rect key="frame" x="0.0" y="0.0" width="346" height="94"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" image="US.png" translatesAutoresizingMaskIntoConstraints="NO" id="0ui-wz-fhH">
-                            <rect key="frame" x="0.0" y="0.5" width="40" height="94"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0ui-wz-fhH">
+                            <rect key="frame" x="0.0" y="0.5" width="256" height="94"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="(NG) +234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Mf-hk-O6C">
-                            <rect key="frame" x="48" y="-0.5" width="298" height="94.5"/>
+                            <rect key="frame" x="264" y="-0.5" width="82" height="94.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -71,7 +71,4 @@
             </connections>
         </tapGestureRecognizer>
     </objects>
-    <resources>
-        <image name="US.png" width="40" height="30"/>
-    </resources>
 </document>
