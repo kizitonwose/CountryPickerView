@@ -107,7 +107,7 @@ The datasource functions define the internal(country list) view controler's beha
   ```swift  
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
   ```
-  Note that you have to return a non-empty array of countries as well as the section title if you wish to show preferred countries on the list. Returning only the array will not work, the section title is required. 
+  **Note:** You have to return a non-empty array of countries as well as the section title if you wish to show preferred countries on the list. Returning only the array will not work, the section title is required. 
   
 - Show **ONLY** the preferred countries section on the list. 
   ```swift  
@@ -120,10 +120,11 @@ The datasource functions define the internal(country list) view controler's beha
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
   ``` 
  
-- A navigation item button to be used if the internal view controller is presented(not pushed). If nil is returned, a default "Close" button is used.
+- A navigation item button to be used if the internal view controller is presented(not pushed). If nil is returned, a default "Close" button is used. This fuction only enables you return a button customized the way you want. 
   ```swift    
     func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
   ```
+  **Note:** Any `target` or `action` associated with this button will be overridden as this button's sole purpose is to close the internal view controller.
 
 - Desired position for the search bar.
   ```swift    
