@@ -17,12 +17,12 @@ class DemoViewController: UITableViewController {
     @IBOutlet weak var showPreferredCountries: UISwitch!
     @IBOutlet weak var showOnlyPreferredCountries: UISwitch!
     @IBOutlet weak var showPhoneCodeInList: UISwitch!
-    @IBOutlet weak var countryPickerViewMain: CountryPickerView!
+    @IBOutlet weak var cpvMain: CountryPickerView!
     
     @IBOutlet weak var phoneNumberField: UITextField!
-    weak var countryPickerViewTextField: CountryPickerView!
-    @IBOutlet weak var countryPickerViewIndependent: CountryPickerView!
-    let countryPickerInternal = CountryPickerView()
+    weak var cpvTextField: CountryPickerView!
+    @IBOutlet weak var cpvIndependent: CountryPickerView!
+    let cpvInternal = CountryPickerView()
     
     @IBOutlet weak var presentationStyle: UISegmentedControl!
     @IBOutlet weak var selectCountryButton: UIButton!
@@ -33,19 +33,18 @@ class DemoViewController: UITableViewController {
         let cp = CountryPickerView(frame: CGRect(x: 0, y: 0, width: 120, height: 20))
         phoneNumberField.leftView = cp
         phoneNumberField.leftViewMode = .always
-        self.countryPickerViewTextField = cp
+        self.cpvTextField = cp
 
-        countryPickerViewMain.tag = 1
-        countryPickerViewTextField.tag = 2
-        countryPickerViewIndependent.tag = 3
+        cpvMain.tag = 1
+        cpvTextField.tag = 2
+        cpvIndependent.tag = 3
         
-        [countryPickerViewMain, countryPickerViewTextField,
-         countryPickerViewIndependent, countryPickerInternal].forEach {
+        [cpvMain, cpvTextField, cpvIndependent, cpvInternal].forEach {
             $0?.dataSource = self
         }
         
-        countryPickerInternal.delegate = self
-        countryPickerViewMain.countryDetailsLabel.font = UIFont.systemFont(ofSize: 20)
+        cpvInternal.delegate = self
+        cpvMain.countryDetailsLabel.font = UIFont.systemFont(ofSize: 20)
         
         [showPhoneCodeInView, showCountryCodeInView,
          showPreferredCountries,  showOnlyPreferredCountries].forEach {
@@ -61,9 +60,9 @@ class DemoViewController: UITableViewController {
     func switchValueChanged(_ sender: UISwitch) {
         switch sender {
         case showCountryCodeInView:
-            countryPickerViewMain.showCountryCodeInView = sender.isOn
+            cpvMain.showCountryCodeInView = sender.isOn
         case showPhoneCodeInView:
-            countryPickerViewMain.showPhoneCodeInView = sender.isOn
+            cpvMain.showPhoneCodeInView = sender.isOn
         case showPreferredCountries:
             if !sender.isOn && showOnlyPreferredCountries.isOn {
                 showOnlyPreferredCountries.setOn(false, animated: true)
@@ -83,9 +82,9 @@ class DemoViewController: UITableViewController {
         switch presentationStyle.selectedSegmentIndex {
         case 0:
             if let nav = navigationController {
-                countryPickerInternal.showCountriesList(from: nav)
+                cpvInternal.showCountriesList(from: nav)
             }
-        case 1: countryPickerInternal.showCountriesList(from: self)
+        case 1: cpvInternal.showCountriesList(from: self)
         default: break
         }
     }
@@ -109,7 +108,7 @@ extension DemoViewController: CountryPickerViewDelegate {
 
 extension DemoViewController: CountryPickerViewDataSource {
     func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]? {
-        if countryPickerView.tag == countryPickerViewMain.tag && showPreferredCountries.isOn {
+        if countryPickerView.tag == cpvMain.tag && showPreferredCountries.isOn {
             var countries = [Country]()
             ["NG", "US", "GB"].forEach { code in
                 if let country = countryPickerView.getCountryByCode(code) {
@@ -122,7 +121,7 @@ extension DemoViewController: CountryPickerViewDataSource {
     }
     
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String? {
-        if countryPickerView.tag == countryPickerViewMain.tag && showPreferredCountries.isOn {
+        if countryPickerView.tag == cpvMain.tag && showPreferredCountries.isOn {
             return "Preferred title"
         }
         return nil
@@ -141,7 +140,7 @@ extension DemoViewController: CountryPickerViewDataSource {
     }
     
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition {
-        if countryPickerView.tag == countryPickerViewMain.tag {
+        if countryPickerView.tag == cpvMain.tag {
             switch searchBarPosition.selectedSegmentIndex {
             case 0: return .tableViewHeader
             case 1: return .navigationBar

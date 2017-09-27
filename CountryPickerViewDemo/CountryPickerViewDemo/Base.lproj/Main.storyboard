@@ -402,8 +402,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="CountryPickerView Demo" id="L8o-xe-Pfv"/>
                     <connections>
-                        <outlet property="countryPickerViewIndependent" destination="lAN-Qz-OPr" id="yoW-mD-nUk"/>
-                        <outlet property="countryPickerViewMain" destination="cFF-sE-QnX" id="ckC-Zi-jr3"/>
+                        <outlet property="cpvIndependent" destination="lAN-Qz-OPr" id="sb9-MR-71S"/>
+                        <outlet property="cpvMain" destination="cFF-sE-QnX" id="nHZ-GH-KbC"/>
                         <outlet property="phoneNumberField" destination="jZa-H4-Kh6" id="hKp-5v-3GT"/>
                         <outlet property="presentationStyle" destination="SCL-Cv-BjI" id="nIu-rX-fUe"/>
                         <outlet property="searchBarPosition" destination="Jr1-AD-yBk" id="kze-tF-ZeH"/>
