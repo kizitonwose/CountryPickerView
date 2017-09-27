@@ -9,16 +9,35 @@
 import UIKit
 
 public protocol CountryPickerViewDelegate: NSObjectProtocol {
+    /// Called when the user selects a country from the list.
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
 }
 
 public protocol CountryPickerViewDataSource: NSObjectProtocol {
+    /// An array of countries you wish to show at the top of the list. 
+    /// This is useful if your app is targeted towards people in specific countries.
+    /// - requires: The title for the section to be returned in `sectionTitleForPreferredCountries`
     func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]?
+    
+    /// The desired title for the preferred section.
+    /// - **See:** `preferredCountries` method. Both are required for the section to be shown.
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
+    
+    /// This determines if only the preferred section is shown
     func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool?
+    
+    /// The navigation item title when the internal view controller is pushed/presented.
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
+    
+    /// A navigation item button to be used if the internal view controller is presented(not pushed). 
+    /// Return `nil` to use a default "Close" button.
     func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
+    
+    /// The desired position for the search bar.
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
+    
+    /// This determines if a country's phone code is shown alongside the country's name on the list.
+    /// e.g Nigeria (+234)
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool?
 }
 
@@ -26,9 +45,9 @@ public struct Country {
    public var name: String
    public var code: String
    public var phoneCode: String
-   public var flag: UIImage? {
+   public var flag: UIImage {
         return UIImage(named: "CountryPickerView.bundle/Images/\(code.uppercased())",
-            in: Bundle(for: CountryPickerView.self), compatibleWith: nil)
+            in: Bundle(for: CountryPickerView.self), compatibleWith: nil)!
     }
     
    internal init(name: String, code: String, phoneCode: String) {
@@ -55,12 +74,17 @@ public class CountryPickerView: NibView {
     @IBOutlet public weak var flagImageView: UIImageView!
     @IBOutlet public weak var countryDetailsLabel: UILabel!
     
+    // Show/Hide the country code on the view.
     public var showCountryCodeInView = true {
         didSet { setup() }
     }
+    
+    // Show/Hide the phone code on the view.
     public var showPhoneCodeInView = true {
         didSet { setup() }
     }
+    
+    /// The spacing between the flag image and the text.
     public var flagSpacingInView: CGFloat {
         get {
             return spacingConstraint.constant
@@ -166,47 +190,7 @@ public class CountryPickerView: NibView {
     }()
 }
 
-extension CountryPickerView {
-    func didSelectCountry(_ country: Country) {
-        selectedCountry = country
-        delegate?.countryPickerView(self, didSelectCountry: country)
-    }
-}
-
-extension CountryPickerView {
-    var preferredCountries: [Country] {
-      return dataSource?.preferredCountries(in: self) ?? [Country]()
-    }
-    
-    var preferredCountriesSectionTitle: String? {
-        return dataSource?.sectionTitleForPreferredCountries(in: self)
-    }
-    
-    var showOnlyPreferredSection: Bool {
-        return dataSource?.showOnlyPreferredSection(in: self) ?? false
-    }
-    
-    var navigationTitle: String? {
-        return dataSource?.navigationTitle(in: self)
-    }
-    
-    var closeButtonNavigationItem: UIBarButtonItem {
-        guard let button = dataSource?.closeButtonNavigationItem(in: self) else {
-            return UIBarButtonItem(title: "Close", style: .done, target: nil, action: nil)
-        }
-        return button
-    }
-    
-    var searchBarPosition: SearchBarPosition {
-        return dataSource?.searchBarPosition(in: self) ?? .tableViewHeader
-    }
-    
-    var showPhoneCodeInList: Bool {
-        return dataSource?.showPhoneCodeInList(in: self) ?? false
-    }
-
-}
-
+//MARK: Helper methods
 extension CountryPickerView {
     public func setCountryByName(_ name: String) {
         if let country = countries.first(where: { $0.name == name }){
@@ -237,4 +221,50 @@ extension CountryPickerView {
     public func getCountryByCode(_ code: String) -> Country? {
         return countries.first(where: { $0.code == code })
     }
+}
+
+
+// MARK:- An internal implementation of the CountryPickerViewDelegate.
+// Sets internal properties before calling external delegate.
+extension CountryPickerView {
+    func didSelectCountry(_ country: Country) {
+        selectedCountry = country
+        delegate?.countryPickerView(self, didSelectCountry: country)
+    }
+}
+
+// MARK:- An internal implementation of the CountryPickerViewDataSource.
+// Returns default options where necessary.
+extension CountryPickerView {
+    var preferredCountries: [Country] {
+        return dataSource?.preferredCountries(in: self) ?? [Country]()
+    }
+    
+    var preferredCountriesSectionTitle: String? {
+        return dataSource?.sectionTitleForPreferredCountries(in: self)
+    }
+    
+    var showOnlyPreferredSection: Bool {
+        return dataSource?.showOnlyPreferredSection(in: self) ?? false
+    }
+    
+    var navigationTitle: String? {
+        return dataSource?.navigationTitle(in: self)
+    }
+    
+    var closeButtonNavigationItem: UIBarButtonItem {
+        guard let button = dataSource?.closeButtonNavigationItem(in: self) else {
+            return UIBarButtonItem(title: "Close", style: .done, target: nil, action: nil)
+        }
+        return button
+    }
+    
+    var searchBarPosition: SearchBarPosition {
+        return dataSource?.searchBarPosition(in: self) ?? .tableViewHeader
+    }
+    
+    var showPhoneCodeInList: Bool {
+        return dataSource?.showPhoneCodeInList(in: self) ?? false
+    }
+    
 }

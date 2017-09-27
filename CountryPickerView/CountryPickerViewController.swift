@@ -133,8 +133,8 @@ extension CountryPickerViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
             ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
-        let country = isSearchMode ? searchResults[indexPath.row] :
-            countries[sectionsTitles[indexPath.section]]![indexPath.row]
+        let country = isSearchMode ? searchResults[indexPath.row]
+            : countries[sectionsTitles[indexPath.section]]![indexPath.row]
         
         let name = countryPickerView.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
         cell.imageView?.image = country.flag
@@ -176,8 +176,9 @@ extension CountryPickerViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let country = isSearchMode ? searchResults[indexPath.row] : countries[sectionsTitles[indexPath.section]]![indexPath.row]
-        // countryPickerView.didSelectCountry(country)
+        let country = isSearchMode ? searchResults[indexPath.row]
+            : countries[sectionsTitles[indexPath.section]]![indexPath.row]
+
         searchController?.dismiss(animated: false, completion: nil)
         
         let completion = {
