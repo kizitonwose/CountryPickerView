@@ -128,7 +128,10 @@ extension DemoViewController: CountryPickerViewDataSource {
     }
     
     func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool? {
-        return showOnlyPreferredCountries.isOn
+        if countryPickerView.tag == cpvMain.tag {
+            return showOnlyPreferredCountries.isOn
+        }
+        return nil
     }
     
     func navigationTitle(in countryPickerView: CountryPickerView) -> String? {
@@ -151,7 +154,10 @@ extension DemoViewController: CountryPickerViewDataSource {
     }
     
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool? {
-        return showPhoneCodeInList.isOn
+        if countryPickerView.tag == cpvMain.tag {
+            return showOnlyPreferredCountries.isOn
+        }
+        return nil
     }
 }
 
