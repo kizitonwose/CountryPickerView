@@ -1,19 +1,17 @@
 # CountryPickerView
 
-<img src="/CountryPickerViewDemo/flag.gif" width="300">
-
 [![Version](https://img.shields.io/cocoapods/v/CountryPickerView.svg?style=flat)](http://cocoapods.org/pods/CountryPickerView)
 [![License](https://img.shields.io/cocoapods/l/CountryPickerView.svg?style=flat)](http://cocoapods.org/pods/CountryPickerView)
 [![Platform](https://img.shields.io/cocoapods/p/CountryPickerView.svg?style=flat)](http://cocoapods.org/pods/CountryPickerView)
 
 CountryPickerView is a simple, customizable view for selecting countries in iOS apps. 
 
-You can clone/download the repository and run the [demo project](/.CountryPickerViewDemo). First run `pod install` from the CountryPickerViewDemo directory.
+You can clone/download the repository and run the [demo project](/.CountryPickerViewDemo) to see CountryPickerView in action. First run `pod install` from the CountryPickerViewDemo directory.
 
-<img align="left" src="/CountryPickerViewDemo/place_holder.png" width="300">
-<img src="/CountryPickerViewDemo/place_holder.png" width="300">
-<img align="left" src="/CountryPickerViewDemo/place_holder.png" width="300">
-<img src="/CountryPickerViewDemo/place_holder.png" width="300">
+<img align="left" src="/CountryPickerViewDemo/screenshots/1.png" width="300">
+<img src="/CountryPickerViewDemo/screenshots/2.png" width="300">
+<img align="left" src="/CountryPickerViewDemo/screenshots/3.png" width="300">
+<img src="/CountryPickerViewDemo/screenshots/4.png" width="300">
 
 
 ## Installation
@@ -41,12 +39,12 @@ pod 'CountryPickerView', '~> 1.0'
 
 If you're using Storyboards/Interface Builder you can create a CountryPickerView instance by adding a UIView to your Storyboard, and then manually changing the view's class to CountryPickerView in the "Custom Class" field of the Identity Inspector tab on the Utilities panel (the right-side panel)
 
-You can also create an insatnce of CountryPickerView programmaticaly:
+You can also create an instance of CountryPickerView programmaticaly:
 
 ```swift
 import CountryPickerView
 
-let cpv = CountryPickerView(frame:)
+let cpv = CountryPickerView(frame: /**Desired frame**/)
 ```
 
 To get the selected country from your `CountryPickerView` instance at any time, use the `selectedCountry` property. 
@@ -55,7 +53,7 @@ To get the selected country from your `CountryPickerView` instance at any time, 
 let country = cpv.selectedCountry
 print(country)
 ```
-This property is not optional, the default value is the user's current country.
+This property is not optional, the default value is the user's current country, derived from the device's current Locale.
 
 ### Customization
 
@@ -74,7 +72,7 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
         countryPickerView.delegate = self
         countryPickerView.dataSource = self
         
-        // Direct customizations on CountryPickerView instance
+        /*** Direct customizations on CountryPickerView instance ***/
         
         // Show the selected country's phone(e.g +234) code on the view
         countryPickerView.showPhoneCodeInView = true
@@ -90,9 +88,9 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
 The delegate function will be called when the user selects a country from the list or when you manually set the `selectedCountry` property of the `CountryPickerView`
 
 ```swift
-    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
-        print(country)
-    }
+func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) { 
+	print(country)
+}
 ```
 
 #### CountryPickerViewDataSource
@@ -107,7 +105,7 @@ The datasource functions define the internal(country list) view controler's beha
   ```swift  
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
   ```
-  **Note:** You have to return a non-empty array of countries as well as the section title if you wish to show preferred countries on the list. Returning only the array will not work, the section title is required. 
+  **Note:** You have to return a non-empty array of countries from `preferredCountries(in countryPickerView: CountryPickerView)` as well as this section title if you wish to show preferred countries on the list. Returning only the array or title will not work. 
   
 - Show **ONLY** the preferred countries section on the list. 
   ```swift  
@@ -124,7 +122,7 @@ The datasource functions define the internal(country list) view controler's beha
   ```swift    
     func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
   ```
-  **Note:** Any `target` or `action` associated with this button will be overridden as this button's sole purpose is to close the internal view controller.
+  **Note:** Any `target` or `action` associated with this button will be replaced as this button's sole purpose is to close the internal view controller.
 
 - Desired position for the search bar.
   ```swift    
