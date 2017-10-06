@@ -1,16 +1,15 @@
-Pod::Spec.new do |s|
+Pod::Spec.new do |spec|
 
-  s.name         = "CountryPickerView"
-  s.version      = "1.0.0"
-  s.summary      = "A simple, customizable view for selecting countries in iOS apps."
-  s.homepage     = "https://github.com/kizitonwose/CountryPickerView"
-  s.license      = "MIT"
-  s.author       = { "Kizito Nwose" => "kizitonwose@gmail.com" }
-  s.platform     = :ios, "8.0"
-  #s.source       = { :git => "https://github.com/kizitonwose/CountryPickerView.git", :tag => "{s.version}" }
-  s.source       = {  :path => '.'  }
-  s.source_files  = "CountryPickerView/**/*.{swift,xib}"
-  s.resource_bundles = {
+  spec.name         = "CountryPickerView"
+  spec.version      = "1.0.0"
+  spec.summary      = "A simple, customizable view for selecting countries in iOS apps."
+  spec.homepage     = "https://github.com/kizitonwose/CountryPickerView"
+  spec.license      = "MIT"
+  spec.author       = { "Kizito Nwose" => "kizitonwose@gmail.com" }
+  spec.platform     = :ios, "8.0"
+  spec.source       = { :git => "https://github.com/kizitonwose/CountryPickerView.git", :tag => spec.version }
+  spec.source_files  = "CountryPickerView/**/*.{swift,xib}"
+  spec.resource_bundles = {
     'CountryPickerView' => ['CountryPickerView/Assets/CountryPickerView.bundle/*']
   }
 
