@@ -1,17 +1,17 @@
 # CountryPickerView
 
 [![Version](https://img.shields.io/cocoapods/v/CountryPickerView.svg?style=flat)](http://cocoapods.org/pods/CountryPickerView)
-[![License](https://img.shields.io/cocoapods/l/CountryPickerView.svg?style=flat)](http://cocoapods.org/pods/CountryPickerView)
-[![Platform](https://img.shields.io/cocoapods/p/CountryPickerView.svg?style=flat)](http://cocoapods.org/pods/CountryPickerView)
+[![Platform](https://img.shields.io/badge/Platform-iOS-00BCD4.svg)](http://cocoapods.org/pods/CountryPickerView)
+[![License](https://img.shields.io/badge/License-MIT-8D6E63.svg)](https://github.com/kizitonwose/CountryPickerView/blob/master/LICENSE.md)
 
 CountryPickerView is a simple, customizable view for selecting countries in iOS apps. 
 
-You can clone/download the repository and run the [demo project](/.CountryPickerViewDemo) to see CountryPickerView in action. First run `pod install` from the CountryPickerViewDemo directory.
+You can clone/download the repository and run the [demo project](/CountryPickerViewDemo) to see CountryPickerView in action. First run `pod install` from the CountryPickerViewDemo directory.
 
-<img align="left" src="/CountryPickerViewDemo/screenshots/1.png" width="300">
-<img src="/CountryPickerViewDemo/screenshots/2.png" width="300">
-<img align="left" src="/CountryPickerViewDemo/screenshots/3.png" width="300">
-<img src="/CountryPickerViewDemo/screenshots/4.png" width="300">
+<img align="left" src="/CountryPickerViewDemo/Screenshots/1.png" width="300">
+<img src="/CountryPickerViewDemo/Screenshots/2.png" width="300">
+<img align="left" src="/CountryPickerViewDemo/Screenshots/3.png" width="300">
+<img src="/CountryPickerViewDemo/Screenshots/4.png" width="300">
 
 
 ## Installation
@@ -23,8 +23,9 @@ CountryPickerView is available through [CocoaPods](http://cocoapods.org). Simply
 ```ruby
 use_frameworks!
 
-target '<Your Target Name>'
-pod 'CountryPickerView', '~> 1.0'
+target '<Your Target Name>' do
+  pod 'CountryPickerView'
+end
 ```
 
 ### Manual
@@ -132,7 +133,7 @@ The datasource functions define the internal(country list) view controler's beha
  
 - Show the phone code alongside the country name on the list. e.g Nigeria (+234) 
   ```swift    
-    func ShowPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool? 
+    func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool? 
   ```
 
 ### Using CountryPickerView with UITextField
@@ -153,7 +154,7 @@ class DemoViewController: UIViewController {
     }
 }
 ```
-This means your users do not have to worry about entering the country's phone code in the text field. This also ensures you get a valid phone code from `CountryPickerView` instead of relying on the user.
+This means your users do not have to worry about entering the country's phone code in the text field. This also ensures you get a valid phone code from `CountryPickerView` instead of relying on your users.
 
 ### Using the internal picker independently
 
