@@ -42,10 +42,10 @@ github "kizitonwose/CountryPickerView"
 ### Manual
 
 1. Put CountryPickerView repo somewhere in your project directory.
-1. In Xcode, add `CountryPickerView.xcodeproj` to your project.
-1. On your app's target, add the CountryPickerView framework:
-  1. as an embedded binary on the General tab.
-  1. as a target dependency on the Build Phases tab.
+2. In Xcode, add `CountryPickerView.xcodeproj` to your project.
+3. On your app's target, add the CountryPickerView framework:
+   1. as an embedded binary on the General tab.
+   2. as a target dependency on the Build Phases tab.
 
 ## Usage
 
