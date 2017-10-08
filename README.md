@@ -3,14 +3,15 @@
 [![Version](https://img.shields.io/cocoapods/v/CountryPickerView.svg?style=flat)](http://cocoapods.org/pods/CountryPickerView)
 [![Platform](https://img.shields.io/badge/Platform-iOS-00BCD4.svg)](http://cocoapods.org/pods/CountryPickerView)
 [![License](https://img.shields.io/badge/License-MIT-8D6E63.svg)](https://github.com/kizitonwose/CountryPickerView/blob/master/LICENSE.md)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 CountryPickerView is a simple, customizable view for selecting countries in iOS apps. 
 
 You can clone/download the repository and run the [demo project](/CountryPickerViewDemo) to see CountryPickerView in action. First run `pod install` from the CountryPickerViewDemo directory.
 
-<img align="left" src="/CountryPickerViewDemo/Screenshots/1.png" width="300">
-<img src="/CountryPickerViewDemo/Screenshots/2.png" width="300">
-<img align="left" src="/CountryPickerViewDemo/Screenshots/3.png" width="300">
+<img align="left" src="/CountryPickerViewDemo/Screenshots/1.png" width="300"> 
+<img src="/CountryPickerViewDemo/Screenshots/2.png" width="300"> 
+<img align="left" src="/CountryPickerViewDemo/Screenshots/3.png" width="300"> 
 <img src="/CountryPickerViewDemo/Screenshots/4.png" width="300">
 
 
@@ -26,6 +27,16 @@ use_frameworks!
 target '<Your Target Name>' do
   pod 'CountryPickerView'
 end
+```
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+To install CountryPickerView through Carthage, simply add the following to your Cartfile:
+
+```ruby
+github "kizitonwose/CountryPickerView"
 ```
 
 ### Manual
@@ -119,7 +130,7 @@ The datasource functions define the internal(country list) view controler's beha
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
   ``` 
  
-- A navigation item button to be used if the internal view controller is presented(not pushed). If nil is returned, a default "Close" button is used. This fuction only enables you return a button customized the way you want. 
+- A navigation item button to be used if the internal view controller is presented(not pushed). If nil is returned, a default "Close" button is used. This function only enables you return a button customized the way you want. 
   ```swift    
     func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
   ```
