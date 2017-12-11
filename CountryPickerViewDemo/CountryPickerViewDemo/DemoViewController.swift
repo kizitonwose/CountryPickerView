@@ -155,7 +155,7 @@ extension DemoViewController: CountryPickerViewDataSource {
     
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool? {
         if countryPickerView.tag == cpvMain.tag {
-            return showOnlyPreferredCountries.isOn
+            return showPhoneCodeInList.isOn
         }
         return nil
     }
