@@ -12,26 +12,8 @@
 		004CA3081F705DD600B690B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004CA3061F705DD600B690B8 /* Main.storyboard */; };
 		004CA30A1F705DD600B690B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 004CA3091F705DD600B690B8 /* Assets.xcassets */; };
 		004CA30D1F705DD600B690B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004CA30B1F705DD600B690B8 /* LaunchScreen.storyboard */; };
-		509720AA1FDEE189001244B0 /* CountryPickerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5097209B1FDEDC64001244B0 /* CountryPickerView.framework */; };
-		509720AB1FDEE189001244B0 /* CountryPickerView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5097209B1FDEDC64001244B0 /* CountryPickerView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		725ED841B1989E74241F9377 /* Pods_CountryPickerViewDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C8BC3DAF9C411DCD8D1C9 /* Pods_CountryPickerViewDemo.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		5097209A1FDEDC64001244B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 509720961FDEDC64001244B0 /* CountryPickerView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 004CA2EB1F7056E700B690B8;
-			remoteInfo = CountryPickerView;
-		};
-		509720AC1FDEE189001244B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 509720961FDEDC64001244B0 /* CountryPickerView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 004CA2EA1F7056E700B690B8;
-			remoteInfo = CountryPickerView;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		509720AE1FDEE189001244B0 /* Embed Frameworks */ = {
@@ -40,7 +22,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				509720AB1FDEE189001244B0 /* CountryPickerView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,7 +38,6 @@
 		004CA30E1F705DD600B690B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		459706724723319B379BF2E4 /* Pods-CountryPickerViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryPickerViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CountryPickerViewDemo/Pods-CountryPickerViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		476008F23554AD41FFB937C1 /* Pods-CountryPickerViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryPickerViewDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CountryPickerViewDemo/Pods-CountryPickerViewDemo.release.xcconfig"; sourceTree = "<group>"; };
-		509720961FDEDC64001244B0 /* CountryPickerView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CountryPickerView.xcodeproj; path = ../CountryPickerView.xcodeproj; sourceTree = "<group>"; };
 		9B8C8BC3DAF9C411DCD8D1C9 /* Pods_CountryPickerViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CountryPickerViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -66,7 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				509720AA1FDEE189001244B0 /* CountryPickerView.framework in Frameworks */,
+				725ED841B1989E74241F9377 /* Pods_CountryPickerViewDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +56,6 @@
 		004CA2F61F705DD600B690B8 = {
 			isa = PBXGroup;
 			children = (
-				509720961FDEDC64001244B0 /* CountryPickerView.xcodeproj */,
 				004CA3011F705DD600B690B8 /* CountryPickerViewDemo */,
 				004CA3001F705DD600B690B8 /* Products */,
 				04431B08EF5FCEAD7590DEEB /* Pods */,
@@ -114,14 +93,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		509720971FDEDC64001244B0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5097209B1FDEDC64001244B0 /* CountryPickerView.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		6D5112DD0A48489AB2BB6070 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,7 +119,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				509720AD1FDEE189001244B0 /* PBXTargetDependency */,
 			);
 			name = CountryPickerViewDemo;
 			productName = CountryPickerSample;
@@ -183,28 +153,12 @@
 			mainGroup = 004CA2F61F705DD600B690B8;
 			productRefGroup = 004CA3001F705DD600B690B8 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 509720971FDEDC64001244B0 /* Products */;
-					ProjectRef = 509720961FDEDC64001244B0 /* CountryPickerView.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				004CA2FE1F705DD600B690B8 /* CountryPickerViewDemo */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		5097209B1FDEDC64001244B0 /* CountryPickerView.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CountryPickerView.framework;
-			remoteRef = 5097209A1FDEDC64001244B0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		004CA2FD1F705DD600B690B8 /* Resources */ = {
@@ -284,14 +238,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		509720AD1FDEE189001244B0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CountryPickerView;
-			targetProxy = 509720AC1FDEE189001244B0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		004CA3061F705DD600B690B8 /* Main.storyboard */ = {
