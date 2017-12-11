@@ -57,7 +57,7 @@ class DemoViewController: UITableViewController {
     }
     
     
-    func switchValueChanged(_ sender: UISwitch) {
+    @objc func switchValueChanged(_ sender: UISwitch) {
         switch sender {
         case showCountryCodeInView:
             cpvMain.showCountryCodeInView = sender.isOn
@@ -78,7 +78,7 @@ class DemoViewController: UITableViewController {
         }
     }
     
-    func selectCountryAction(_ sender: Any) {
+    @objc func selectCountryAction(_ sender: Any) {
         switch presentationStyle.selectedSegmentIndex {
         case 0:
             if let nav = navigationController {
