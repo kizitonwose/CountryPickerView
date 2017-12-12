@@ -1,0 +1,38 @@
+language: objective-c
+osx_image: xcode9.1
+env:
+  global:
+  - FRAMEWORK_SCHEME="CountryPickerView"
+  - FRAMEWORK_PROJECT="CountryPickerView.xcodeproj"
+  - IOS_SDK=iphonesimulator11.1
+  - DEMO_SCHEME="CountryPickerViewDemo"
+  - DEMO_WORKSPACE=CountryPickerViewDemo/CountryPickerViewDemo.xcworkspace
+  - PLATFORM="platform=iOS Simulator,OS=11.1,name=iPhone 8"
+  matrix:
+    - BUILD_TYPE=FRAMEWORK POD_LINT="TRUE"
+    - BUILD_TYPE=DEMO POD_LINT="FALSE"
+
+before_install:
+  - gem install cocoapods --no-rdoc --no-ri
+  - gem install xcpretty --no-rdoc --no-ri
+
+script:  
+  - set -o pipefail
+  - xcodebuild -version
+  - xcodebuild -showsdks
+  - xcrun simctl list
+
+  # Build the framework and Demo app
+  - if [ $BUILD_TYPE == "FRAMEWORK" ]; then
+      xcodebuild build -project "$FRAMEWORK_PROJECT" -scheme "$FRAMEWORK_SCHEME" -sdk "$IOS_SDK" -destination "$PLATFORM" | xcpretty;
+    elif [ $BUILD_TYPE == "DEMO" ]; then
+      pod install --project-directory=./CountryPickerViewDemo --repo-update;
+      xcodebuild build -workspace "$DEMO_WORKSPACE" -scheme "$DEMO_SCHEME" -sdk "$IOS_SDK" -destination "$PLATFORM" | xcpretty;
+    else 
+      echo "Unknown BUILD_TYPE $BUILD_TYPE";
+    fi
+
+  # Lint the pod
+  - if [ $POD_LINT == "TRUE" ]; then
+      pod lib lint;
+    fi
