@@ -7,12 +7,13 @@
 
 CountryPickerView is a simple, customizable view for selecting countries in iOS apps. 
 
-You can clone/download the repository and run the [demo project](/CountryPickerViewDemo) to see CountryPickerView in action. First run `pod install` from the CountryPickerViewDemo directory.
+You can clone/download the repository and run the [demo project](https://github.com/kizitonwose/CountryPickerView/tree/master/CountryPickerViewDemo) to see CountryPickerView in action. First run `pod install` from the CountryPickerViewDemo directory.
 
-<img align="left" src="/CountryPickerViewDemo/Screenshots/1.png" width="300"> 
-<img src="/CountryPickerViewDemo/Screenshots/2.png" width="300"> 
-<img align="left" src="/CountryPickerViewDemo/Screenshots/3.png" width="300"> 
-<img src="/CountryPickerViewDemo/Screenshots/4.png" width="300">
+<img align="left" src="https://raw.githubusercontent.com/kizitonwose/CountryPickerView/master/CountryPickerViewDemo/Screenshots/1.png" width="300"> 
+<img src="https://raw.githubusercontent.com/kizitonwose/CountryPickerView/master/CountryPickerViewDemo/Screenshots/2.png" width="300"> 
+
+<img align="left" src="https://raw.githubusercontent.com/kizitonwose/CountryPickerView/master/CountryPickerViewDemo/Screenshots/3.png" width="300"> 
+<img src="https://raw.githubusercontent.com/kizitonwose/CountryPickerView/master/CountryPickerViewDemo/Screenshots/4.png" width="300">
 
 
 ## Installation
