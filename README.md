@@ -1,9 +1,10 @@
 # CountryPickerView
 
-[![Version](https://img.shields.io/cocoapods/v/CountryPickerView.svg?style=flat)](http://cocoapods.org/pods/CountryPickerView)
+[![Build Status](https://travis-ci.org/kizitonwose/CountryPickerView.svg?branch=master)](https://travis-ci.org/kizitonwose/CountryPickerView)
 [![Platform](https://img.shields.io/badge/Platform-iOS-00BCD4.svg)](http://cocoapods.org/pods/CountryPickerView)
-[![License](https://img.shields.io/badge/License-MIT-8D6E63.svg)](https://github.com/kizitonwose/CountryPickerView/blob/master/LICENSE.md)
+[![Version](https://img.shields.io/cocoapods/v/CountryPickerView.svg?style=flat)](http://cocoapods.org/pods/CountryPickerView)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![License](https://img.shields.io/badge/License-MIT-8D6E63.svg)](https://github.com/kizitonwose/CountryPickerView/blob/master/LICENSE.md)
 
 CountryPickerView is a simple, customizable view for selecting countries in iOS apps. 
 
