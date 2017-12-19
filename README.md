@@ -19,6 +19,8 @@ You can clone/download the repository and run the [demo project](https://github.
 
 ## Installation
 
+> Note that 2.x releases are Swift 4 compatible. For the Swift 3 compatibility, please use 1.x releases.
+
 ### Cocoapods
 
 CountryPickerView is available through [CocoaPods](http://cocoapods.org). Simply add the following to your Podfile:
