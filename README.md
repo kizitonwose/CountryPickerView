@@ -90,10 +90,10 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
         
         /*** Direct customizations on CountryPickerView instance ***/
         
-        // Show the selected countries phone(e.g +234) code on the view
+        // Show the selected country's phone(e.g +234) code on the view
         countryPickerView.showPhoneCodeInView = true
         
-        // Show the selected countries iso code(e.g NG) on the view
+        // Show the selected country's iso code(e.g NG) on the view
         countryPickerView.showCountryCodeInView = true
     }
     
@@ -169,7 +169,7 @@ class DemoViewController: UIViewController {
     }
 }
 ```
-This means your users do not have to worry about entering the countries phone code in the text field. This also ensures you get a valid phone code from `CountryPickerView` instead of relying on your users.
+This means your users do not have to worry about entering the country's phone code in the text field. This also ensures you get a valid phone code from `CountryPickerView` instead of relying on your users.
 
 ### Using the internal picker independently
 
