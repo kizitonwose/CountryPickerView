@@ -36,7 +36,7 @@ public protocol CountryPickerViewDataSource: NSObjectProtocol {
     /// The desired position for the search bar.
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
     
-    /// This determines if a country's phone code is shown alongside the country's name on the list.
+    /// This determines if a countries phone code is shown alongside the countries name on the list.
     /// e.g Nigeria (+234)
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool?
 }
