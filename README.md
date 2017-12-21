@@ -55,7 +55,7 @@ github "kizitonwose/CountryPickerView"
 
 If you're using Storyboards/Interface Builder you can create a CountryPickerView instance by adding a UIView to your Storyboard, and then manually changing the view's class to CountryPickerView in the "Custom Class" field of the Identity Inspector tab on the Utilities panel (the right-side panel)
 
-You can also create an instance of CountryPickerView programmaticaly:
+You can also create an instance of CountryPickerView programmatically:
 
 ```swift
 import CountryPickerView
@@ -73,7 +73,7 @@ This property is not optional, the default value is the user's current country, 
 
 ### Customization
 
-Customization options for the view itself are available directly via the CountryPickerView instance while options for the internal CountryPicker table view are available via the `CountryPickerViewDataSource` protocol. Setting the `CountryPickerViewDelegate` protocol is also neccessary if you wish to be notified when the user selects a country from the list.
+Customization options for the view itself are available directly via the CountryPickerView instance while options for the internal CountryPicker table view are available via the `CountryPickerViewDataSource` protocol. Setting the `CountryPickerViewDelegate` protocol is also necessary if you wish to be notified when the user selects a country from the list.
 
 ```swift
 import CountryPickerView
