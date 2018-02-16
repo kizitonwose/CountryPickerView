@@ -110,11 +110,11 @@ func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry 
 ```
 
 #### CountryPickerViewDataSource
-The datasource functions define the internal(country list) view controler's behavior. Run the demo project to play around with the options.
+The datasource functions define the internal(country list) ViewController's behavior. Run the demo project to play around with the options.
 
-- An array of countries you wish to show at the top of the list. This is useful if your app is targeted towards people in specific countries. 
+- An array of countries you wish to show at the top of the list. This is useful if your app is targeted towards people in specific countries.
   ```swift
-    func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]?
+    func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]
   ``` 
   
 - The desired title for the preferred section. 
@@ -123,32 +123,32 @@ The datasource functions define the internal(country list) view controler's beha
   ```
   **Note:** You have to return a non-empty array of countries from `preferredCountries(in countryPickerView: CountryPickerView)` as well as this section title if you wish to show preferred countries on the list. Returning only the array or title will not work. 
   
-- Show **ONLY** the preferred countries section on the list. 
+- Show **ONLY** the preferred countries section on the list. Default value is `false`
   ```swift  
-    func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool?
+    func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool
   ``` 
   Return `true` to hide the internal list so your users can only choose from the preferred countries list. 
  
-- The navigation item title when the internal view controller is pushed/presented.
+- The navigation item title when the internal view controller is pushed/presented. Default value is `nil`
   ```swift   
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
   ``` 
  
-- A navigation item button to be used if the internal view controller is presented(not pushed). If nil is returned, a default "Close" button is used. This function only enables you return a button customized the way you want. 
+- A navigation item button to be used if the internal view controller is presented(not pushed). If nil is returned, a default "Close" button is used. This function only enables you return a button customized the way you want. Default value is `nil`
   ```swift    
     func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
   ```
   **Note:** Any `target` or `action` associated with this button will be replaced as this button's sole purpose is to close the internal view controller.
 
-- Desired position for the search bar.
+- Desired position for the search bar. Default value is `.tableViewHeader`
   ```swift    
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
   ```
-  Posible values are: `.tableViewHeader`, `.navigationBar` and `.hidden`
+  Possible values are: `.tableViewHeader`, `.navigationBar` and `.hidden`
  
-- Show the phone code alongside the country name on the list. e.g Nigeria (+234) 
+- Show the phone code alongside the country name on the list. e.g Nigeria (+234). Default value is `false`
   ```swift    
-    func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool? 
+    func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool 
   ```
 
 ### Using CountryPickerView with UITextField
@@ -206,4 +206,4 @@ Don't forget to set a delegate to be notified when the use selects a country fro
 
 ## License
 
-CountryPickerView is distributed under the MIT license. [See LICENSE](./LICENSE.md) for details.
+CountryPickerView is distributed under the MIT license. [See LICENSE](https://github.com/kizitonwose/CountryPickerView/blob/master/LICENSE.md) for details.

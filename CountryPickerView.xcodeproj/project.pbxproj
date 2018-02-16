@@ -14,6 +14,7 @@
 		004CA3331F70787200B690B8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004CA3321F70787200B690B8 /* Extensions.swift */; };
 		004CA33A1F710B5900B690B8 /* CountryPickerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 004CA3381F710B5900B690B8 /* CountryPickerView.bundle */; };
 		00B095FC1F75AD6200860F82 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B095FB1F75AD6200860F82 /* NibView.swift */; };
+		50468942203753BF00009BA1 /* Delegate+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50468941203753BF00009BA1 /* Delegate+DataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		004CA3321F70787200B690B8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		004CA3381F710B5900B690B8 /* CountryPickerView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPickerView.bundle; sourceTree = "<group>"; };
 		00B095FB1F75AD6200860F82 /* NibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		50468941203753BF00009BA1 /* Delegate+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delegate+DataSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				004CA3301F70782400B690B8 /* CountryPickerViewController.swift */,
 				004CA3321F70787200B690B8 /* Extensions.swift */,
 				00B095FB1F75AD6200860F82 /* NibView.swift */,
+				50468941203753BF00009BA1 /* Delegate+DataSource.swift */,
 			);
 			path = CountryPickerView;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50468942203753BF00009BA1 /* Delegate+DataSource.swift in Sources */,
 				00B095FC1F75AD6200860F82 /* NibView.swift in Sources */,
 				004CA3311F70782400B690B8 /* CountryPickerViewController.swift in Sources */,
 				004CA3331F70787200B690B8 /* Extensions.swift in Sources */,

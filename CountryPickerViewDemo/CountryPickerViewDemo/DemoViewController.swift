@@ -107,7 +107,7 @@ extension DemoViewController: CountryPickerViewDelegate {
 }
 
 extension DemoViewController: CountryPickerViewDataSource {
-    func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]? {
+    func preferredCountries(in countryPickerView: CountryPickerView) -> [Country] {
         if countryPickerView.tag == cpvMain.tag && showPreferredCountries.isOn {
             var countries = [Country]()
             ["NG", "US", "GB"].forEach { code in
@@ -117,7 +117,7 @@ extension DemoViewController: CountryPickerViewDataSource {
             }
             return countries
         }
-        return nil
+        return []
     }
     
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String? {
@@ -127,21 +127,17 @@ extension DemoViewController: CountryPickerViewDataSource {
         return nil
     }
     
-    func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool? {
+    func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool {
         if countryPickerView.tag == cpvMain.tag {
             return showOnlyPreferredCountries.isOn
         }
-        return nil
+        return false
     }
     
     func navigationTitle(in countryPickerView: CountryPickerView) -> String? {
         return "Select a Country"
     }
-    
-    func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem? {
-        return nil
-    }
-    
+        
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition {
         if countryPickerView.tag == cpvMain.tag {
             switch searchBarPosition.selectedSegmentIndex {
@@ -153,11 +149,11 @@ extension DemoViewController: CountryPickerViewDataSource {
         return .tableViewHeader
     }
     
-    func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool? {
+    func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool {
         if countryPickerView.tag == cpvMain.tag {
             return showPhoneCodeInList.isOn
         }
-        return nil
+        return false
     }
 }
 
