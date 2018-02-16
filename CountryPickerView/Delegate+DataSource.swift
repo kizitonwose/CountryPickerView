@@ -3,7 +3,7 @@
 //  CountryPickerView
 //
 //  Created by Kizito Nwose on 16/02/2018.
-//  Copyright © 2017 Kizito Nwose. All rights reserved.
+//  Copyright © 2018 Kizito Nwose. All rights reserved.
 //
 
 import Foundation
