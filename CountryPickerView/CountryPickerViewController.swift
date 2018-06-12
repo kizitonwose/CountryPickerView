@@ -35,7 +35,6 @@ class CountryPickerViewController: UITableViewController {
    
 }
 
-
 // UI Setup
 extension CountryPickerViewController {
     
@@ -104,7 +103,9 @@ extension CountryPickerViewController {
         searchController?.searchResultsUpdater = self
         searchController?.dimsBackgroundDuringPresentation = false
         searchController?.hidesNavigationBarDuringPresentation = searchBarPosition == .tableViewHeader
+        searchController?.definesPresentationContext = true
         searchController?.searchBar.delegate = self
+        searchController?.delegate = self
 
         switch searchBarPosition {
         case .tableViewHeader: tableView.tableHeaderView = searchController?.searchBar
@@ -117,7 +118,6 @@ extension CountryPickerViewController {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
 }
-
 
 //MARK:- UITableViewDataSource
 extension CountryPickerViewController {
@@ -164,7 +164,6 @@ extension CountryPickerViewController {
     }
 }
 
-
 //MARK:- UITableViewDelegate
 extension CountryPickerViewController {
 
@@ -193,7 +192,6 @@ extension CountryPickerViewController {
     }
 }
 
-
 // MARK:- UISearchResultsUpdating
 extension CountryPickerViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -217,7 +215,6 @@ extension CountryPickerViewController: UISearchResultsUpdating {
     }
 }
 
-
 // MARK:- UISearchBarDelegate
 extension CountryPickerViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -234,4 +231,15 @@ extension CountryPickerViewController: UISearchBarDelegate {
     
 }
 
+// MARK:- UISearchControllerDelegate
+// Fixes an issue where the search bar goes off screen sometimes.
+extension CountryPickerViewController: UISearchControllerDelegate {
+    func willPresentSearchController(_ searchController: UISearchController) {
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+}
 
