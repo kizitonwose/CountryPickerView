@@ -52,7 +52,7 @@ public class CountryPickerView: NibView {
         didSet { setup() }
     }
     
-    /// @brief Change the font of phone code
+    /// Change the font of phone code
     public var font = UIFont.systemFont(ofSize: 17.0) {
         didSet { setup() }
     }
