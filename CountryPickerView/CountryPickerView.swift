@@ -52,6 +52,16 @@ public class CountryPickerView: NibView {
         didSet { setup() }
     }
     
+    /// @brief Change the font of phone code
+    public var font = UIFont.systemFont(ofSize: 17.0) {
+        didSet { setup() }
+    }
+    /// Change the text color of phone code
+    public var textColor = UIColor.black {
+        didSet { setup() }
+    }
+    
+    
     /// The spacing between the flag image and the text.
     public var flagSpacingInView: CGFloat {
         get {
@@ -90,6 +100,8 @@ public class CountryPickerView: NibView {
     
     func setup() {
         flagImageView.image = selectedCountry.flag
+        countryDetailsLabel.font = font
+        countryDetailsLabel.textColor = textColor
         if showPhoneCodeInView && showCountryCodeInView {
             countryDetailsLabel.text = "(\(selectedCountry.code)) \(selectedCountry.phoneCode)"
             return
