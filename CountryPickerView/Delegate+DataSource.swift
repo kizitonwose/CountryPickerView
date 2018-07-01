@@ -11,6 +11,16 @@ import Foundation
 public protocol CountryPickerViewDelegate: class {
     /// Called when the user selects a country from the list.
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
+    
+    /// Called before the internal UITableViewController is presented or pushed.
+    /// If the presenting view controller is not a UINavigationController, the UITableViewController
+    /// is embedded in a UINavigationController.
+    func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: UITableViewController)
+    
+    /// Called after the internal UITableViewController is presented or pushed.
+    /// If the presenting view controller is not a UINavigationController, the UITableViewController
+    /// is embedded in a UINavigationController.
+    func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: UITableViewController)
 }
 
 public protocol CountryPickerViewDataSource: class {
@@ -72,3 +82,18 @@ public extension CountryPickerViewDataSource {
         return false
     }
 }
+
+
+// MARK:- CountryPickerViewDelegate default implementations
+public extension CountryPickerViewDelegate {
+
+    func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: UITableViewController) {
+        
+    }
+    
+    func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: UITableViewController) {
+
+    }
+
+}
+
