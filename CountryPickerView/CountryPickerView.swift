@@ -27,6 +27,14 @@ public struct Country {
         self.code = code
         self.phoneCode = phoneCode
     }
+    
+    static func localizedName(forRegionCode code: String, defaultName: String) -> String {
+        if let countryName = Locale.current.localizedString(forRegionCode: code) {
+            return countryName
+        }
+        
+        return defaultName
+    }
 }
 
 public func ==(lhs: Country, rhs: Country) -> Bool {
@@ -166,7 +174,8 @@ public class CountryPickerView: NibView {
                         continue
                 }
                 
-                let country = Country(name: name, code: code, phoneCode: phoneCode)
+                let localizedName = Country.localizedName(forRegionCode: code, defaultName: name)
+                let country = Country(name: localizedName, code: code, phoneCode: phoneCode)
                 countries.append(country)
             }
             
