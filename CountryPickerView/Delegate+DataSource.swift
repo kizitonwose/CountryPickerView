@@ -36,6 +36,20 @@ public protocol CountryPickerViewDataSource: class {
     /// This determines if only the preferred section is shown
     func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool
     
+    /// The desired font for the section title labels.
+    /// Default value is UIFont.boldSystemFont(ofSize: 17)
+    func sectionTitleLabelFont(in countryPickerView: CountryPickerView) -> UIFont
+    
+    /// The desired font for the cell labels. Can be used to configure the text size.
+    /// Default value is UIFont.systemFont(ofSize: 17)
+    func cellLabelFont(in countryPickerView: CountryPickerView) -> UIFont
+    
+    /// The desired size for the flag images.
+    func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize
+    
+    /// The desired corner radius for the flag images. Default value is 2
+    func cellImageViewCornerRadius(in countryPickerView: CountryPickerView) -> CGFloat
+    
     /// The navigation item title when the internal view controller is pushed/presented.
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
     
@@ -64,6 +78,22 @@ public extension CountryPickerViewDataSource {
     
     func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool {
         return false
+    }
+    
+    func sectionTitleLabelFont(in countryPickerView: CountryPickerView) -> UIFont {
+        return UIFont.boldSystemFont(ofSize: 17)
+    }
+    
+    func cellLabelFont(in countryPickerView: CountryPickerView) -> UIFont {
+        return UIFont.systemFont(ofSize: 17)
+    }
+    
+    func cellImageViewCornerRadius(in countryPickerView: CountryPickerView) -> CGFloat {
+        return 2
+    }
+    
+    func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize {
+        return CGSize(width: 34, height: 24)
     }
     
     func navigationTitle(in countryPickerView: CountryPickerView) -> String? {

@@ -30,6 +30,22 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
         return view.dataSource?.showOnlyPreferredSection(in: view) ?? showOnlyPreferredSection(in: view)
     }
     
+    var sectionTitleLabelFont: UIFont {
+        return view.dataSource?.sectionTitleLabelFont(in: view) ?? sectionTitleLabelFont(in: view)
+    }
+    
+    var cellLabelFont: UIFont {
+        return view.dataSource?.cellLabelFont(in: view) ?? cellLabelFont(in: view)
+    }
+    
+    var cellImageViewSize: CGSize {
+        return view.dataSource?.cellImageViewSize(in: view) ?? cellImageViewSize(in: view)
+    }
+    
+    var cellImageViewCornerRadius: CGFloat {
+        return view.dataSource?.cellImageViewCornerRadius(in: view) ?? cellImageViewCornerRadius(in: view)
+    }
+    
     var navigationTitle: String? {
         return view.dataSource?.navigationTitle(in: view)
     }
@@ -181,14 +197,22 @@ extension CountryPickerViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-            ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
+        let identifier = String(describing: CountryTableViewCell.self)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? CountryTableViewCell
+            ?? CountryTableViewCell(style: .default, reuseIdentifier: identifier)
+        
         let country = isSearchMode ? searchResults[indexPath.row]
             : countries[sectionsTitles[indexPath.section]]![indexPath.row]
         
         let name = dataSource.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
         cell.imageView?.image = country.flag
+        cell.flgSize = dataSource.cellImageViewSize
+        cell.imageView?.clipsToBounds = true
+        cell.imageView?.layer.cornerRadius = dataSource.cellImageViewCornerRadius
+        
         cell.textLabel?.text = name
+        cell.textLabel?.font = dataSource.cellLabelFont
         cell.accessoryType = country == countryPickerView.selectedCountry ? .checkmark : .none
         cell.separatorInset = .zero
         return cell
@@ -219,7 +243,7 @@ extension CountryPickerViewController {
 
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header = view as? UITableViewHeaderFooterView {
-            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+            header.textLabel?.font = dataSource.sectionTitleLabelFont
         }
     }
     
@@ -293,3 +317,15 @@ extension CountryPickerViewController: UISearchControllerDelegate {
     }
 }
 
+
+class CountryTableViewCell: UITableViewCell {
+    
+    var flgSize: CGSize = .zero
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView?.frame.size = flgSize
+        imageView?.center.y = contentView.center.y
+        
+    }
+}
