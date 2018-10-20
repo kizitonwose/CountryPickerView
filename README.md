@@ -153,7 +153,7 @@ The datasource methods define the internal(country list) ViewController's behavi
     func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize
   ``` 
 
-- The desired corner radius for the flag images on the list. Default value is 2
+- The desired corner radius for the flag images on the list.
   ```swift  
     func cellImageViewCornerRadius(in countryPickerView: CountryPickerView) -> CGFloat
   ``` 
