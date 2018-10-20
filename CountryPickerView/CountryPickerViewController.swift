@@ -8,6 +8,50 @@
 
 import UIKit
 
+// MARK:- An internal implementation of the CountryPickerViewDataSource.
+// Returns default options where necessary if the data source is not set.
+class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
+    
+    private unowned var view: CountryPickerView
+    
+    init(view: CountryPickerView) {
+        self.view = view
+    }
+    
+    var preferredCountries: [Country] {
+        return view.dataSource?.preferredCountries(in: view) ?? preferredCountries(in: view)
+    }
+    
+    var preferredCountriesSectionTitle: String? {
+        return view.dataSource?.sectionTitleForPreferredCountries(in: view)
+    }
+    
+    var showOnlyPreferredSection: Bool {
+        return view.dataSource?.showOnlyPreferredSection(in: view) ?? showOnlyPreferredSection(in: view)
+    }
+    
+    var navigationTitle: String? {
+        return view.dataSource?.navigationTitle(in: view)
+    }
+    
+    var closeButtonNavigationItem: UIBarButtonItem {
+        guard let button = view.dataSource?.closeButtonNavigationItem(in: view) else {
+            return UIBarButtonItem(title: "Close", style: .done, target: nil, action: nil)
+        }
+        return button
+    }
+    
+    var searchBarPosition: SearchBarPosition {
+        return view.dataSource?.searchBarPosition(in: view) ?? searchBarPosition(in: view)
+    }
+    
+    var showPhoneCodeInList: Bool {
+        return view.dataSource?.showPhoneCodeInList(in: view) ?? showPhoneCodeInList(in: view)
+    }
+    
+}
+
+
 class CountryPickerViewController: UITableViewController {
     
     fileprivate var searchController: UISearchController?
@@ -16,14 +60,20 @@ class CountryPickerViewController: UITableViewController {
     fileprivate var sectionsTitles = [String]()
     fileprivate var countries = [String: [Country]]()
     fileprivate var hasPreferredSection: Bool {
-        return countryPickerView.preferredCountriesSectionTitle != nil &&
-            countryPickerView.preferredCountries.count > 0
+        return dataSource.preferredCountriesSectionTitle != nil &&
+            dataSource.preferredCountries.count > 0
     }
     fileprivate var showOnlyPreferredSection: Bool {
-        return countryPickerView.showOnlyPreferredSection
+        return dataSource.showOnlyPreferredSection
     }
     
-    weak var countryPickerView: CountryPickerView!
+    weak var countryPickerView: CountryPickerView! {
+        didSet {
+            dataSource = CountryPickerViewDataSourceInternal(view: countryPickerView)
+        }
+    }
+    
+    var dataSource: CountryPickerViewDataSourceInternal!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,9 +123,9 @@ extension CountryPickerViewController {
         }
         
         // Add preferred section if data is available
-        if hasPreferredSection, let preferredTitle = countryPickerView.preferredCountriesSectionTitle {
+        if hasPreferredSection, let preferredTitle = dataSource.preferredCountriesSectionTitle {
             sectionsTitles.insert(preferredTitle, at: sectionsTitles.startIndex)
-            countries[preferredTitle] = countryPickerView.preferredCountries
+            countries[preferredTitle] = dataSource.preferredCountries
         }
         
         tableView.sectionIndexBackgroundColor = .clear
@@ -83,11 +133,11 @@ extension CountryPickerViewController {
     }
     
     func prepareNavItem() {
-        navigationItem.title = countryPickerView.navigationTitle
+        navigationItem.title = dataSource.navigationTitle
 
         // Add a close button if this is the root view controller
         if navigationController?.viewControllers.count == 1 {
-            let closeButton = countryPickerView.closeButtonNavigationItem
+            let closeButton = dataSource.closeButtonNavigationItem
             closeButton.target = self
             closeButton.action = #selector(close)
             navigationItem.leftBarButtonItem = closeButton
@@ -95,7 +145,7 @@ extension CountryPickerViewController {
     }
     
     func prepareSearchBar() {
-        let searchBarPosition = countryPickerView.searchBarPosition
+        let searchBarPosition = dataSource.searchBarPosition
         if searchBarPosition == .hidden  {
             return
         }
@@ -136,7 +186,7 @@ extension CountryPickerViewController {
         let country = isSearchMode ? searchResults[indexPath.row]
             : countries[sectionsTitles[indexPath.section]]![indexPath.row]
         
-        let name = countryPickerView.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
+        let name = dataSource.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
         cell.imageView?.image = country.flag
         cell.textLabel?.text = name
         cell.accessoryType = country == countryPickerView.selectedCountry ? .checkmark : .none
@@ -203,7 +253,7 @@ extension CountryPickerViewController: UISearchResultsUpdating {
             var indexArray = [Country]()
             
             if showOnlyPreferredSection && hasPreferredSection,
-                let array = countries[countryPickerView.preferredCountriesSectionTitle!] {
+                let array = countries[dataSource.preferredCountriesSectionTitle!] {
                 indexArray = array
             } else if let array = countries[String(text[text.startIndex])] {
                 indexArray = array
