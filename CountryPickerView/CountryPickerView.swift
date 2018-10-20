@@ -39,7 +39,13 @@ public func !=(lhs: Country, rhs: Country) -> Bool {
 
 public class CountryPickerView: NibView {
     @IBOutlet weak var spacingConstraint: NSLayoutConstraint!
-    @IBOutlet public weak var flagImageView: UIImageView!
+    @IBOutlet public weak var flagImageView: UIImageView! {
+        didSet {
+            flagImageView.clipsToBounds = true
+            flagImageView.layer.masksToBounds = true
+            flagImageView.layer.cornerRadius = 2
+        }
+    }
     @IBOutlet public weak var countryDetailsLabel: UILabel!
     
     // Show/Hide the country code on the view.

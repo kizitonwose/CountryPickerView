@@ -8,66 +8,6 @@
 
 import UIKit
 
-// MARK:- An internal implementation of the CountryPickerViewDataSource.
-// Returns default options where necessary if the data source is not set.
-class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
-    
-    private unowned var view: CountryPickerView
-    
-    init(view: CountryPickerView) {
-        self.view = view
-    }
-    
-    var preferredCountries: [Country] {
-        return view.dataSource?.preferredCountries(in: view) ?? preferredCountries(in: view)
-    }
-    
-    var preferredCountriesSectionTitle: String? {
-        return view.dataSource?.sectionTitleForPreferredCountries(in: view)
-    }
-    
-    var showOnlyPreferredSection: Bool {
-        return view.dataSource?.showOnlyPreferredSection(in: view) ?? showOnlyPreferredSection(in: view)
-    }
-    
-    var sectionTitleLabelFont: UIFont {
-        return view.dataSource?.sectionTitleLabelFont(in: view) ?? sectionTitleLabelFont(in: view)
-    }
-    
-    var cellLabelFont: UIFont {
-        return view.dataSource?.cellLabelFont(in: view) ?? cellLabelFont(in: view)
-    }
-    
-    var cellImageViewSize: CGSize {
-        return view.dataSource?.cellImageViewSize(in: view) ?? cellImageViewSize(in: view)
-    }
-    
-    var cellImageViewCornerRadius: CGFloat {
-        return view.dataSource?.cellImageViewCornerRadius(in: view) ?? cellImageViewCornerRadius(in: view)
-    }
-    
-    var navigationTitle: String? {
-        return view.dataSource?.navigationTitle(in: view)
-    }
-    
-    var closeButtonNavigationItem: UIBarButtonItem {
-        guard let button = view.dataSource?.closeButtonNavigationItem(in: view) else {
-            return UIBarButtonItem(title: "Close", style: .done, target: nil, action: nil)
-        }
-        return button
-    }
-    
-    var searchBarPosition: SearchBarPosition {
-        return view.dataSource?.searchBarPosition(in: view) ?? searchBarPosition(in: view)
-    }
-    
-    var showPhoneCodeInList: Bool {
-        return view.dataSource?.showPhoneCodeInList(in: view) ?? showPhoneCodeInList(in: view)
-    }
-    
-}
-
-
 class CountryPickerViewController: UITableViewController {
     
     fileprivate var searchController: UISearchController?
@@ -89,7 +29,7 @@ class CountryPickerViewController: UITableViewController {
         }
     }
     
-    var dataSource: CountryPickerViewDataSourceInternal!
+    fileprivate var dataSource: CountryPickerViewDataSourceInternal!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -207,9 +147,12 @@ extension CountryPickerViewController {
         
         let name = dataSource.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
         cell.imageView?.image = country.flag
+        
         cell.flgSize = dataSource.cellImageViewSize
         cell.imageView?.clipsToBounds = true
+
         cell.imageView?.layer.cornerRadius = dataSource.cellImageViewCornerRadius
+        cell.imageView?.layer.masksToBounds = true
         
         cell.textLabel?.text = name
         cell.textLabel?.font = dataSource.cellLabelFont
@@ -317,7 +260,7 @@ extension CountryPickerViewController: UISearchControllerDelegate {
     }
 }
 
-
+// MARK:- CountryTableViewCell.
 class CountryTableViewCell: UITableViewCell {
     
     var flgSize: CGSize = .zero
@@ -326,6 +269,65 @@ class CountryTableViewCell: UITableViewCell {
         super.layoutSubviews()
         imageView?.frame.size = flgSize
         imageView?.center.y = contentView.center.y
-        
     }
+}
+
+
+// MARK:- An internal implementation of the CountryPickerViewDataSource.
+// Returns default options where necessary if the data source is not set.
+class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
+    
+    private unowned var view: CountryPickerView
+    
+    init(view: CountryPickerView) {
+        self.view = view
+    }
+    
+    var preferredCountries: [Country] {
+        return view.dataSource?.preferredCountries(in: view) ?? preferredCountries(in: view)
+    }
+    
+    var preferredCountriesSectionTitle: String? {
+        return view.dataSource?.sectionTitleForPreferredCountries(in: view)
+    }
+    
+    var showOnlyPreferredSection: Bool {
+        return view.dataSource?.showOnlyPreferredSection(in: view) ?? showOnlyPreferredSection(in: view)
+    }
+    
+    var sectionTitleLabelFont: UIFont {
+        return view.dataSource?.sectionTitleLabelFont(in: view) ?? sectionTitleLabelFont(in: view)
+    }
+    
+    var cellLabelFont: UIFont {
+        return view.dataSource?.cellLabelFont(in: view) ?? cellLabelFont(in: view)
+    }
+    
+    var cellImageViewSize: CGSize {
+        return view.dataSource?.cellImageViewSize(in: view) ?? cellImageViewSize(in: view)
+    }
+    
+    var cellImageViewCornerRadius: CGFloat {
+        return view.dataSource?.cellImageViewCornerRadius(in: view) ?? cellImageViewCornerRadius(in: view)
+    }
+    
+    var navigationTitle: String? {
+        return view.dataSource?.navigationTitle(in: view)
+    }
+    
+    var closeButtonNavigationItem: UIBarButtonItem {
+        guard let button = view.dataSource?.closeButtonNavigationItem(in: view) else {
+            return UIBarButtonItem(title: "Close", style: .done, target: nil, action: nil)
+        }
+        return button
+    }
+    
+    var searchBarPosition: SearchBarPosition {
+        return view.dataSource?.searchBarPosition(in: view) ?? searchBarPosition(in: view)
+    }
+    
+    var showPhoneCodeInList: Bool {
+        return view.dataSource?.showPhoneCodeInList(in: view) ?? showPhoneCodeInList(in: view)
+    }
+    
 }
