@@ -39,7 +39,13 @@ public func !=(lhs: Country, rhs: Country) -> Bool {
 
 public class CountryPickerView: NibView {
     @IBOutlet weak var spacingConstraint: NSLayoutConstraint!
-    @IBOutlet public weak var flagImageView: UIImageView!
+    @IBOutlet public weak var flagImageView: UIImageView! {
+        didSet {
+            flagImageView.clipsToBounds = true
+            flagImageView.layer.masksToBounds = true
+            flagImageView.layer.cornerRadius = 2
+        }
+    }
     @IBOutlet public weak var countryDetailsLabel: UILabel!
     
     // Show/Hide the country code on the view.
@@ -217,40 +223,4 @@ extension CountryPickerView {
         selectedCountry = country
         delegate?.countryPickerView(self, didSelectCountry: country)
     }
-}
-
-// MARK:- An internal implementation of the CountryPickerViewDataSource.
-// Returns default options where necessary if the data source is not set.
-extension CountryPickerView: CountryPickerViewDataSource {
-    var preferredCountries: [Country] {
-        return dataSource?.preferredCountries(in: self) ?? preferredCountries(in: self)
-    }
-    
-    var preferredCountriesSectionTitle: String? {
-        return dataSource?.sectionTitleForPreferredCountries(in: self)
-    }
-    
-    var showOnlyPreferredSection: Bool {
-        return dataSource?.showOnlyPreferredSection(in: self) ?? showOnlyPreferredSection(in: self)
-    }
-    
-    var navigationTitle: String? {
-        return dataSource?.navigationTitle(in: self)
-    }
-    
-    var closeButtonNavigationItem: UIBarButtonItem {
-        guard let button = dataSource?.closeButtonNavigationItem(in: self) else {
-            return UIBarButtonItem(title: "Close", style: .done, target: nil, action: nil)
-        }
-        return button
-    }
-    
-    var searchBarPosition: SearchBarPosition {
-        return dataSource?.searchBarPosition(in: self) ?? searchBarPosition(in: self)
-    }
-    
-    var showPhoneCodeInList: Bool {
-        return dataSource?.showPhoneCodeInList(in: self) ?? showPhoneCodeInList(in: self)
-    }
-    
 }
