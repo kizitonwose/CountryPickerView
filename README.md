@@ -108,12 +108,12 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
 
 - Called before the internal UITableViewController is presented or pushed.
   ```swift
-    countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: UITableViewController) 
+    func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: UITableViewController) 
   ```
 
 - Called after the internal UITableViewController is presented or pushed.
   ```swift
-    countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: UITableViewController) 
+    func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: UITableViewController) 
   ```
 
 **Note:** `willShow` and `didShow` delegate methods are optional. Also, if the UITableViewController is presented(not pushed), it is embedded in a UINavigationController.
