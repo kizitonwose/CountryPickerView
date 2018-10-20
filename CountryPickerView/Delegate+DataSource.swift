@@ -13,13 +13,11 @@ public protocol CountryPickerViewDelegate: class {
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
     
     /// Called before the internal UITableViewController is presented or pushed.
-    /// If the presenting view controller is not a UINavigationController, the UITableViewController
-    /// is embedded in a UINavigationController.
+    /// If the UITableViewController is presented(not pushed), it is embedded in a UINavigationController.
     func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: UITableViewController)
     
     /// Called after the internal UITableViewController is presented or pushed.
-    /// If the presenting view controller is not a UINavigationController, the UITableViewController
-    /// is embedded in a UINavigationController.
+    /// If the UITableViewController is presented(not pushed), it is embedded in a UINavigationController.
     func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: UITableViewController)
 }
 
@@ -36,18 +34,18 @@ public protocol CountryPickerViewDataSource: class {
     /// This determines if only the preferred section is shown
     func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool
     
-    /// The desired font for the section title labels.
+    /// The desired font for the section title labels on the list. Can be used to configure the text size.
     /// Default value is UIFont.boldSystemFont(ofSize: 17)
     func sectionTitleLabelFont(in countryPickerView: CountryPickerView) -> UIFont
     
-    /// The desired font for the cell labels. Can be used to configure the text size.
+    /// The desired font for the cell labels on the list. Can be used to configure the text size.
     /// Default value is UIFont.systemFont(ofSize: 17)
     func cellLabelFont(in countryPickerView: CountryPickerView) -> UIFont
     
-    /// The desired size for the flag images.
+    /// The desired size for the flag images on the list.
     func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize
     
-    /// The desired corner radius for the flag images. Default value is 2
+    /// The desired corner radius for the flag images on the list. Default value is 2
     func cellImageViewCornerRadius(in countryPickerView: CountryPickerView) -> CGFloat
     
     /// The navigation item title when the internal view controller is pushed/presented.
