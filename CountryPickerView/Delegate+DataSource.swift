@@ -37,6 +37,10 @@ public protocol CountryPickerViewDataSource: class {
     /// The desired font for the section title labels on the list. Can be used to configure the text size.
     /// Default value is UIFont.boldSystemFont(ofSize: 17)
     func sectionTitleLabelFont(in countryPickerView: CountryPickerView) -> UIFont
+
+    /// The desired text color for the section title labels on list. The default is the tableViewCell
+    /// default text color.
+    func sectionTitleTextColor(in countryPickerView: CountryPickerView) -> UIColor?
     
     /// The desired font for the cell labels on the list. Can be used to configure the text size.
     /// Default value is UIFont.systemFont(ofSize: 17)
@@ -57,6 +61,10 @@ public protocol CountryPickerViewDataSource: class {
     
     /// The desired position for the search bar.
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
+
+    /// The desired background color for the search bar. The default is the default searchBar background color.
+    /// It also sets the background color of the UISearchViewController view to the same color if set.
+    func searchBarBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor?
     
     /// This determines if a country's phone code is shown alongside the country's name on the list.
     /// e.g Nigeria (+234)
@@ -81,6 +89,10 @@ public extension CountryPickerViewDataSource {
     func sectionTitleLabelFont(in countryPickerView: CountryPickerView) -> UIFont {
         return UIFont.boldSystemFont(ofSize: 17)
     }
+
+    func sectionTitleTextColor(in countryPickerView: CountryPickerView) -> UIColor? {
+        return nil
+    }
     
     func cellLabelFont(in countryPickerView: CountryPickerView) -> UIFont {
         return UIFont.systemFont(ofSize: 17)
@@ -104,6 +116,10 @@ public extension CountryPickerViewDataSource {
     
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition {
         return .tableViewHeader
+    }
+
+    func searchBarBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor? {
+        return nil
     }
     
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool {

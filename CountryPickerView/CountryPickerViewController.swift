@@ -113,6 +113,11 @@ extension CountryPickerViewController {
         searchController?.searchBar.delegate = self
         searchController?.delegate = self
 
+        if let color = dataSource.searchBarBackgroundColor {
+            searchController?.view.backgroundColor = color
+            searchController?.searchBar.backgroundColor = color
+        }
+
         switch searchBarPosition {
         case .tableViewHeader: tableView.tableHeaderView = searchController?.searchBar
         case .navigationBar: navigationItem.titleView = searchController?.searchBar
@@ -187,6 +192,9 @@ extension CountryPickerViewController {
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header = view as? UITableViewHeaderFooterView {
             header.textLabel?.font = dataSource.sectionTitleLabelFont
+            if let color = dataSource.sectionTitleTextColor {
+                header.textLabel?.textColor = color
+            }
         }
     }
     
@@ -298,6 +306,10 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
     var sectionTitleLabelFont: UIFont {
         return view.dataSource?.sectionTitleLabelFont(in: view) ?? sectionTitleLabelFont(in: view)
     }
+
+    var sectionTitleTextColor: UIColor? {
+        return view.dataSource?.sectionTitleTextColor(in: view)
+    }
     
     var cellLabelFont: UIFont {
         return view.dataSource?.cellLabelFont(in: view) ?? cellLabelFont(in: view)
@@ -324,6 +336,10 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
     
     var searchBarPosition: SearchBarPosition {
         return view.dataSource?.searchBarPosition(in: view) ?? searchBarPosition(in: view)
+    }
+
+    var searchBarBackgroundColor: UIColor? {
+        return view.dataSource?.searchBarBackgroundColor(in: view)
     }
     
     var showPhoneCodeInList: Bool {
