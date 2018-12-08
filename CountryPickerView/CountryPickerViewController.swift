@@ -113,9 +113,12 @@ extension CountryPickerViewController {
         searchController?.searchBar.delegate = self
         searchController?.delegate = self
 
-        if let color = dataSource.searchBarBackgroundColor {
-            searchController?.view.backgroundColor = color
-            searchController?.searchBar.backgroundColor = color
+        if let searchBarBackgroundColor = dataSource.searchBarBackgroundColor {
+            searchController?.searchBar.backgroundColor = searchBarBackgroundColor
+        }
+
+        if let searchViewControllerBackgroundColor = dataSource.searchViewControllerBackgroundColor {
+            searchController?.view.backgroundColor = searchViewControllerBackgroundColor
         }
 
         switch searchBarPosition {
@@ -340,6 +343,10 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
 
     var searchBarBackgroundColor: UIColor? {
         return view.dataSource?.searchBarBackgroundColor(in: view)
+    }
+
+    var searchViewControllerBackgroundColor: UIColor? {
+        return view.dataSource?.searchViewControllerBackgroundColor(in: view)
     }
     
     var showPhoneCodeInList: Bool {

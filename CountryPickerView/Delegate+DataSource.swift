@@ -63,8 +63,11 @@ public protocol CountryPickerViewDataSource: class {
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
 
     /// The desired background color for the search bar. The default is the default searchBar background color.
-    /// It also sets the background color of the UISearchViewController view to the same color if set.
     func searchBarBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor?
+
+    /// The desired background color for the UISearchViewController view's background. The default is the default
+    /// UISearchViewController view background color.
+    func searchViewControllerBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor?
     
     /// This determines if a country's phone code is shown alongside the country's name on the list.
     /// e.g Nigeria (+234)
@@ -119,6 +122,10 @@ public extension CountryPickerViewDataSource {
     }
 
     func searchBarBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor? {
+        return nil
+    }
+
+    func searchViewControllerBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor? {
         return nil
     }
     
