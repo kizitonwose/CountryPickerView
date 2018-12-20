@@ -12,13 +12,15 @@ public protocol CountryPickerViewDelegate: class {
     /// Called when the user selects a country from the list.
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
     
-    /// Called before the internal UITableViewController is presented or pushed.
-    /// If the UITableViewController is presented(not pushed), it is embedded in a UINavigationController.
-    func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: UITableViewController)
+    /// Called before the internal CountryPickerViewController is presented or pushed.
+    /// If the CountryPickerViewController is presented(not pushed), it is embedded in a UINavigationController.
+    /// The CountryPickerViewController is a UITableViewController subclass.
+    func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: CountryPickerViewController)
     
-    /// Called after the internal UITableViewController is presented or pushed.
-    /// If the UITableViewController is presented(not pushed), it is embedded in a UINavigationController.
-    func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: UITableViewController)
+    /// Called after the internal CountryPickerViewController is presented or pushed.
+    /// If the CountryPickerViewController is presented(not pushed), it is embedded in a UINavigationController.
+    /// The CountryPickerViewController is a UITableViewController subclass.
+    func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: CountryPickerViewController)
 }
 
 public protocol CountryPickerViewDataSource: class {
@@ -61,13 +63,6 @@ public protocol CountryPickerViewDataSource: class {
     
     /// The desired position for the search bar.
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
-
-    /// The desired background color for the search bar. The default is the default searchBar background color.
-    func searchBarBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor?
-
-    /// The desired background color for the UISearchViewController view's background. The default is the default
-    /// UISearchViewController view background color.
-    func searchViewControllerBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor?
     
     /// This determines if a country's phone code is shown alongside the country's name on the list.
     /// e.g Nigeria (+234)
@@ -119,14 +114,6 @@ public extension CountryPickerViewDataSource {
     
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition {
         return .tableViewHeader
-    }
-
-    func searchBarBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor? {
-        return nil
-    }
-
-    func searchViewControllerBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor? {
-        return nil
     }
     
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool {

@@ -6,14 +6,14 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/badge/License-MIT-8D6E63.svg)](https://github.com/kizitonwose/CountryPickerView/blob/master/LICENSE.md)
 
-CountryPickerView is a simple, customizable view for selecting countries in iOS apps. 
+CountryPickerView is a simple, customizable view for selecting countries in iOS apps.
 
 You can clone/download the repository and run the [demo project](https://github.com/kizitonwose/CountryPickerView/tree/master/CountryPickerViewDemo) to see CountryPickerView in action. First run `pod install` from the CountryPickerViewDemo directory.
 
-<img align="left" src="https://raw.githubusercontent.com/kizitonwose/CountryPickerView/master/CountryPickerViewDemo/Screenshots/1.png" width="300"> 
-<img src="https://raw.githubusercontent.com/kizitonwose/CountryPickerView/master/CountryPickerViewDemo/Screenshots/2.png" width="300"> 
+<img align="left" src="https://raw.githubusercontent.com/kizitonwose/CountryPickerView/master/CountryPickerViewDemo/Screenshots/1.png" width="300">
+<img src="https://raw.githubusercontent.com/kizitonwose/CountryPickerView/master/CountryPickerViewDemo/Screenshots/2.png" width="300">
 
-<img align="left" src="https://raw.githubusercontent.com/kizitonwose/CountryPickerView/master/CountryPickerViewDemo/Screenshots/3.png" width="300"> 
+<img align="left" src="https://raw.githubusercontent.com/kizitonwose/CountryPickerView/master/CountryPickerViewDemo/Screenshots/3.png" width="300">
 <img src="https://raw.githubusercontent.com/kizitonwose/CountryPickerView/master/CountryPickerViewDemo/Screenshots/4.png" width="300">
 
 
@@ -63,7 +63,7 @@ import CountryPickerView
 let cpv = CountryPickerView(frame: /**Desired frame**/)
 ```
 
-To get the selected country from your `CountryPickerView` instance at any time, use the `selectedCountry` property. 
+To get the selected country from your `CountryPickerView` instance at any time, use the `selectedCountry` property.
 
 ```swift
 let country = cpv.selectedCountry
@@ -84,39 +84,41 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         countryPickerView.delegate = self
         countryPickerView.dataSource = self
-        
+
         /*** Direct customizations on CountryPickerView instance ***/
-        
+
         // Show the selected country's phone(e.g +234) code on the view
         countryPickerView.showPhoneCodeInView = true
-        
+
         // Show the selected country's iso code(e.g NG) on the view
         countryPickerView.showCountryCodeInView = true
     }
-    
+
 }
 ```
 
 #### CountryPickerViewDelegate
 - Called when the user selects a country from the list or when you manually set the `selectedCountry` property of the `CountryPickerView`
   ```swift
-    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) 
+    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
   ```
 
-- Called before the internal UITableViewController is presented or pushed.
+- Called before the CountryPickerViewController is presented or pushed. The CountryPickerViewController is a UITableViewController subclass.
   ```swift
-    func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: UITableViewController) 
+    func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: CountryPickerViewController)
   ```
 
-- Called after the internal UITableViewController is presented or pushed.
+- Called after the CountryPickerViewController is presented or pushed. The CountryPickerViewController is a UITableViewController subclass.
   ```swift
-    func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: UITableViewController) 
+    func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: CountryPickerViewController)
   ```
 
-**Note:** `willShow` and `didShow` delegate methods are optional. Also, if the UITableViewController is presented(not pushed), it is embedded in a UINavigationController.
+**Note:** `willShow` and `didShow` delegate methods are optional. Also, if the CountryPickerViewController is presented(not pushed), it is embedded in a UINavigationController.
+
+**Note 2:** The CountryPickerViewController is made public in the `willShow` and `didShow` to be able to customize its appearance. Moreover, you can also customize the `UISearchController`'s appearance and the `UISearchBar`'s appearance by accessing the public `searchController` property on the `CountryPickerViewController`.
 
 #### CountryPickerViewDataSource
 The datasource methods define the internal(country list) ViewController's behavior. Run the demo project to play around with the options. All methods are optional.
@@ -124,45 +126,45 @@ The datasource methods define the internal(country list) ViewController's behavi
 - An array of countries you wish to show at the top of the list. This is useful if your app is targeted towards people in specific countries.
   ```swift
     func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]
-  ``` 
-  
-- The desired title for the preferred section. 
+  ```
+
+- The desired title for the preferred section.
   ```swift  
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
   ```
-  **Note:** You have to return a non-empty array of countries from `preferredCountries(in countryPickerView: CountryPickerView)` as well as this section title if you wish to show preferred countries on the list. Returning only the array or title will not work. 
-  
+  **Note:** You have to return a non-empty array of countries from `preferredCountries(in countryPickerView: CountryPickerView)` as well as this section title if you wish to show preferred countries on the list. Returning only the array or title will not work.
+
 - Show **ONLY** the preferred countries section on the list. Default value is `false`
   ```swift  
     func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool
-  ``` 
-  Return `true` to hide the internal list so your users can only choose from the preferred countries list. 
- 
+  ```
+  Return `true` to hide the internal list so your users can only choose from the preferred countries list.
+
 - The desired font for the section title labels on the list. Can be used to configure the text size.
   ```swift  
     func sectionTitleLabelFont(in countryPickerView: CountryPickerView) -> UIFont
-  ``` 
-  
+  ```
+
 - The desired font for the cell labels on the list. Can be used to configure the text size.
   ```swift  
     func cellLabelFont(in countryPickerView: CountryPickerView) -> UIFont
-  ``` 
+  ```
 
 - The desired size for the flag images on the list.
   ```swift  
     func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize
-  ``` 
+  ```
 
 - The desired corner radius for the flag images on the list.
   ```swift  
     func cellImageViewCornerRadius(in countryPickerView: CountryPickerView) -> CGFloat
-  ``` 
+  ```
 
 - The navigation item title when the internal view controller is pushed/presented. Default value is `nil`
   ```swift   
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
-  ``` 
- 
+  ```
+
 - A navigation item button to be used if the internal view controller is presented(not pushed). If nil is returned, a default "Close" button is used. This method only enables you return a button customized the way you want. Default value is `nil`
   ```swift    
     func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
@@ -174,15 +176,15 @@ The datasource methods define the internal(country list) ViewController's behavi
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
   ```
   Possible values are: `.tableViewHeader`, `.navigationBar` and `.hidden`
- 
+
 - Show the phone code alongside the country name on the list. e.g Nigeria (+234). Default value is `false`
   ```swift    
-    func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool 
+    func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool
   ```
 
 ### Using CountryPickerView with UITextField
 
-A good use case for `CountryPickerView` is when used as the left view of a phone number input field. 
+A good use case for `CountryPickerView` is when used as the left view of a phone number input field.
 
 ```swift
 class DemoViewController: UIViewController {
@@ -191,7 +193,7 @@ class DemoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let cpv = CountryPickerView(frame: CGRect(x: 0, y: 0, width: 120, height: 20))
         phoneNumberField.leftView = cpv
         phoneNumberField.leftViewMode = .always
@@ -202,7 +204,7 @@ This means your users do not have to worry about entering the country's phone co
 
 ### Using the internal picker independently
 
-If for any reason you do not want to show the default view or have your own implementation for showing country information, you can still use the internal picker to allow your users select countries from the list by calling the method `showCountriesList(from: UIViewController)` on a `CountryPickerView` instance. 
+If for any reason you do not want to show the default view or have your own implementation for showing country information, you can still use the internal picker to allow your users select countries from the list by calling the method `showCountriesList(from: UIViewController)` on a `CountryPickerView` instance.
 
 It's important to keep a field reference to the `CountryPickerView` instance else it will be garbage collected and any attempt to use it will result to a crash.
 
@@ -215,15 +217,15 @@ class DemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     @IBAction func buttonPressed(_ sender: Any) {
         countryPickerView.showCountriesList(from: self)
     }
 }
 ```
-In the example above, calling `countryPickerView.showCountriesList(from: self)` will result in the internal picker view controller being presented in its own navigation stack because `DemoViewController` is not a navigation controller. 
+In the example above, calling `countryPickerView.showCountriesList(from: self)` will result in the internal picker view controller being presented in its own navigation stack because `DemoViewController` is not a navigation controller.
 
-If you already have a navigation stack, you can push the internal picker view controller onto that stack by calling `countryPickerView.showCountriesList(from: self.navigationController!)` or do it the safe way: 
+If you already have a navigation stack, you can push the internal picker view controller onto that stack by calling `countryPickerView.showCountriesList(from: self.navigationController!)` or do it the safe way:
 
 ```swift
 if let nav = self.navigationController {
