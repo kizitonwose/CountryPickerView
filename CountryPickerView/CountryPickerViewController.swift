@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CountryPickerViewController: UITableViewController {
-    
-    fileprivate var searchController: UISearchController?
+public class CountryPickerViewController: UITableViewController {
+
+    public var searchController: UISearchController?
     fileprivate var searchResults = [Country]()
     fileprivate var isSearchMode = false
     fileprivate var sectionsTitles = [String]()
@@ -31,7 +31,7 @@ class CountryPickerViewController: UITableViewController {
     
     fileprivate var dataSource: CountryPickerViewDataSourceInternal!
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         prepareTableItems()
@@ -128,15 +128,15 @@ extension CountryPickerViewController {
 //MARK:- UITableViewDataSource
 extension CountryPickerViewController {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override public func numberOfSections(in tableView: UITableView) -> Int {
         return isSearchMode ? 1 : sectionsTitles.count
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isSearchMode ? searchResults.count : countries[sectionsTitles[section]]!.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = String(describing: CountryTableViewCell.self)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? CountryTableViewCell
@@ -161,11 +161,11 @@ extension CountryPickerViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return isSearchMode ? nil : sectionsTitles[section]
     }
     
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    override public func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         if isSearchMode {
             return nil
         } else {
@@ -176,7 +176,7 @@ extension CountryPickerViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+    override public func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return sectionsTitles.index(of: title)!
     }
 }
@@ -184,13 +184,16 @@ extension CountryPickerViewController {
 //MARK:- UITableViewDelegate
 extension CountryPickerViewController {
 
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header = view as? UITableViewHeaderFooterView {
             header.textLabel?.font = dataSource.sectionTitleLabelFont
+            if let color = dataSource.sectionTitleTextColor {
+                header.textLabel?.textColor = color
+            }
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let country = isSearchMode ? searchResults[indexPath.row]
             : countries[sectionsTitles[indexPath.section]]![indexPath.row]
@@ -211,7 +214,7 @@ extension CountryPickerViewController {
 
 // MARK:- UISearchResultsUpdating
 extension CountryPickerViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
+    public func updateSearchResults(for searchController: UISearchController) {
         isSearchMode = false
         if let text = searchController.searchBar.text, text.count > 0 {
             isSearchMode = true
@@ -297,6 +300,10 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
     
     var sectionTitleLabelFont: UIFont {
         return view.dataSource?.sectionTitleLabelFont(in: view) ?? sectionTitleLabelFont(in: view)
+    }
+
+    var sectionTitleTextColor: UIColor? {
+        return view.dataSource?.sectionTitleTextColor(in: view)
     }
     
     var cellLabelFont: UIFont {

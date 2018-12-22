@@ -12,13 +12,15 @@ public protocol CountryPickerViewDelegate: class {
     /// Called when the user selects a country from the list.
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
     
-    /// Called before the internal UITableViewController is presented or pushed.
-    /// If the UITableViewController is presented(not pushed), it is embedded in a UINavigationController.
-    func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: UITableViewController)
+    /// Called before the internal CountryPickerViewController is presented or pushed.
+    /// If the CountryPickerViewController is presented(not pushed), it is embedded in a UINavigationController.
+    /// The CountryPickerViewController is a UITableViewController subclass.
+    func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: CountryPickerViewController)
     
-    /// Called after the internal UITableViewController is presented or pushed.
-    /// If the UITableViewController is presented(not pushed), it is embedded in a UINavigationController.
-    func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: UITableViewController)
+    /// Called after the internal CountryPickerViewController is presented or pushed.
+    /// If the CountryPickerViewController is presented(not pushed), it is embedded in a UINavigationController.
+    /// The CountryPickerViewController is a UITableViewController subclass.
+    func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: CountryPickerViewController)
 }
 
 public protocol CountryPickerViewDataSource: class {
@@ -37,6 +39,10 @@ public protocol CountryPickerViewDataSource: class {
     /// The desired font for the section title labels on the list. Can be used to configure the text size.
     /// Default value is UIFont.boldSystemFont(ofSize: 17)
     func sectionTitleLabelFont(in countryPickerView: CountryPickerView) -> UIFont
+
+    /// The desired text color for the section title labels on list. The default is the tableViewCell
+    /// default text color.
+    func sectionTitleTextColor(in countryPickerView: CountryPickerView) -> UIColor?
     
     /// The desired font for the cell labels on the list. Can be used to configure the text size.
     /// Default value is UIFont.systemFont(ofSize: 17)
@@ -80,6 +86,10 @@ public extension CountryPickerViewDataSource {
     
     func sectionTitleLabelFont(in countryPickerView: CountryPickerView) -> UIFont {
         return UIFont.boldSystemFont(ofSize: 17)
+    }
+
+    func sectionTitleTextColor(in countryPickerView: CountryPickerView) -> UIColor? {
+        return nil
     }
     
     func cellLabelFont(in countryPickerView: CountryPickerView) -> UIFont {
