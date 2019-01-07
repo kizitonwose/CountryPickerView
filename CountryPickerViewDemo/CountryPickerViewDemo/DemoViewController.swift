@@ -98,7 +98,7 @@ class DemoViewController: UITableViewController {
 }
 
 extension DemoViewController: CountryPickerViewDelegate {
-    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
+    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: CPVCountry) {
         // Only countryPickerInternal has it's delegate set
         let title = "Selected Country"
         let message = "Name: \(country.name) \nCode: \(country.code) \nPhone: \(country.phoneCode)"
@@ -107,9 +107,9 @@ extension DemoViewController: CountryPickerViewDelegate {
 }
 
 extension DemoViewController: CountryPickerViewDataSource {
-    func preferredCountries(in countryPickerView: CountryPickerView) -> [Country] {
+    func preferredCountries(in countryPickerView: CountryPickerView) -> [CPVCountry] {
         if countryPickerView.tag == cpvMain.tag && showPreferredCountries.isOn {
-            var countries = [Country]()
+            var countries = [CPVCountry]()
             ["NG", "US", "GB"].forEach { code in
                 if let country = countryPickerView.getCountryByCode(code) {
                     countries.append(country)
