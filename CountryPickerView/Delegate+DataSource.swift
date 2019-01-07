@@ -10,7 +10,7 @@ import Foundation
 
 public protocol CountryPickerViewDelegate: class {
     /// Called when the user selects a country from the list.
-    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
+    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: CPVCountry)
     
     /// Called before the internal UITableViewController is presented or pushed.
     /// If the UITableViewController is presented(not pushed), it is embedded in a UINavigationController.
@@ -25,7 +25,7 @@ public protocol CountryPickerViewDataSource: class {
     /// An array of countries you wish to show at the top of the list.
     /// This is useful if your app is targeted towards people in specific countries.
     /// - requires: The title for the section to be returned in `sectionTitleForPreferredCountries`
-    func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]
+    func preferredCountries(in countryPickerView: CountryPickerView) -> [CPVCountry]
     
     /// The desired title for the preferred section.
     /// - **See:** `preferredCountries` method. Both are required for the section to be shown.
@@ -66,7 +66,7 @@ public protocol CountryPickerViewDataSource: class {
 // MARK:- CountryPickerViewDataSource default implementations
 public extension CountryPickerViewDataSource {
     
-    func preferredCountries(in countryPickerView: CountryPickerView) -> [Country] {
+    func preferredCountries(in countryPickerView: CountryPickerView) -> [CPVCountry] {
         return []
     }
     

@@ -11,10 +11,10 @@ import UIKit
 class CountryPickerViewController: UITableViewController {
     
     fileprivate var searchController: UISearchController?
-    fileprivate var searchResults = [Country]()
+    fileprivate var searchResults = [CPVCountry]()
     fileprivate var isSearchMode = false
     fileprivate var sectionsTitles = [String]()
-    fileprivate var countries = [String: [Country]]()
+    fileprivate var countries = [String: [CPVCountry]]()
     fileprivate var hasPreferredSection: Bool {
         return dataSource.preferredCountriesSectionTitle != nil &&
             dataSource.preferredCountries.count > 0
@@ -56,12 +56,12 @@ extension CountryPickerViewController {
                 header.insert(String(name[name.startIndex]))
             }
             
-            var data = [String: [Country]]()
+            var data = [String: [CPVCountry]]()
             
             countriesArray.forEach({
                 let name = $0.name
                 let index = String(name[name.startIndex])
-                var dictValue = data[index] ?? [Country]()
+                var dictValue = data[index] ?? [CPVCountry]()
                 dictValue.append($0)
                 
                 data[index] = dictValue
@@ -217,7 +217,7 @@ extension CountryPickerViewController: UISearchResultsUpdating {
             isSearchMode = true
             searchResults.removeAll()
             
-            var indexArray = [Country]()
+            var indexArray = [CPVCountry]()
             
             if showOnlyPreferredSection && hasPreferredSection,
                 let array = countries[dataSource.preferredCountriesSectionTitle!] {
@@ -283,7 +283,7 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
         self.view = view
     }
     
-    var preferredCountries: [Country] {
+    var preferredCountries: [CPVCountry] {
         return view.dataSource?.preferredCountries(in: view) ?? preferredCountries(in: view)
     }
     

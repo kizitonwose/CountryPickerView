@@ -13,7 +13,7 @@ public enum SearchBarPosition {
     case tableViewHeader, navigationBar, hidden
 }
 
-public struct Country {
+public struct CPVCountry {
    public var name: String
    public var code: String
    public var phoneCode: String
@@ -29,10 +29,10 @@ public struct Country {
     }
 }
 
-public func ==(lhs: Country, rhs: Country) -> Bool {
+public func ==(lhs: CPVCountry, rhs: CPVCountry) -> Bool {
     return lhs.code == rhs.code
 }
-public func !=(lhs: Country, rhs: Country) -> Bool {
+public func !=(lhs: CPVCountry, rhs: CPVCountry) -> Bool {
     return lhs.code != rhs.code
 }
 
@@ -81,8 +81,8 @@ public class CountryPickerView: NibView {
     weak public var dataSource: CountryPickerViewDataSource?
     weak public var delegate: CountryPickerViewDelegate?
     
-    fileprivate var _selectedCountry: Country?
-    internal(set) public var selectedCountry: Country {
+    fileprivate var _selectedCountry: CPVCountry?
+    internal(set) public var selectedCountry: CPVCountry {
         get {
             return _selectedCountry
                 ?? countries.first(where: { $0.code == Locale.current.regionCode })
@@ -149,8 +149,8 @@ public class CountryPickerView: NibView {
         }
     }
     
-    public var countries: [Country] = {
-        var countries = [Country]()
+    public var countries: [CPVCountry] = {
+        var countries = [CPVCountry]()
         let bundle = Bundle(for: CountryPickerView.self)
         guard let jsonPath = bundle.path(forResource: "CountryPickerView.bundle/Data/CountryCodes", ofType: "json"),
             let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
@@ -172,7 +172,7 @@ public class CountryPickerView: NibView {
                         continue
                 }
                 
-                let country = Country(name: name, code: code, phoneCode: phoneCode)
+                let country = CPVCountry(name: name, code: code, phoneCode: phoneCode)
                 countries.append(country)
             }
             
@@ -202,15 +202,15 @@ extension CountryPickerView {
         }
     }
     
-    public func getCountryByName(_ name: String) -> Country? {
+    public func getCountryByName(_ name: String) -> CPVCountry? {
         return countries.first(where: { $0.name == name })
     }
     
-    public func getCountryByPhoneCode(_ phoneCode: String) -> Country? {
+    public func getCountryByPhoneCode(_ phoneCode: String) -> CPVCountry? {
         return countries.first(where: { $0.phoneCode == phoneCode })
     }
     
-    public func getCountryByCode(_ code: String) -> Country? {
+    public func getCountryByCode(_ code: String) -> CPVCountry? {
         return countries.first(where: { $0.code == code })
     }
 }
@@ -219,7 +219,7 @@ extension CountryPickerView {
 // MARK:- An internal implementation of the CountryPickerViewDelegate.
 // Sets internal properties before calling external delegate.
 extension CountryPickerView {
-    func didSelectCountry(_ country: Country) {
+    func didSelectCountry(_ country: CPVCountry) {
         selectedCountry = country
         delegate?.countryPickerView(self, didSelectCountry: country)
     }
