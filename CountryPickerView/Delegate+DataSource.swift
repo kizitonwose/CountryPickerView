@@ -124,12 +124,12 @@ public extension CountryPickerViewDataSource {
 // MARK:- CountryPickerViewDelegate default implementations
 public extension CountryPickerViewDelegate {
 
-    func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: UITableViewController) {
-        
+    func countryPickerView(_ countryPickerView: CountryPickerView,
+                           willShow viewController: CountryPickerViewController) {
     }
     
-    func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: UITableViewController) {
-
+    func countryPickerView(_ countryPickerView: CountryPickerView,
+                           didShow viewController: CountryPickerViewController) {
     }
 
 }
