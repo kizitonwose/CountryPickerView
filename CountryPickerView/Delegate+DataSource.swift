@@ -41,11 +41,14 @@ public protocol CountryPickerViewDataSource: class {
     func sectionTitleLabelFont(in countryPickerView: CountryPickerView) -> UIFont
 
     /// The desired text color for the section title labels on the list.
-    func sectionTitleTextColor(in countryPickerView: CountryPickerView) -> UIColor?
+    func sectionTitleLabelColor(in countryPickerView: CountryPickerView) -> UIColor?
     
     /// The desired font for the cell labels on the list. Can be used to configure the text size.
     /// Default value is UIFont.systemFont(ofSize: 17)
     func cellLabelFont(in countryPickerView: CountryPickerView) -> UIFont
+    
+    /// The desired text color for the country names on the list.
+    func cellLabelColor(in countryPickerView: CountryPickerView) -> UIColor?
     
     /// The desired size for the flag images on the list.
     func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize
@@ -87,12 +90,16 @@ public extension CountryPickerViewDataSource {
         return UIFont.boldSystemFont(ofSize: 17)
     }
 
-    func sectionTitleTextColor(in countryPickerView: CountryPickerView) -> UIColor? {
+    func sectionTitleLabelColor(in countryPickerView: CountryPickerView) -> UIColor? {
         return nil
     }
     
     func cellLabelFont(in countryPickerView: CountryPickerView) -> UIFont {
         return UIFont.systemFont(ofSize: 17)
+    }
+    
+    func cellLabelColor(in countryPickerView: CountryPickerView) -> UIColor? {
+        return nil
     }
     
     func cellImageViewCornerRadius(in countryPickerView: CountryPickerView) -> CGFloat {

@@ -156,6 +156,9 @@ extension CountryPickerViewController {
         
         cell.textLabel?.text = name
         cell.textLabel?.font = dataSource.cellLabelFont
+        if let color = dataSource.cellLabelColor {
+            cell.textLabel?.textColor = color
+        }
         cell.accessoryType = country == countryPickerView.selectedCountry ? .checkmark : .none
         cell.separatorInset = .zero
         return cell
@@ -187,7 +190,7 @@ extension CountryPickerViewController {
     override public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header = view as? UITableViewHeaderFooterView {
             header.textLabel?.font = dataSource.sectionTitleLabelFont
-            if let color = dataSource.sectionTitleTextColor {
+            if let color = dataSource.sectionTitleLabelColor {
                 header.textLabel?.textColor = color
             }
         }
@@ -302,12 +305,16 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
         return view.dataSource?.sectionTitleLabelFont(in: view) ?? sectionTitleLabelFont(in: view)
     }
 
-    var sectionTitleTextColor: UIColor? {
-        return view.dataSource?.sectionTitleTextColor(in: view)
+    var sectionTitleLabelColor: UIColor? {
+        return view.dataSource?.sectionTitleLabelColor(in: view)
     }
     
     var cellLabelFont: UIFont {
         return view.dataSource?.cellLabelFont(in: view) ?? cellLabelFont(in: view)
+    }
+    
+    var cellLabelColor: UIColor? {
+        return view.dataSource?.cellLabelColor(in: view)
     }
     
     var cellImageViewSize: CGSize {
