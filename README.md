@@ -116,9 +116,9 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
     func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: CountryPickerViewController)
   ```
 
-**Note:** `willShow` and `didShow` delegate methods are optional. Also, if the CountryPickerViewController is presented(not pushed), it is embedded in a UINavigationController.
+**Note:** `willShow` and `didShow` delegate methods are optional. If the CountryPickerViewController is presented(not pushed), it is embedded in a UINavigationController.
+The `CountryPickerViewController` class is made available so you can customize its appearance if needed. You can also access the public `searchController(UISearchController)` property in the `CountryPickerViewController` for customization.
 
-**Note 2:** The CountryPickerViewController is made public in the `willShow` and `didShow` to be able to customize its appearance. Moreover, you can also customize the `UISearchController`'s appearance and the `UISearchBar`'s appearance by accessing the public `searchController` property on the `CountryPickerViewController`.
 
 #### CountryPickerViewDataSource
 The datasource methods define the internal(country list) ViewController's behavior. Run the demo project to play around with the options. All methods are optional.
