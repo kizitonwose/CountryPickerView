@@ -8,6 +8,7 @@
 
 import UIKit
 
+public typealias CPVCountry = Country
 
 public enum SearchBarPosition {
     case tableViewHeader, navigationBar, hidden
