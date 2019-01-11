@@ -232,7 +232,7 @@ extension CountryPickerViewController: UISearchResultsUpdating {
                 indexArray = array
             }
 
-            searchResults.append(contentsOf: indexArray.filter({ $0.name.hasPrefix(text) }))
+            searchResults.append(contentsOf: indexArray.filter({ $0.name.lowercased().hasPrefix(text.lowercased()) }))
         }
         tableView.reloadData()
     }
