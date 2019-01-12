@@ -119,7 +119,7 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
   func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: CountryPickerViewController)
   ```
 
-**Note: If you already have a `Country` class or struct in your project then implementing the `didSelectCountry` delegate method can cause a compile error with a message saying that your conforming class does not comform to the `CountryPickerViewDelegate` protocol. This is because Xcode can't figure out which Country model to use in the method. The solution is to replace the `Country` in the method signature with the typealais `CPVCountry`, your delegate method should now look like this:**
+**Note: If you already have a `Country` class or struct in your project then implementing the `didSelectCountry` delegate method can cause a compile error with a message saying that your conforming class does not comform to the `CountryPickerViewDelegate` protocol. This is because Xcode can't figure out which Country model to use in the method. The solution is to replace the `Country` in the method signature with the typealias `CPVCountry`, your delegate method should now look like this:**
 
 ```swift
 func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: CPVCountry)
