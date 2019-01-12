@@ -104,19 +104,19 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
 - Called when the user selects a country from the list or when you manually set the `selectedCountry` property of the `CountryPickerView`
 
   ```swift
-    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
+  func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
   ```
 
 - Called before the CountryPickerViewController is presented or pushed. The CountryPickerViewController is a UITableViewController subclass.
   
   ```swift
-    func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: CountryPickerViewController)
+  func countryPickerView(_ countryPickerView: CountryPickerView, willShow viewController: CountryPickerViewController)
   ```
 
 - Called after the CountryPickerViewController is presented or pushed. The CountryPickerViewController is a UITableViewController subclass.
   
   ```swift
-    func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: CountryPickerViewController)
+  func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: CountryPickerViewController)
   ```
 
 **Note: If you already have a `Country` class or struct in your project then implementing the `didSelectCountry` delegate method can cause a compile error with a message saying that your conforming class does not comform to the `CountryPickerViewDelegate` protocol. This is because Xcode can't figure out which Country model to use in the method. The solution is to replace the `Country` in the method signature with the typealais `CPVCountry`, your delegate method should now look like this:**
@@ -137,83 +137,83 @@ The datasource methods define the internal(country list) ViewController's behavi
 - An array of countries you wish to show at the top of the list. This is useful if your app is targeted towards people in specific countries.
   
   ```swift
-    func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]
+  func preferredCountries(in countryPickerView: CountryPickerView) -> [Country]
   ```
 
 - The desired title for the preferred section.
   
   ```swift  
-    func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
+  func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
   ```
   **Note:** You have to return a non-empty array of countries from `preferredCountries(in countryPickerView: CountryPickerView)` as well as this section title if you wish to show preferred countries on the list. Returning only the array or title will not work.
 
 - Show **ONLY** the preferred countries section on the list. Default value is `false`
   
   ```swift  
-    func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool
+  func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool
   ```
   Return `true` to hide the internal list so your users can only choose from the preferred countries list.
 
 - The desired font for the section title labels on the list. Can be used to configure the text size.
   
   ```swift  
-    func sectionTitleLabelFont(in countryPickerView: CountryPickerView) -> UIFont
+  func sectionTitleLabelFont(in countryPickerView: CountryPickerView) -> UIFont
   ```
 
 - The desired text color for the section title labels on the list.
   
   ```swift  
-     func sectionTitleLabelColor(in countryPickerView: CountryPickerView) -> UIColor?
+  func sectionTitleLabelColor(in countryPickerView: CountryPickerView) -> UIColor?
   ```
 
 - The desired font for the cell labels on the list. Can be used to configure the text size.
   
   ```swift  
-    func cellLabelFont(in countryPickerView: CountryPickerView) -> UIFont
+  func cellLabelFont(in countryPickerView: CountryPickerView) -> UIFont
   ```
 
 - The desired text color for the country names on the list.
   
   ```swift  
-    func cellLabelColor(in countryPickerView: CountryPickerView) -> UIColor?
+  func cellLabelColor(in countryPickerView: CountryPickerView) -> UIColor?
   ```
 
 - The desired size for the flag images on the list.
   
   ```swift  
-    func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize
+  func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize
   ```
 
 - The desired corner radius for the flag images on the list.
   
   ```swift  
-    func cellImageViewCornerRadius(in countryPickerView: CountryPickerView) -> CGFloat
+  func cellImageViewCornerRadius(in countryPickerView: CountryPickerView) -> CGFloat
   ```
 
 - The navigation item title when the internal view controller is pushed/presented. Default value is `nil`
   
   ```swift   
-    func navigationTitle(in countryPickerView: CountryPickerView) -> String?
+  func navigationTitle(in countryPickerView: CountryPickerView) -> String?
   ```
 
 - A navigation item button to be used if the internal view controller is presented(not pushed). If nil is returned, a default "Close" button is used. This method only enables you return a button customized the way you want. Default value is `nil`
   
   ```swift    
-    func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
+  func closeButtonNavigationItem(in countryPickerView: CountryPickerView) -> UIBarButtonItem?
   ```
   **Note:** Any `target` or `action` associated with this button will be replaced as this button's sole purpose is to close the internal view controller.
 
 - Desired position for the search bar. Default value is `.tableViewHeader`
   
   ```swift    
-    func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
+  func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
   ```
   Possible values are: `.tableViewHeader`, `.navigationBar` and `.hidden`
 
 - Show the phone code alongside the country name on the list. e.g Nigeria (+234). Default value is `false`
   
   ```swift    
-    func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool
+  func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool
   ```
 
 ### Using CountryPickerView with UITextField
