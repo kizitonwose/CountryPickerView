@@ -23,7 +23,7 @@ public class CountryPickerViewController: UITableViewController {
         return dataSource.showOnlyPreferredSection
     }
     
-    weak var countryPickerView: CountryPickerView! {
+    internal weak var countryPickerView: CountryPickerView! {
         didSet {
             dataSource = CountryPickerViewDataSourceInternal(view: countryPickerView)
         }
@@ -240,13 +240,13 @@ extension CountryPickerViewController: UISearchResultsUpdating {
 
 // MARK:- UISearchBarDelegate
 extension CountryPickerViewController: UISearchBarDelegate {
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    private func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         // Hide the back/left navigationItem button
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    private func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         // Show the back/left navigationItem button
         prepareNavItem()
         navigationItem.hidesBackButton = false
@@ -257,11 +257,11 @@ extension CountryPickerViewController: UISearchBarDelegate {
 // MARK:- UISearchControllerDelegate
 // Fixes an issue where the search bar goes off screen sometimes.
 extension CountryPickerViewController: UISearchControllerDelegate {
-    func willPresentSearchController(_ searchController: UISearchController) {
+    private func willPresentSearchController(_ searchController: UISearchController) {
         self.navigationController?.navigationBar.isTranslucent = true
     }
     
-    func willDismissSearchController(_ searchController: UISearchController) {
+    private func willDismissSearchController(_ searchController: UISearchController) {
         self.navigationController?.navigationBar.isTranslucent = false
     }
 }
