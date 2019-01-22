@@ -8,6 +8,8 @@
 
 import UIKit
 
+public typealias CPVCountry = Country
+
 public protocol CountryPickerViewDelegate: NSObjectProtocol {
     /// Called when the user selects a country from the list.
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
