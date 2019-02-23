@@ -52,14 +52,14 @@ extension CountryPickerViewController {
             
             var header = Set<String>()
             countriesArray.forEach{
-                let name = Locale.current.localizedString(forRegionCode: $0.code) ?? $0.name
+                let name = $0.localizedName ?? $0.name
                 header.insert(String(name[name.startIndex]))
             }
             
             var data = [String: [Country]]()
             
             countriesArray.forEach({
-                let name = Locale.current.localizedString(forRegionCode: $0.code) ?? $0.name
+                let name = $0.localizedName ?? $0.name
                 let index = String(name[name.startIndex])
                 var dictValue = data[index] ?? [Country]()
                 dictValue.append($0)
@@ -145,7 +145,7 @@ extension CountryPickerViewController {
         let country = isSearchMode ? searchResults[indexPath.row]
             : countries[sectionsTitles[indexPath.section]]![indexPath.row]
 
-        let countryName = Locale.current.localizedString(forRegionCode: country.code) ?? country.name
+        let countryName = country.localizedName ?? country.name
         let name = dataSource.showPhoneCodeInList ? "\(countryName) (\(country.phoneCode))" : countryName
         cell.imageView?.image = country.flag
         
@@ -234,7 +234,7 @@ extension CountryPickerViewController: UISearchResultsUpdating {
             }
 
             searchResults.append(contentsOf: indexArray.filter({
-                let countryName = Locale.current.localizedString(forRegionCode: $0.code) ?? $0.name
+                let countryName = $0.localizedName ?? $0.name
                 return countryName.lowercased().hasPrefix(text.lowercased())
             }))
         }
