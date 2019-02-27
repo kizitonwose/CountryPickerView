@@ -45,37 +45,21 @@ public class CountryPickerViewController: UITableViewController {
 extension CountryPickerViewController {
     
     func prepareTableItems()  {
-        
         if !showOnlyPreferredSection {
-            
             let countriesArray = countryPickerView.countries
             
-            var header = Set<String>()
-            countriesArray.forEach{
+            var groupedData = Dictionary<String, [Country]>(grouping: countriesArray) {
                 let name = $0.localizedName ?? $0.name
-                header.insert(String(name[name.startIndex]))
+                return String(name.capitalized[name.startIndex])
             }
-            
-            var data = [String: [Country]]()
-            
-            countriesArray.forEach({
-                let name = $0.localizedName ?? $0.name
-                let index = String(name[name.startIndex])
-                var dictValue = data[index] ?? [Country]()
-                dictValue.append($0)
-                
-                data[index] = dictValue
-            })
-            
-            // Sort the sections
-            data.forEach{ key, value in
-                data[key] = value.sorted(by: { (lhs, rhs) -> Bool in
+            groupedData.forEach{ key, value in
+                groupedData[key] = value.sorted(by: { (lhs, rhs) -> Bool in
                     return lhs.name < rhs.name
                 })
             }
             
-            sectionsTitles = header.sorted()
-            countries = data
+            countries = groupedData
+            sectionsTitles = groupedData.keys.sorted()
         }
         
         // Add preferred section if data is available
