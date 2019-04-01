@@ -77,7 +77,7 @@ public class CountryPickerView: NibView {
     
     weak public var dataSource: CountryPickerViewDataSource?
     weak public var delegate: CountryPickerViewDelegate?
-    weak public var presentingViewController: UIViewController?
+    weak public var hostViewController: UIViewController?
     
     fileprivate var _selectedCountry: Country?
     internal(set) public var selectedCountry: Country {
@@ -120,8 +120,8 @@ public class CountryPickerView: NibView {
     }
     
     @IBAction func openCountryPickerController(_ sender: Any) {
-        if let presentingViewController = presentingViewController {
-            showCountriesList(from: presentingViewController)
+        if let hostViewController = hostViewController {
+            showCountriesList(from: hostViewController)
             return
         }
         if let vc = window?.topViewController {
