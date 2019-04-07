@@ -217,12 +217,3 @@ extension CountryPickerView {
     }
 }
 
-
-// MARK:- An internal implementation of the CountryPickerViewDelegate.
-// Sets internal properties before calling external delegate.
-extension CountryPickerView {
-    func didSelectCountry(_ country: Country) {
-        selectedCountry = country
-        delegate?.countryPickerView(self, didSelectCountry: country)
-    }
-}

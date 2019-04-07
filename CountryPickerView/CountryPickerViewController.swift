@@ -189,7 +189,8 @@ extension CountryPickerViewController {
         searchController?.dismiss(animated: false, completion: nil)
         
         let completion = {
-            self.countryPickerView.didSelectCountry(country)
+            self.countryPickerView.selectedCountry = country
+            self.countryPickerView.delegate?.countryPickerView(self.countryPickerView, didSelectCountry: country)
         }
         // If this is root, dismiss, else pop
         if navigationController?.viewControllers.count == 1 {
