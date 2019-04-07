@@ -19,7 +19,7 @@ You can clone/download the repository and run the [demo project](https://github.
 
 ## Installation
 
-> Note that 2.x releases are Swift 4 compatible. For the Swift 3 compatibility, please use 1.x releases.
+> Note that 3.x releases are Swift 5 compatible. For the Swift 4 compatibility, use 2.x releases. For the Swift 3 compatibility, use 1.x releases.
 
 ### Cocoapods
 
