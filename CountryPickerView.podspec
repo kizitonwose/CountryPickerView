@@ -13,6 +13,6 @@ Pod::Spec.new do |spec|
     'CountryPickerView' => ['CountryPickerView/Assets/CountryPickerView.bundle/*',
     'CountryPickerView/**/*.{xib}']
   }
-  spec.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
+  spec.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
 
 end
