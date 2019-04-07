@@ -65,7 +65,6 @@ public class CountryPickerView: NibView {
         didSet { setup() }
     }
     
-    
     /// The spacing between the flag image and the text.
     public var flagSpacingInView: CGFloat {
         get {
@@ -78,6 +77,7 @@ public class CountryPickerView: NibView {
     
     weak public var dataSource: CountryPickerViewDataSource?
     weak public var delegate: CountryPickerViewDelegate?
+    weak public var hostViewController: UIViewController?
     
     fileprivate var _selectedCountry: Country?
     internal(set) public var selectedCountry: Country {
@@ -120,6 +120,10 @@ public class CountryPickerView: NibView {
     }
     
     @IBAction func openCountryPickerController(_ sender: Any) {
+        if let hostViewController = hostViewController {
+            showCountriesList(from: hostViewController)
+            return
+        }
         if let vc = window?.topViewController {
             if let tabVc = vc as? UITabBarController,
                 let selectedVc = tabVc.selectedViewController {
