@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "CountryPickerView"
-  spec.version      = "2.2.5"
+  spec.version      = "3.0.0"
   spec.summary      = "A simple, customizable view for selecting countries in iOS apps."
   spec.homepage     = "https://github.com/kizitonwose/CountryPickerView"
   spec.license      = "MIT"
@@ -13,6 +13,6 @@ Pod::Spec.new do |spec|
     'CountryPickerView' => ['CountryPickerView/Assets/CountryPickerView.bundle/*',
     'CountryPickerView/**/*.{xib}']
   }
-  spec.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
+  spec.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
 
 end
