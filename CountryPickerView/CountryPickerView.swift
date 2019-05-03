@@ -23,7 +23,8 @@ public struct Country {
     }
     
    internal init(name: String, code: String, phoneCode: String) {
-        self.name = name
+        self.name = (Locale.current as NSLocale)
+            .displayName(forKey: .countryCode, value: code) ?? name
         self.code = code
         self.phoneCode = phoneCode
     }
