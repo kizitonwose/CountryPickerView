@@ -16,6 +16,7 @@ public enum SearchBarPosition {
 
 public struct Country {
     public var name: String
+    public var native: String
     public var code: String
     public var phoneCode: String
     public var localizedName: String? {
@@ -169,12 +170,13 @@ public class CountryPickerView: NibView {
                 }
                 
                 guard let name = countryObj["name"] as? String,
+                    let native = countryObj["native"] as? String,
                     let code = countryObj["code"] as? String,
                     let phoneCode = countryObj["dial_code"] as? String else {
                         continue
                 }
                 
-                let country = Country(name: name, code: code, phoneCode: phoneCode)
+                let country = Country(name: name, native: native, code: code, phoneCode: phoneCode)
                 countries.append(country)
             }
             
