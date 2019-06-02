@@ -44,7 +44,7 @@ class DemoViewController: UITableViewController {
         }
         
         cpvInternal.delegate = self
-        cpvMain.countryDetailsLabel.font = UIFont.systemFont(ofSize: 20)
+        cpvMain.font = UIFont.systemFont(ofSize: 20)
         
         [showPhoneCodeInView, showCountryCodeInView,
          showPreferredCountries,  showOnlyPreferredCountries].forEach {
