@@ -1,3 +1,5 @@
+![CountryPickerView_Logo_Vertical_2](https://user-images.githubusercontent.com/37814297/58878881-33156000-86cc-11e9-8da8-49de16007532.png)
+
 # CountryPickerView
 
 [![Build Status](https://travis-ci.org/kizitonwose/CountryPickerView.svg?branch=master)](https://travis-ci.org/kizitonwose/CountryPickerView)
