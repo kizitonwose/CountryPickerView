@@ -45,37 +45,21 @@ public class CountryPickerViewController: UITableViewController {
 extension CountryPickerViewController {
     
     func prepareTableItems()  {
-        
         if !showOnlyPreferredSection {
-            
             let countriesArray = countryPickerView.countries
             
-            var header = Set<String>()
-            countriesArray.forEach{
-                let name = $0.name
-                header.insert(String(name[name.startIndex]))
+            var groupedData = Dictionary<String, [Country]>(grouping: countriesArray) {
+                let name = $0.localizedName ?? $0.name
+                return String(name.capitalized[name.startIndex])
             }
-            
-            var data = [String: [Country]]()
-            
-            countriesArray.forEach({
-                let name = $0.name
-                let index = String(name[name.startIndex])
-                var dictValue = data[index] ?? [Country]()
-                dictValue.append($0)
-                
-                data[index] = dictValue
-            })
-            
-            // Sort the sections
-            data.forEach{ key, value in
-                data[key] = value.sorted(by: { (lhs, rhs) -> Bool in
+            groupedData.forEach{ key, value in
+                groupedData[key] = value.sorted(by: { (lhs, rhs) -> Bool in
                     return lhs.name < rhs.name
                 })
             }
             
-            sectionsTitles = header.sorted()
-            countries = data
+            countries = groupedData
+            sectionsTitles = groupedData.keys.sorted()
         }
         
         // Add preferred section if data is available
@@ -144,8 +128,9 @@ extension CountryPickerViewController {
         
         let country = isSearchMode ? searchResults[indexPath.row]
             : countries[sectionsTitles[indexPath.section]]![indexPath.row]
-        
-        let name = dataSource.showPhoneCodeInList ? "\(country.name) (\(country.phoneCode))" : country.name
+
+        let countryName = country.localizedName ?? country.name
+        let name = dataSource.showPhoneCodeInList ? "\(countryName) (\(country.phoneCode))" : countryName
         cell.imageView?.image = country.flag
         
         cell.flgSize = dataSource.cellImageViewSize
@@ -180,7 +165,7 @@ extension CountryPickerViewController {
     }
     
     override public func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return sectionsTitles.index(of: title)!
+        return sectionsTitles.firstIndex(of: title)!
     }
 }
 
@@ -204,7 +189,8 @@ extension CountryPickerViewController {
         searchController?.dismiss(animated: false, completion: nil)
         
         let completion = {
-            self.countryPickerView.didSelectCountry(country)
+            self.countryPickerView.selectedCountry = country
+            self.countryPickerView.delegate?.countryPickerView(self.countryPickerView, didSelectCountry: country)
         }
         // If this is root, dismiss, else pop
         if navigationController?.viewControllers.count == 1 {
@@ -228,11 +214,14 @@ extension CountryPickerViewController: UISearchResultsUpdating {
             if showOnlyPreferredSection && hasPreferredSection,
                 let array = countries[dataSource.preferredCountriesSectionTitle!] {
                 indexArray = array
-            } else if let array = countries[String(text[text.startIndex])] {
+            } else if let array = countries[String(text.capitalized[text.startIndex])] {
                 indexArray = array
             }
 
-            searchResults.append(contentsOf: indexArray.filter({ $0.name.lowercased().hasPrefix(text.lowercased()) }))
+            searchResults.append(contentsOf: indexArray.filter({
+                let countryName = $0.localizedName ?? $0.name
+                return countryName.lowercased().hasPrefix(text.lowercased())
+            }))
         }
         tableView.reloadData()
     }
@@ -240,28 +229,27 @@ extension CountryPickerViewController: UISearchResultsUpdating {
 
 // MARK:- UISearchBarDelegate
 extension CountryPickerViewController: UISearchBarDelegate {
-    private func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         // Hide the back/left navigationItem button
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
     }
     
-    private func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         // Show the back/left navigationItem button
         prepareNavItem()
         navigationItem.hidesBackButton = false
     }
-    
 }
 
 // MARK:- UISearchControllerDelegate
 // Fixes an issue where the search bar goes off screen sometimes.
 extension CountryPickerViewController: UISearchControllerDelegate {
-    private func willPresentSearchController(_ searchController: UISearchController) {
+    public func willPresentSearchController(_ searchController: UISearchController) {
         self.navigationController?.navigationBar.isTranslucent = true
     }
     
-    private func willDismissSearchController(_ searchController: UISearchController) {
+    public func willDismissSearchController(_ searchController: UISearchController) {
         self.navigationController?.navigationBar.isTranslucent = false
     }
 }

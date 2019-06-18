@@ -19,7 +19,7 @@ You can clone/download the repository and run the [demo project](https://github.
 
 ## Installation
 
-> Note that 2.x releases are Swift 4 compatible. For the Swift 3 compatibility, please use 1.x releases.
+> Note that 3.x releases are Swift 5 compatible. For the Swift 4 compatibility, use 2.x releases. For the Swift 3 compatibility, use 1.x releases.
 
 ### Cocoapods
 
@@ -87,18 +87,23 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
 
         countryPickerView.delegate = self
         countryPickerView.dataSource = self
-
-        /*** Direct customizations on CountryPickerView instance ***/
-
-        // Show the selected country's phone(e.g +234) code on the view
-        countryPickerView.showPhoneCodeInView = true
-
-        // Show the selected country's iso code(e.g NG) on the view
-        countryPickerView.showCountryCodeInView = true
     }
-
 }
 ```
+
+#### CountryPickerView properties
+
+|Property|Description|Default value|
+|:-:|:-:|:-:|
+|showCountryCodeInView|Show or hide the country code(e.g NG) on the view.|true|
+|showPhoneCodeInView|Show or hide the phone code(e.g +234) on the view.|true|
+|font|The font of the phone/country code text.|system font|
+|textColor|The color of the phone/country code text.|black|
+|flagSpacingInView|The spacing between the flag image and the phone code text.|8px|
+|hostViewController|The view controller used to show the internal `CountryPickerViewController`. If this is an instance of `UINavigationController`, the `CountryPickerViewController` will be pushed on the stack. If not, the `CountryPickerViewController` will be presented on its own navigation stack. If this property is `nil`, the view will try to find the nearest view controller and use that to present or push the `CountryPickerViewController`.|nil|
+|delegate|An instance of `CountryPickerViewDelegate` type.|nil|
+|dataSource|An instance of `CountryPickerViewDataSource` type.|nil|
+
 
 #### CountryPickerViewDelegate
 - Called when the user selects a country from the list or when you manually set the `selectedCountry` property of the `CountryPickerView`
