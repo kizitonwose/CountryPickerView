@@ -124,8 +124,8 @@
 				TargetAttributes = {
 					004CA2EA1F7056E700B690B8 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = K3JWY7DT4K;
-						LastSwiftMigration = 0830;
+						DevelopmentTeam = UQEJ6N9LDR;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -135,6 +135,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 004CA2E11F7056E600B690B8;
@@ -300,7 +301,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = K3JWY7DT4K;
+				DEVELOPMENT_TEAM = UQEJ6N9LDR;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -312,7 +313,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -322,7 +323,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = K3JWY7DT4K;
+				DEVELOPMENT_TEAM = UQEJ6N9LDR;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -333,7 +334,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kizitonwose.CountryPickerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

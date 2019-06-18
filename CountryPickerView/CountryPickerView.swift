@@ -15,18 +15,15 @@ public enum SearchBarPosition {
 }
 
 public struct Country {
-   public var name: String
-   public var code: String
-   public var phoneCode: String
-   public var flag: UIImage {
+    public var name: String
+    public var code: String
+    public var phoneCode: String
+    public var localizedName: String? {
+        return Locale.current.localizedString(forRegionCode: code)
+    }
+    public var flag: UIImage {
         return UIImage(named: "CountryPickerView.bundle/Images/\(code.uppercased())",
             in: Bundle(for: CountryPickerView.self), compatibleWith: nil)!
-    }
-    
-   internal init(name: String, code: String, phoneCode: String) {
-        self.name = name
-        self.code = code
-        self.phoneCode = phoneCode
     }
 }
 
@@ -68,7 +65,6 @@ public class CountryPickerView: NibView {
         didSet { setup() }
     }
     
-    
     /// The spacing between the flag image and the text.
     public var flagSpacingInView: CGFloat {
         get {
@@ -81,6 +77,7 @@ public class CountryPickerView: NibView {
     
     weak public var dataSource: CountryPickerViewDataSource?
     weak public var delegate: CountryPickerViewDelegate?
+    weak public var hostViewController: UIViewController?
     
     fileprivate var _selectedCountry: Country?
     internal(set) public var selectedCountry: Country {
@@ -123,6 +120,10 @@ public class CountryPickerView: NibView {
     }
     
     @IBAction func openCountryPickerController(_ sender: Any) {
+        if let hostViewController = hostViewController {
+            showCountriesList(from: hostViewController)
+            return
+        }
         if let vc = window?.topViewController {
             if let tabVc = vc as? UITabBarController,
                 let selectedVc = tabVc.selectedViewController {
@@ -216,12 +217,3 @@ extension CountryPickerView {
     }
 }
 
-
-// MARK:- An internal implementation of the CountryPickerViewDelegate.
-// Sets internal properties before calling external delegate.
-extension CountryPickerView {
-    func didSelectCountry(_ country: Country) {
-        selectedCountry = country
-        delegate?.countryPickerView(self, didSelectCountry: country)
-    }
-}
