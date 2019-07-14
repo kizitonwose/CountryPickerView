@@ -44,7 +44,7 @@ public class CountryPickerView: NibView {
             flagImageView.layer.cornerRadius = 2
         }
     }
-    @IBOutlet public weak var countryDetailsLabel: UILabel!
+    @IBOutlet public weak var countryDetailsLabel: UITextField!
     
     // Show/Hide the country code on the view.
     public var showCountryCodeInView = true {

@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CountryPickerView" customModule="CountryPickerView" customModuleProvider="target">
             <connections>
-                <outlet property="countryDetailsLabel" destination="4Mf-hk-O6C" id="1Dv-CS-6Cf"/>
+                <outlet property="countryDetailsLabel" destination="e6P-6K-gSA" id="oam-Zd-KL8"/>
                 <outlet property="flagImageView" destination="0ui-wz-fhH" id="aWg-vy-G4b"/>
-                <outlet property="spacingConstraint" destination="f2R-wJ-cfm" id="lt5-i3-VM4"/>
+                <outlet property="spacingConstraint" destination="S21-5d-PDf" id="0cR-uV-Dll"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="346" height="94"/>
+            <rect key="frame" x="0.0" y="0.0" width="377" height="152"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOy-96-GKY">
-                    <rect key="frame" x="0.0" y="0.0" width="346" height="94"/>
+                    <rect key="frame" x="0.0" y="0.0" width="377" height="152"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0ui-wz-fhH">
-                            <rect key="frame" x="0.0" y="0.5" width="256" height="94"/>
+                            <rect key="frame" x="0.0" y="0.0" width="295" height="152"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="(NG) +234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Mf-hk-O6C">
-                            <rect key="frame" x="264" y="-0.5" width="82" height="94.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="(NG) +234" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e6P-6K-gSA">
+                            <rect key="frame" x="303" y="0.0" width="74" height="152"/>
                             <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="4Mf-hk-O6C" secondAttribute="trailing" id="GOz-D9-UZP"/>
-                        <constraint firstItem="4Mf-hk-O6C" firstAttribute="centerY" secondItem="rOy-96-GKY" secondAttribute="centerY" id="K0F-Oh-iPl"/>
+                        <constraint firstAttribute="trailing" secondItem="e6P-6K-gSA" secondAttribute="trailing" id="QIR-bk-5zK"/>
                         <constraint firstItem="0ui-wz-fhH" firstAttribute="leading" secondItem="rOy-96-GKY" secondAttribute="leading" id="R2F-Rd-8PH"/>
+                        <constraint firstItem="e6P-6K-gSA" firstAttribute="leading" secondItem="0ui-wz-fhH" secondAttribute="trailing" constant="8" id="S21-5d-PDf"/>
                         <constraint firstItem="0ui-wz-fhH" firstAttribute="height" secondItem="rOy-96-GKY" secondAttribute="height" id="SEs-55-b9c"/>
                         <constraint firstItem="0ui-wz-fhH" firstAttribute="centerY" secondItem="rOy-96-GKY" secondAttribute="centerY" id="bm9-la-i16"/>
-                        <constraint firstItem="4Mf-hk-O6C" firstAttribute="leading" secondItem="0ui-wz-fhH" secondAttribute="trailing" constant="8" id="f2R-wJ-cfm"/>
-                        <constraint firstItem="4Mf-hk-O6C" firstAttribute="height" secondItem="rOy-96-GKY" secondAttribute="height" id="grh-0A-Y04"/>
+                        <constraint firstItem="e6P-6K-gSA" firstAttribute="centerY" secondItem="rOy-96-GKY" secondAttribute="centerY" id="cLs-cB-Ef4"/>
+                        <constraint firstItem="e6P-6K-gSA" firstAttribute="height" secondItem="rOy-96-GKY" secondAttribute="height" id="rnx-eH-tzR"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -63,7 +63,7 @@
                 <constraint firstAttribute="bottom" secondItem="rOy-96-GKY" secondAttribute="bottom" id="enE-wM-9mL"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-18" y="-599"/>
+            <point key="canvasLocation" x="5.5999999999999996" y="-573.01349325337333"/>
         </view>
         <tapGestureRecognizer id="DNJ-tw-ajd">
             <connections>
