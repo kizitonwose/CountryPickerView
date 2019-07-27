@@ -71,7 +71,7 @@ public protocol CountryPickerViewDataSource: class {
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool
     
     /// Determines if a country's code is shown alongside the country's name on the list.
-    /// e.g Nigeria - NG
+    /// e.g Nigeria (NG)
     func showCountryCodeInList(in countryPickerView: CountryPickerView) -> Bool
     
     /// Determines if the selected country is checked on the list.
