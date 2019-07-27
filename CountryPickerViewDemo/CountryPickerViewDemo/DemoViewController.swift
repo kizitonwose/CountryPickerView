@@ -17,6 +17,7 @@ class DemoViewController: UITableViewController {
     @IBOutlet weak var showPreferredCountries: UISwitch!
     @IBOutlet weak var showOnlyPreferredCountries: UISwitch!
     @IBOutlet weak var showPhoneCodeInList: UISwitch!
+    @IBOutlet weak var showCountryCodeInList: UISwitch!
     @IBOutlet weak var cpvMain: CountryPickerView!
     
     @IBOutlet weak var phoneNumberField: UITextField!
@@ -128,10 +129,7 @@ extension DemoViewController: CountryPickerViewDataSource {
     }
     
     func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool {
-        if countryPickerView.tag == cpvMain.tag {
-            return showOnlyPreferredCountries.isOn
-        }
-        return false
+        return countryPickerView.tag == cpvMain.tag && showOnlyPreferredCountries.isOn
     }
     
     func navigationTitle(in countryPickerView: CountryPickerView) -> String? {
@@ -150,10 +148,11 @@ extension DemoViewController: CountryPickerViewDataSource {
     }
     
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool {
-        if countryPickerView.tag == cpvMain.tag {
-            return showPhoneCodeInList.isOn
-        }
-        return false
+        return countryPickerView.tag == cpvMain.tag && showPhoneCodeInList.isOn
+    }
+    
+    func showCountryCodeInList(in countryPickerView: CountryPickerView) -> Bool {
+       return countryPickerView.tag == cpvMain.tag && showCountryCodeInList.isOn
     }
 }
 
