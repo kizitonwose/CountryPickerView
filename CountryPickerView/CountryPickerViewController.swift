@@ -129,8 +129,13 @@ extension CountryPickerViewController {
         let country = isSearchMode ? searchResults[indexPath.row]
             : countries[sectionsTitles[indexPath.section]]![indexPath.row]
 
-        let countryName = country.localizedName ?? country.name
-        let name = dataSource.showPhoneCodeInList ? "\(countryName) (\(country.phoneCode))" : countryName
+        var name = country.localizedName ?? country.name
+        if dataSource.showCountryCodeInList {
+            name = "\(name) (\(country.code))"
+        }
+        if dataSource.showPhoneCodeInList {
+            name = "\(name) (\(country.phoneCode))"
+        }
         cell.imageView?.image = country.flag
         
         cell.flgSize = dataSource.cellImageViewSize
@@ -332,4 +337,7 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
         return view.dataSource?.showPhoneCodeInList(in: view) ?? showPhoneCodeInList(in: view)
     }
     
+    var showCountryCodeInList: Bool {
+        return view.dataSource?.showCountryCodeInList(in: view) ?? showCountryCodeInList(in: view)
+    }
 }

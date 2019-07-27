@@ -69,6 +69,10 @@ public protocol CountryPickerViewDataSource: class {
     /// This determines if a country's phone code is shown alongside the country's name on the list.
     /// e.g Nigeria (+234)
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool
+    
+    /// This determines if a country's code is shown alongside the country's name on the list.
+    /// e.g Nigeria - NG
+    func showCountryCodeInList(in countryPickerView: CountryPickerView) -> Bool
 }
 
 // MARK:- CountryPickerViewDataSource default implementations
@@ -123,6 +127,10 @@ public extension CountryPickerViewDataSource {
     }
     
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool {
+        return false
+    }
+    
+    func showCountryCodeInList(in countryPickerView: CountryPickerView) -> Bool {
         return false
     }
 }
