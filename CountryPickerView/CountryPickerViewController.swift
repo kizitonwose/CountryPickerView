@@ -149,7 +149,8 @@ extension CountryPickerViewController {
         if let color = dataSource.cellLabelColor {
             cell.textLabel?.textColor = color
         }
-        cell.accessoryType = country == countryPickerView.selectedCountry ? .checkmark : .none
+        cell.accessoryType = country == countryPickerView.selectedCountry &&
+            dataSource.showCheckmarkInList ? .checkmark : .none
         cell.separatorInset = .zero
         return cell
     }
@@ -341,5 +342,9 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
     
     var showCountryCodeInList: Bool {
         return view.dataSource?.showCountryCodeInList(in: view) ?? showCountryCodeInList(in: view)
+    }
+    
+    var showCheckmarkInList: Bool {
+        return view.dataSource?.showCheckmarkInList(in: view) ?? showCheckmarkInList(in: view)
     }
 }

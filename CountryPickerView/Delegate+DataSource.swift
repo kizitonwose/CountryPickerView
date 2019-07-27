@@ -33,7 +33,7 @@ public protocol CountryPickerViewDataSource: class {
     /// - **See:** `preferredCountries` method. Both are required for the section to be shown.
     func sectionTitleForPreferredCountries(in countryPickerView: CountryPickerView) -> String?
     
-    /// This determines if only the preferred section is shown
+    /// Determines if only the preferred section is shown
     func showOnlyPreferredSection(in countryPickerView: CountryPickerView) -> Bool
     
     /// The desired font for the section title labels on the list. Can be used to configure the text size.
@@ -66,13 +66,16 @@ public protocol CountryPickerViewDataSource: class {
     /// The desired position for the search bar.
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition
     
-    /// This determines if a country's phone code is shown alongside the country's name on the list.
+    /// Determines if a country's phone code is shown alongside the country's name on the list.
     /// e.g Nigeria (+234)
     func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool
     
-    /// This determines if a country's code is shown alongside the country's name on the list.
+    /// Determines if a country's code is shown alongside the country's name on the list.
     /// e.g Nigeria - NG
     func showCountryCodeInList(in countryPickerView: CountryPickerView) -> Bool
+    
+    /// Determines if the selected country is checked on the list.
+    func showCheckmarkInList(in countryPickerView: CountryPickerView) -> Bool
 }
 
 // MARK:- CountryPickerViewDataSource default implementations
@@ -132,6 +135,10 @@ public extension CountryPickerViewDataSource {
     
     func showCountryCodeInList(in countryPickerView: CountryPickerView) -> Bool {
         return false
+    }
+    
+    func showCheckmarkInList(in countryPickerView: CountryPickerView) -> Bool {
+        return true
     }
 }
 
