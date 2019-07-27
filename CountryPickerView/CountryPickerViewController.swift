@@ -224,8 +224,10 @@ extension CountryPickerViewController: UISearchResultsUpdating {
             }
 
             searchResults.append(contentsOf: indexArray.filter({
-                let countryName = $0.localizedName ?? $0.name
-                return countryName.lowercased().hasPrefix(text.lowercased())
+                let name = ($0.localizedName ?? $0.name).lowercased()
+                let code = $0.code.lowercased()
+                let query = text.lowercased()
+                return name.hasPrefix(query) || (dataSource.showCountryCodeInList && code.hasPrefix(query))
             }))
         }
         tableView.reloadData()
