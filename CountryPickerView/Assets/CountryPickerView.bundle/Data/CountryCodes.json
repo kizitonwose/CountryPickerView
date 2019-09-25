@@ -301,7 +301,7 @@
 },
 {
 "name": "Dominican Republic",
-"dial_code": "+1849",
+"dial_code": "+1",
 "code": "DO"
 },
 {
@@ -526,7 +526,7 @@
 },
 {
 "name": "Jamaica",
-"dial_code": "+1876",
+"dial_code": "+876",
 "code": "JM"
 },
 {
@@ -871,7 +871,7 @@
 },
 {
 "name": "Puerto Rico",
-"dial_code": "+1939",
+"dial_code": "+1",
 "code": "PR"
 },
 {
