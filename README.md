@@ -221,6 +221,18 @@ The datasource methods define the internal(country list) ViewController's behavi
   func showPhoneCodeInList(in countryPickerView: CountryPickerView) -> Bool
   ```
 
+- Show the country code alongside the country name on the list. e.g Nigeria (NG). If `true`, searches are also performed against the country codes. Default value is `false`
+  
+  ```swift    
+  func showCountryCodeInList(in countryPickerView: CountryPickerView) -> Bool
+  ```
+
+- Show a checkmark on the selected country on the list. Default value is `true`
+  
+  ```swift    
+  func showCheckmarkInList(in countryPickerView: CountryPickerView) -> Bool
+  ```
+
 ### Using CountryPickerView with UITextField
 
 A good use case for `CountryPickerView` is when used as the left view of a phone number input field.
