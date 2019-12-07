@@ -15,11 +15,11 @@ public enum SearchBarPosition {
 }
 
 public struct Country: Equatable {
-    public var name: String
-    public var code: String
-    public var phoneCode: String
-    public var localizedName: String? {
-        return Locale.current.localizedString(forRegionCode: code)
+    public let name: String
+    public let code: String
+    public let phoneCode: String
+    public func localizedName(_ locale: Locale = Locale.current) -> String? {
+        locale.localizedString(forRegionCode: code)
     }
     public var flag: UIImage {
         return UIImage(named: "CountryPickerView.bundle/Images/\(code.uppercased())",
