@@ -1,5 +1,5 @@
 PODS:
-  - CountryPickerView (3.0.1)
+  - CountryPickerView (3.0.4)
 
 DEPENDENCIES:
   - CountryPickerView (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CountryPickerView: 7069fdb43c2c8a17f214acae6a1a3a4786aeb814
+  CountryPickerView: 43142f2a31a20860939ec54f6e22d4b92a35b488
 
 PODFILE CHECKSUM: 649829ad9a32abd953e33364dc48a4a40a615047
 

@@ -150,7 +150,7 @@ public class CountryPickerView: NibView {
         }
     }
     
-    private let countries: [Country] = {
+    internal let countries: [Country] = {
         var countries = [Country]()
         let bundle = Bundle(for: CountryPickerView.self)
         guard let jsonPath = bundle.path(forResource: "CountryPickerView.bundle/Data/CountryCodes", ofType: "json"),
