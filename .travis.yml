@@ -7,7 +7,7 @@ env:
   - IOS_SDK=iphonesimulator13.2
   - DEMO_SCHEME="CountryPickerViewDemo"
   - DEMO_WORKSPACE=CountryPickerViewDemo/CountryPickerViewDemo.xcworkspace
-  - PLATFORM="platform=iOS Simulator,OS=13.2,name=iPhone 11"
+  - PLATFORM="platform=iOS Simulator,OS=13.2.2,name=iPhone 11"
   matrix:
     - BUILD_TYPE=FRAMEWORK POD_LINT="TRUE"
     - BUILD_TYPE=DEMO POD_LINT="FALSE"
