@@ -1,13 +1,13 @@
 language: objective-c
-osx_image: xcode10.2
+osx_image: xcode11.2
 env:
   global:
   - FRAMEWORK_SCHEME="CountryPickerView"
   - FRAMEWORK_PROJECT="CountryPickerView.xcodeproj"
-  - IOS_SDK=iphonesimulator12.2
+  - IOS_SDK=iphonesimulator13.2
   - DEMO_SCHEME="CountryPickerViewDemo"
   - DEMO_WORKSPACE=CountryPickerViewDemo/CountryPickerViewDemo.xcworkspace
-  - PLATFORM="platform=iOS Simulator,OS=12.2,name=iPhone X"
+  - PLATFORM="platform=iOS Simulator,OS=13.2,name=iPhone 11"
   matrix:
     - BUILD_TYPE=FRAMEWORK POD_LINT="TRUE"
     - BUILD_TYPE=DEMO POD_LINT="FALSE"

@@ -19,7 +19,7 @@ public struct Country: Equatable {
     public let code: String
     public let phoneCode: String
     public func localizedName(_ locale: Locale = Locale.current) -> String? {
-        locale.localizedString(forRegionCode: code)
+        return locale.localizedString(forRegionCode: code)
     }
     public var flag: UIImage {
         return UIImage(named: "CountryPickerView.bundle/Images/\(code.uppercased())",
