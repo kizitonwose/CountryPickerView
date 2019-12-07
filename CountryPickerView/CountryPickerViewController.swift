@@ -22,7 +22,6 @@ public class CountryPickerViewController: UITableViewController {
     fileprivate var showOnlyPreferredSection: Bool {
         return dataSource.showOnlyPreferredSection
     }
-    
     internal weak var countryPickerView: CountryPickerView! {
         didSet {
             dataSource = CountryPickerViewDataSourceInternal(view: countryPickerView)
@@ -49,7 +48,7 @@ extension CountryPickerViewController {
             let countriesArray = countryPickerView.countries
             
             var groupedData = Dictionary<String, [Country]>(grouping: countriesArray) {
-                let name = $0.localizedName ?? $0.name
+                let name = $0.localizedName(dataSource.localeForCountryNameInList) ?? $0.name
                 return String(name.capitalized[name.startIndex])
             }
             groupedData.forEach{ key, value in
@@ -129,7 +128,7 @@ extension CountryPickerViewController {
         let country = isSearchMode ? searchResults[indexPath.row]
             : countries[sectionsTitles[indexPath.section]]![indexPath.row]
 
-        var name = country.localizedName ?? country.name
+        var name = country.localizedName(dataSource.localeForCountryNameInList) ?? country.name
         if dataSource.showCountryCodeInList {
             name = "\(name) (\(country.code))"
         }
@@ -225,7 +224,7 @@ extension CountryPickerViewController: UISearchResultsUpdating {
             }
 
             searchResults.append(contentsOf: indexArray.filter({
-                let name = ($0.localizedName ?? $0.name).lowercased()
+                let name = ($0.localizedName(dataSource.localeForCountryNameInList) ?? $0.name).lowercased()
                 let code = $0.code.lowercased()
                 let query = text.lowercased()
                 return name.hasPrefix(query) || (dataSource.showCountryCodeInList && code.hasPrefix(query))
@@ -346,5 +345,9 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
     
     var showCheckmarkInList: Bool {
         return view.dataSource?.showCheckmarkInList(in: view) ?? showCheckmarkInList(in: view)
+    }
+    
+    var localeForCountryNameInList: Locale {
+        return view.dataSource?.localeForCountryNameInList(in: view) ?? localeForCountryNameInList(in: view)
     }
 }

@@ -233,6 +233,12 @@ The datasource methods define the internal(country list) ViewController's behavi
   func showCheckmarkInList(in countryPickerView: CountryPickerView) -> Bool
   ```
 
+- The locale used to display country names on the list. Default value is the current locale.
+  
+  ```swift    
+  func localeForCountryNameInList(in countryPickerView: CountryPickerView) -> Locale
+  ```
+
 ### Using CountryPickerView with UITextField
 
 A good use case for `CountryPickerView` is when used as the left view of a phone number input field.
