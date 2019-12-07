@@ -560,16 +560,6 @@
 "code": "KI"
 },
 {
-"name": "Korea, Democratic People's Republic of Korea",
-"dial_code": "+850",
-"code": "KP"
-},
-{
-"name": "Korea, Republic of South Korea",
-"dial_code": "+82",
-"code": "KR"
-},
-{
 "name": "Kosovo",
 "dial_code": "+383",
 "code": "XK"
@@ -805,6 +795,11 @@
 "code": "NF"
 },
 {
+"name": "North Korea",
+"dial_code": "+850",
+"code": "KP"
+},
+{
 "name": "Northern Mariana Islands",
 "dial_code": "+1670",
 "code": "MP"
@@ -1010,14 +1005,19 @@
 "code": "ZA"
 },
 {
-"name": "South Sudan",
-"dial_code": "+211",
-"code": "SS"
-},
-{
 "name": "South Georgia and the South Sandwich Islands",
 "dial_code": "+500",
 "code": "GS"
+},
+{
+"name": "South Korea",
+"dial_code": "+82",
+"code": "KR"
+},
+{
+"name": "South Sudan",
+"dial_code": "+211",
+"code": "SS"
 },
 {
 "name": "Spain",
