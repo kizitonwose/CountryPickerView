@@ -14,12 +14,12 @@ public enum SearchBarPosition {
     case tableViewHeader, navigationBar, hidden
 }
 
-public struct Country {
-    public var name: String
-    public var code: String
-    public var phoneCode: String
-    public var localizedName: String? {
-        return Locale.current.localizedString(forRegionCode: code)
+public struct Country: Equatable {
+    public let name: String
+    public let code: String
+    public let phoneCode: String
+    public func localizedName(_ locale: Locale = Locale.current) -> String? {
+        return locale.localizedString(forRegionCode: code)
     }
     public var flag: UIImage {
         return UIImage(named: "CountryPickerView.bundle/Images/\(code.uppercased())",
@@ -84,7 +84,7 @@ public class CountryPickerView: NibView {
         get {
             return _selectedCountry
                 ?? countries.first(where: { $0.code == Locale.current.regionCode })
-                ?? countries.first(where: { $0.code == "NG" })!
+                ?? countries.first!
         }
         set {
             _selectedCountry = newValue
@@ -116,7 +116,6 @@ public class CountryPickerView: NibView {
         } else {
             countryDetailsLabel.text = nil
         }
-        
     }
     
     @IBAction func openCountryPickerController(_ sender: Any) {
@@ -151,7 +150,7 @@ public class CountryPickerView: NibView {
         }
     }
     
-    public var countries: [Country] = {
+    internal let countries: [Country] = {
         var countries = [Country]()
         let bundle = Bundle(for: CountryPickerView.self)
         guard let jsonPath = bundle.path(forResource: "CountryPickerView.bundle/Data/CountryCodes", ofType: "json"),
@@ -177,9 +176,7 @@ public class CountryPickerView: NibView {
                 let country = Country(name: name, code: code, phoneCode: phoneCode)
                 countries.append(country)
             }
-            
         }
-        
         return countries
     }()
 }
@@ -216,4 +213,3 @@ extension CountryPickerView {
         return countries.first(where: { $0.code == code })
     }
 }
-

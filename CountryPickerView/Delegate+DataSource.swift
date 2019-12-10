@@ -76,6 +76,9 @@ public protocol CountryPickerViewDataSource: class {
     
     /// Determines if the selected country is checked on the list.
     func showCheckmarkInList(in countryPickerView: CountryPickerView) -> Bool
+    
+    /// The Locale used to generate the name of the cuntries on the list.
+    func localeForCountryNameInList(in countryPickerView: CountryPickerView) -> Locale
 }
 
 // MARK:- CountryPickerViewDataSource default implementations
@@ -139,6 +142,10 @@ public extension CountryPickerViewDataSource {
     
     func showCheckmarkInList(in countryPickerView: CountryPickerView) -> Bool {
         return true
+    }
+    
+    func localeForCountryNameInList(in countryPickerView: CountryPickerView) -> Locale {
+        return Locale.current
     }
 }
 
