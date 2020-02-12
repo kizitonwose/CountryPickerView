@@ -191,6 +191,7 @@ extension CountryPickerViewController {
         let country = isSearchMode ? searchResults[indexPath.row]
             : countries[sectionsTitles[indexPath.section]]![indexPath.row]
 
+        searchController?.isActive = false
         searchController?.dismiss(animated: false, completion: nil)
         
         let completion = {
