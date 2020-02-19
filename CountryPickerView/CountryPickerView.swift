@@ -46,13 +46,18 @@ public class CountryPickerView: NibView {
     }
     @IBOutlet public weak var countryDetailsLabel: UILabel!
     
-    // Show/Hide the country code on the view.
+    /// Show/Hide the country code on the view.
     public var showCountryCodeInView = true {
         didSet { setup() }
     }
     
-    // Show/Hide the phone code on the view.
+    /// Show/Hide the phone code on the view.
     public var showPhoneCodeInView = true {
+        didSet { setup() }
+    }
+    
+    /// Show/Hide the country name on the view.
+    public var showCountryNameInView = false {
         didSet { setup() }
     }
     
@@ -109,10 +114,10 @@ public class CountryPickerView: NibView {
         if showPhoneCodeInView && showCountryCodeInView {
             countryDetailsLabel.text = "(\(selectedCountry.code)) \(selectedCountry.phoneCode)"
             return
-        }
-        
-        if showCountryCodeInView || showPhoneCodeInView {
+        } else if showCountryCodeInView || showPhoneCodeInView {
             countryDetailsLabel.text = showCountryCodeInView ? selectedCountry.code : selectedCountry.phoneCode
+        } else if showCountryNameInView {
+            countryDetailsLabel.text = selectedCountry.localizedName()
         } else {
             countryDetailsLabel.text = nil
         }
