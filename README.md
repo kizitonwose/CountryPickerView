@@ -97,6 +97,7 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
 |:-:|:-:|:-:|
 |showCountryCodeInView|Show or hide the country code(e.g NG) on the view.|true|
 |showPhoneCodeInView|Show or hide the phone code(e.g +234) on the view.|true|
+|showCountryNameInView|Show or hide the country name on the view.|false|
 |font|The font of the phone/country code text.|system font|
 |textColor|The color of the phone/country code text.|black|
 |flagSpacingInView|The spacing between the flag image and the phone code text.|8px|
