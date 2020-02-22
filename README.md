@@ -97,6 +97,7 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
 |:-:|:-:|:-:|
 |showCountryCodeInView|Show or hide the country code(e.g NG) on the view.|true|
 |showPhoneCodeInView|Show or hide the phone code(e.g +234) on the view.|true|
+|showCountryNameInView|Show or hide the country name(e.g Nigeria) on the view.|false|
 |font|The font of the phone/country code text.|system font|
 |textColor|The color of the phone/country code text.|black|
 |flagSpacingInView|The spacing between the flag image and the phone code text.|8px|
@@ -104,6 +105,7 @@ class DemoViewController: UIViewController, CountryPickerViewDelegate, CountryPi
 |delegate|An instance of `CountryPickerViewDelegate` type.|nil|
 |dataSource|An instance of `CountryPickerViewDataSource` type.|nil|
 
+Note: The properties `showCountryCodeInView` and `showCountryNameInView` can't both be enabled at the same time. Enabling one to will disable the other. You can only show all properties on the list(see `CountryPickerViewDataSource`).
 
 #### CountryPickerViewDelegate
 - Called when the user selects a country from the list or when you manually set the `selectedCountry` property of the `CountryPickerView`
@@ -291,6 +293,26 @@ if let nav = self.navigationController {
 ```
 Don't forget to set a delegate to be notified when the use selects a country from the list. An example of how to use the internal picker view controller is included in the demo project.
 
+
+### Creating Country instances
+
+You can create `Country` instances with any of these methods in `CountryPickerView` class:
+
+```swift
+let countryPickerView = CountryPickerView()
+let country = countryPickerView.getCountryByName("Nigeria")
+let country2 = countryPickerView.getCountryByCode("NG")
+let country3 = countryPickerView.getCountryByPhoneCode("+234")
+```
+
+You can also set the selected country using these helper methods:
+
+```swift
+let countryPickerView = CountryPickerView()
+countryPickerView.setCountryByName("Nigeria")
+countryPickerView.setCountryByCode("NG")
+countryPickerView.setCountryByPhoneCode("+234")
+```
 
 ## License
 

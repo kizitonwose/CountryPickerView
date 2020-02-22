@@ -46,14 +46,31 @@ public class CountryPickerView: NibView {
     }
     @IBOutlet public weak var countryDetailsLabel: UILabel!
     
-    // Show/Hide the country code on the view.
+    /// Show/Hide the country code on the view.
     public var showCountryCodeInView = true {
+        didSet {
+            if showCountryNameInView && showCountryCodeInView {
+                showCountryNameInView = false
+            } else {
+                setup()
+            }
+        }
+    }
+    
+    /// Show/Hide the phone code on the view.
+    public var showPhoneCodeInView = true {
         didSet { setup() }
     }
     
-    // Show/Hide the phone code on the view.
-    public var showPhoneCodeInView = true {
-        didSet { setup() }
+    /// Show/Hide the country name on the view.
+    public var showCountryNameInView = false {
+        didSet {
+            if showCountryCodeInView && showCountryNameInView {
+                showCountryCodeInView = false
+            } else {
+                setup()
+            }
+        }
     }
     
     /// Change the font of phone code
@@ -106,13 +123,14 @@ public class CountryPickerView: NibView {
         flagImageView.image = selectedCountry.flag
         countryDetailsLabel.font = font
         countryDetailsLabel.textColor = textColor
-        if showPhoneCodeInView && showCountryCodeInView {
+        if showCountryCodeInView && showPhoneCodeInView {
             countryDetailsLabel.text = "(\(selectedCountry.code)) \(selectedCountry.phoneCode)"
-            return
-        }
-        
-        if showCountryCodeInView || showPhoneCodeInView {
-            countryDetailsLabel.text = showCountryCodeInView ? selectedCountry.code : selectedCountry.phoneCode
+        } else if showCountryNameInView && showPhoneCodeInView {
+            countryDetailsLabel.text = "(\(selectedCountry.localizedName() ?? selectedCountry.name)) \(selectedCountry.phoneCode)"
+        } else if showCountryCodeInView || showPhoneCodeInView || showCountryNameInView {
+            countryDetailsLabel.text = showCountryCodeInView ? selectedCountry.code
+                : showPhoneCodeInView ? selectedCountry.phoneCode
+                : selectedCountry.localizedName() ?? selectedCountry.name
         } else {
             countryDetailsLabel.text = nil
         }

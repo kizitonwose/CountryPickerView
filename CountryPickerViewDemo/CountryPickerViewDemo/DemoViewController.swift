@@ -14,6 +14,7 @@ class DemoViewController: UITableViewController {
     @IBOutlet weak var searchBarPosition: UISegmentedControl!
     @IBOutlet weak var showPhoneCodeInView: UISwitch!
     @IBOutlet weak var showCountryCodeInView: UISwitch!
+    @IBOutlet weak var showCountryNameInView: UISwitch!
     @IBOutlet weak var showPreferredCountries: UISwitch!
     @IBOutlet weak var showOnlyPreferredCountries: UISwitch!
     @IBOutlet weak var showPhoneCodeInList: UISwitch!
@@ -47,7 +48,7 @@ class DemoViewController: UITableViewController {
         cpvInternal.delegate = self
         cpvMain.font = UIFont.systemFont(ofSize: 20)
         
-        [showPhoneCodeInView, showCountryCodeInView,
+        [showPhoneCodeInView, showCountryCodeInView, showCountryNameInView,
          showPreferredCountries,  showOnlyPreferredCountries].forEach {
             $0.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
         }
@@ -62,8 +63,19 @@ class DemoViewController: UITableViewController {
         switch sender {
         case showCountryCodeInView:
             cpvMain.showCountryCodeInView = sender.isOn
+            // We don't want code and name switches to be on at the same time.
+            // The library does not show both values anyway but we have this so it's
+            // obvious in the sample. We also do the check when country name switch is toggled.
+            if sender.isOn && showCountryNameInView.isOn {
+                showCountryNameInView.setOn(false, animated: true) // Action not called
+            }
         case showPhoneCodeInView:
             cpvMain.showPhoneCodeInView = sender.isOn
+        case showCountryNameInView:
+            cpvMain.showCountryNameInView = sender.isOn
+            if sender.isOn && showCountryCodeInView.isOn {
+                showCountryCodeInView.setOn(false, animated: true)
+            }
         case showPreferredCountries:
             if !sender.isOn && showOnlyPreferredCountries.isOn {
                 showOnlyPreferredCountries.setOn(false, animated: true)
