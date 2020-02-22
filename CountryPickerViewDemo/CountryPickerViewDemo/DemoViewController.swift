@@ -14,6 +14,7 @@ class DemoViewController: UITableViewController {
     @IBOutlet weak var searchBarPosition: UISegmentedControl!
     @IBOutlet weak var showPhoneCodeInView: UISwitch!
     @IBOutlet weak var showCountryCodeInView: UISwitch!
+    @IBOutlet weak var showCountryNameInView: UISwitch!
     @IBOutlet weak var showPreferredCountries: UISwitch!
     @IBOutlet weak var showOnlyPreferredCountries: UISwitch!
     @IBOutlet weak var showPhoneCodeInList: UISwitch!
@@ -47,7 +48,7 @@ class DemoViewController: UITableViewController {
         cpvInternal.delegate = self
         cpvMain.font = UIFont.systemFont(ofSize: 20)
         
-        [showPhoneCodeInView, showCountryCodeInView,
+        [showPhoneCodeInView, showCountryCodeInView, showCountryNameInView,
          showPreferredCountries,  showOnlyPreferredCountries].forEach {
             $0.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
         }
@@ -64,6 +65,8 @@ class DemoViewController: UITableViewController {
             cpvMain.showCountryCodeInView = sender.isOn
         case showPhoneCodeInView:
             cpvMain.showPhoneCodeInView = sender.isOn
+        case showCountryNameInView:
+            cpvMain.showCountryNameInView = sender.isOn
         case showPreferredCountries:
             if !sender.isOn && showOnlyPreferredCountries.isOn {
                 showOnlyPreferredCountries.setOn(false, animated: true)
