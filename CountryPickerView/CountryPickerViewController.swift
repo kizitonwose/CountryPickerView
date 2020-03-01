@@ -46,14 +46,15 @@ extension CountryPickerViewController {
     func prepareTableItems()  {
         if !showOnlyPreferredSection {
             let countriesArray = countryPickerView.countries
+            let locale = dataSource.localeForCountryNameInList
             
             var groupedData = Dictionary<String, [Country]>(grouping: countriesArray) {
-                let name = $0.localizedName(dataSource.localeForCountryNameInList) ?? $0.name
+                let name = $0.localizedName(locale) ?? $0.name
                 return String(name.capitalized[name.startIndex])
             }
             groupedData.forEach{ key, value in
                 groupedData[key] = value.sorted(by: { (lhs, rhs) -> Bool in
-                    return lhs.localizedName() ?? lhs.name < rhs.localizedName() ?? rhs.name
+                    return lhs.localizedName(locale) ?? lhs.name < rhs.localizedName(locale) ?? rhs.name
                 })
             }
             
