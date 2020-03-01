@@ -53,7 +53,7 @@ extension CountryPickerViewController {
             }
             groupedData.forEach{ key, value in
                 groupedData[key] = value.sorted(by: { (lhs, rhs) -> Bool in
-                    return lhs.name < rhs.name
+                    return lhs.localizedName() ?? lhs.name < rhs.localizedName() ?? rhs.name
                 })
             }
             
