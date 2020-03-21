@@ -15,6 +15,8 @@ public enum SearchBarPosition {
 }
 
 public struct Country: Equatable {
+    /// Whether to replace the flag of Taiwan with the flag of China in all administrative regions of China to avoid legal risks.
+    public static var replaceTanwanFlagInPRC = true
     public let name: String
     public let code: String
     public let phoneCode: String
@@ -22,7 +24,13 @@ public struct Country: Equatable {
         return locale.localizedString(forRegionCode: code)
     }
     public var flag: UIImage {
-        return UIImage(named: "CountryPickerView.bundle/Images/\(code.uppercased())",
+        let flagName: String = {
+            let flagCode = code.uppercased()
+            guard Country.replaceTanwanFlagInPRC else { return flagCode }
+            let isInChina = ["CN", "HK", "MO"].contains(Locale.current.regionCode)
+            return (flagCode == "TW" && isInChina) ? "CN" : flagCode
+        }()
+        return UIImage(named: "CountryPickerView.bundle/Images/\(flagName)",
             in: Bundle(for: CountryPickerView.self), compatibleWith: nil)!
     }
 }

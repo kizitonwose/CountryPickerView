@@ -145,7 +145,7 @@ extension DemoViewController: CountryPickerViewDataSource {
     }
     
     func navigationTitle(in countryPickerView: CountryPickerView) -> String? {
-        return "Select a Country"
+        return "Select a Country or Region"
     }
         
     func searchBarPosition(in countryPickerView: CountryPickerView) -> SearchBarPosition {

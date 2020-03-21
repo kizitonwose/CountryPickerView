@@ -367,7 +367,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CountryPickerView can also be used as an independent view." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RQ-vo-NB4">
-                                                    <rect key="frame" x="26" y="10" width="323" height="33.5"/>
+                                                    <rect key="frame" x="18" y="10" width="339" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -420,14 +420,14 @@
                                                     </segments>
                                                 </segmentedControl>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cvr-s2-9T2">
-                                                    <rect key="frame" x="112.5" y="90.5" width="150" height="38"/>
+                                                    <rect key="frame" x="62.5" y="90.5" width="250" height="38"/>
                                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="0U6-TP-WaD"/>
+                                                        <constraint firstAttribute="width" constant="250" id="0U6-TP-WaD"/>
                                                         <constraint firstAttribute="height" constant="38" id="ohm-vq-yaw"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Select a Country"/>
+                                                    <state key="normal" title="Select a Country or Region"/>
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
                                                     </state>
