@@ -105,6 +105,7 @@ public class CountryPickerView: NibView {
         }
         set {
             _selectedCountry = newValue
+            delegate?.countryPickerView(self, didSelectCountry: newValue)
             setup()
         }
     }
@@ -202,7 +203,7 @@ public class CountryPickerView: NibView {
 //MARK: Helper methods
 extension CountryPickerView {
     public func setCountryByName(_ name: String) {
-        if let country = countries.first(where: { $0.name == name }){
+        if let country = countries.first(where: { $0.name == name }) {
             selectedCountry = country
         }
     }
