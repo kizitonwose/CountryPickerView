@@ -530,6 +530,11 @@
 "code": "IT"
 },
 {
+"name": "Ivory Coast",
+"dial_code": "+225",
+"code": "IC"
+},
+{
 "name": "Jamaica",
 "dial_code": "+876",
 "code": "JM"
