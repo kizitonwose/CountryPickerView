@@ -200,7 +200,7 @@ public class CountryPickerView: NibView {
     }()
     
     internal var usableCountries: [Country] {
-        let excluded = dataSource?.excludedCountriesInList(in: self) ?? []
+        let excluded = dataSource?.excludedCountries(in: self) ?? []
         return countries.filter { return !excluded.contains($0) }
     }
 }

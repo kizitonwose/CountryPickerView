@@ -353,6 +353,6 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
     }
     
     var excludedCountries: [Country] {
-        return view.dataSource?.excludedCountriesInList(in: view) ?? preferredCountries(in: view)
+        return view.dataSource?.excludedCountries(in: view) ?? excludedCountries(in: view)
     }
 }
