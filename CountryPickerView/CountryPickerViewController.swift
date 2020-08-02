@@ -45,7 +45,7 @@ extension CountryPickerViewController {
     
     func prepareTableItems()  {
         if !showOnlyPreferredSection {
-            let countriesArray = countryPickerView.countries
+            let countriesArray = countryPickerView.usableCountries
             let locale = dataSource.localeForCountryNameInList
             
             var groupedData = Dictionary<String, [Country]>(grouping: countriesArray) {
@@ -350,5 +350,9 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
     
     var localeForCountryNameInList: Locale {
         return view.dataSource?.localeForCountryNameInList(in: view) ?? localeForCountryNameInList(in: view)
+    }
+    
+    var excludedCountries: [Country] {
+        return view.dataSource?.excludedCountriesInList(in: view) ?? preferredCountries(in: view)
     }
 }

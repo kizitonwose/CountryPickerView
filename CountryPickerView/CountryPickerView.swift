@@ -100,8 +100,8 @@ public class CountryPickerView: NibView {
     internal(set) public var selectedCountry: Country {
         get {
             return _selectedCountry
-                ?? countries.first(where: { $0.code == Locale.current.regionCode })
-                ?? countries.first!
+                ?? usableCountries.first(where: { $0.code == Locale.current.regionCode })
+                ?? usableCountries.first!
         }
         set {
             _selectedCountry = newValue
@@ -198,6 +198,11 @@ public class CountryPickerView: NibView {
         }
         return countries
     }()
+    
+    internal var usableCountries: [Country] {
+        let excluded = dataSource?.excludedCountriesInList(in: self) ?? []
+        return countries.filter { return !excluded.contains($0) }
+    }
 }
 
 //MARK: Helper methods

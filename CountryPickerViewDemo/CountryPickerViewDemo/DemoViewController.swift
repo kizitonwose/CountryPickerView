@@ -122,13 +122,7 @@ extension DemoViewController: CountryPickerViewDelegate {
 extension DemoViewController: CountryPickerViewDataSource {
     func preferredCountries(in countryPickerView: CountryPickerView) -> [Country] {
         if countryPickerView.tag == cpvMain.tag && showPreferredCountries.isOn {
-            var countries = [Country]()
-            ["NG", "US", "GB"].forEach { code in
-                if let country = countryPickerView.getCountryByCode(code) {
-                    countries.append(country)
-                }
-            }
-            return countries
+            return ["NG", "US", "GB"].compactMap { countryPickerView.getCountryByCode($0) }
         }
         return []
     }
