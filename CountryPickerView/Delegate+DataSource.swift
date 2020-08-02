@@ -6,7 +6,7 @@
 //  Copyright © 2018 Kizito Nwose. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public protocol CountryPickerViewDelegate: class {
     /// Called when the user selects a country from the list.
@@ -79,6 +79,9 @@ public protocol CountryPickerViewDataSource: class {
     
     /// The Locale used to generate the name of the cuntries on the list.
     func localeForCountryNameInList(in countryPickerView: CountryPickerView) -> Locale
+    
+    /// An array of countries you wish to exclude from the list of countries.
+    func excludedCountries(in countryPickerView: CountryPickerView) -> [Country]
 }
 
 // MARK:- CountryPickerViewDataSource default implementations
@@ -146,6 +149,10 @@ public extension CountryPickerViewDataSource {
     
     func localeForCountryNameInList(in countryPickerView: CountryPickerView) -> Locale {
         return Locale.current
+    }
+    
+    func excludedCountries(in countryPickerView: CountryPickerView) -> [Country] {
+        return []
     }
 }
 
