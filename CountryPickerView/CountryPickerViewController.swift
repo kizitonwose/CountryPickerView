@@ -134,7 +134,7 @@ extension CountryPickerViewController {
             name = "\(name) (\(country.code))"
         }
         if dataSource.showPhoneCodeInList {
-            name = "\(name) (\(country.phoneCode))"
+            name = "\(name) (\u{202A}\(country.phoneCode)\u{202C})"
         }
         cell.imageView?.image = country.flag
         

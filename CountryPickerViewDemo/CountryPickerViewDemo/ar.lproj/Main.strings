@@ -1,0 +1,63 @@
+
+/* Class = "UILabel"; text = "CountryPickerView can also be used as an independent view."; ObjectID = "1RQ-vo-NB4"; */
+"1RQ-vo-NB4.text" = "CountryPickerView can also be used as an independent view.";
+
+/* Class = "UILabel"; text = "Show phone code in list"; ObjectID = "1UF-QN-m72"; */
+"1UF-QN-m72.text" = "Show phone code in list";
+
+/* Class = "UITableViewSection"; headerTitle = "CUSTOMIZATION"; ObjectID = "40Z-Ay-ZrI"; */
+"40Z-Ay-ZrI.headerTitle" = "CUSTOMIZATION";
+
+/* Class = "UILabel"; text = "The internal Country Picker can be used independently."; ObjectID = "8So-g0-xNg"; */
+"8So-g0-xNg.text" = "The internal Country Picker can be used independently.";
+
+/* Class = "UILabel"; text = "Show ONLY preferred countries section"; ObjectID = "8aM-7z-xIV"; */
+"8aM-7z-xIV.text" = "Show ONLY preferred countries section";
+
+/* Class = "UIButton"; normalTitle = "Select a Country"; ObjectID = "Cvr-s2-9T2"; */
+"Cvr-s2-9T2.normalTitle" = "Select a Country";
+
+/* Class = "UILabel"; text = "Show country code in list"; ObjectID = "EF5-yw-4gn"; */
+"EF5-yw-4gn.text" = "Show country code in list";
+
+/* Class = "UILabel"; text = "Show phone code in view"; ObjectID = "Fga-9R-GVt"; */
+"Fga-9R-GVt.text" = "Show phone code in view";
+
+/* Class = "UILabel"; text = "CountryPickerView can be used as the left view of a phone number input text field"; ObjectID = "H3z-cJ-GdF"; */
+"H3z-cJ-GdF.text" = "CountryPickerView can be used as the left view of a phone number input text field";
+
+/* Class = "UISegmentedControl"; Jr1-AD-yBk.segmentTitles[0] = "Table View"; ObjectID = "Jr1-AD-yBk"; */
+"Jr1-AD-yBk.segmentTitles[0]" = "Table View";
+
+/* Class = "UISegmentedControl"; Jr1-AD-yBk.segmentTitles[1] = "Navigation Bar"; ObjectID = "Jr1-AD-yBk"; */
+"Jr1-AD-yBk.segmentTitles[1]" = "Navigation Bar";
+
+/* Class = "UISegmentedControl"; Jr1-AD-yBk.segmentTitles[2] = "Hidden"; ObjectID = "Jr1-AD-yBk"; */
+"Jr1-AD-yBk.segmentTitles[2]" = "Hidden";
+
+/* Class = "UINavigationItem"; title = "CountryPickerView Demo"; ObjectID = "L8o-xe-Pfv"; */
+"L8o-xe-Pfv.title" = "CountryPickerView Demo";
+
+/* Class = "UISegmentedControl"; SCL-Cv-BjI.segmentTitles[0] = "Push"; ObjectID = "SCL-Cv-BjI"; */
+"SCL-Cv-BjI.segmentTitles[0]" = "Push";
+
+/* Class = "UISegmentedControl"; SCL-Cv-BjI.segmentTitles[1] = "Present"; ObjectID = "SCL-Cv-BjI"; */
+"SCL-Cv-BjI.segmentTitles[1]" = "Present";
+
+/* Class = "UITableViewSection"; headerTitle = "USAGE"; ObjectID = "VxW-EB-0C6"; */
+"VxW-EB-0C6.headerTitle" = "USAGE";
+
+/* Class = "UILabel"; text = "Click on the view to open picker"; ObjectID = "cVo-xn-9I4"; */
+"cVo-xn-9I4.text" = "Click on the view to open picker";
+
+/* Class = "UILabel"; text = "SEARCH BAR POSITION"; ObjectID = "g5B-s5-Vai"; */
+"g5B-s5-Vai.text" = "SEARCH BAR POSITION";
+
+/* Class = "UILabel"; text = "Show country code in view"; ObjectID = "geW-Qh-IPW"; */
+"geW-Qh-IPW.text" = "Show country code in view";
+
+/* Class = "UILabel"; text = "Show preferred countries section"; ObjectID = "u3m-oh-NBx"; */
+"u3m-oh-NBx.text" = "Show preferred countries section";
+
+/* Class = "UILabel"; text = "Show country name in view"; ObjectID = "zDT-4c-h2J"; */
+"zDT-4c-h2J.text" = "Show country name in view";
