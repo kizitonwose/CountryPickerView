@@ -22,8 +22,9 @@ public struct Country: Equatable {
         return locale.localizedString(forRegionCode: code)
     }
     public var flag: UIImage {
-        return UIImage(named: "CountryPickerView.bundle/Images/\(code.uppercased())",
-            in: Bundle(for: CountryPickerView.self), compatibleWith: nil)!
+        // Cocoapods || SPM
+        return UIImage(named: "Images/\(code.uppercased())", in: Bundle._module, compatibleWith: nil) ??
+            UIImage.init(named: code.uppercased(), in: Bundle._module, compatibleWith: nil)!
     }
 }
 
@@ -171,27 +172,22 @@ public class CountryPickerView: NibView {
     
     public let countries: [Country] = {
         var countries = [Country]()
-        let bundle = Bundle(for: CountryPickerView.self)
-        guard let jsonPath = bundle.path(forResource: "CountryPickerView.bundle/Data/CountryCodes", ofType: "json"),
-            let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
-                return countries
+        // Cocoapods || SPM
+        let path = Bundle._module.path(forResource: "Data/CountryCodes", ofType: "json") ??
+            Bundle._module.path(forResource: "CountryCodes", ofType: "json")
+        guard let jsonPath = path, let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
+            return countries
         }
-        
-        if let jsonObjects = (try? JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization
-            .ReadingOptions.allowFragments)) as? Array<Any> {
-            
+        if let jsonObjects = (try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)) as? Array<Any> {
             for jsonObject in jsonObjects {
-                
                 guard let countryObj = jsonObject as? Dictionary<String, Any> else {
                     continue
                 }
-                
                 guard let name = countryObj["name"] as? String,
-                    let code = countryObj["code"] as? String,
-                    let phoneCode = countryObj["dial_code"] as? String else {
-                        continue
+                      let code = countryObj["code"] as? String,
+                      let phoneCode = countryObj["dial_code"] as? String else {
+                    continue
                 }
-                
                 let country = Country(name: name, code: code, phoneCode: phoneCode)
                 countries.append(country)
             }
