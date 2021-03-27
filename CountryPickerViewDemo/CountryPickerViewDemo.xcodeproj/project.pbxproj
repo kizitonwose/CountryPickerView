@@ -36,6 +36,8 @@
 		004CA3091F705DD600B690B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		004CA30C1F705DD600B690B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		004CA30E1F705DD600B690B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15254F7525F0032A000C5668 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		15254F7625F0032B000C5668 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		459706724723319B379BF2E4 /* Pods-CountryPickerViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryPickerViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CountryPickerViewDemo/Pods-CountryPickerViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		476008F23554AD41FFB937C1 /* Pods-CountryPickerViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryPickerViewDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CountryPickerViewDemo/Pods-CountryPickerViewDemo.release.xcconfig"; sourceTree = "<group>"; };
 		9B8C8BC3DAF9C411DCD8D1C9 /* Pods_CountryPickerViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CountryPickerViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +151,7 @@
 				English,
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 004CA2F61F705DD600B690B8;
 			productRefGroup = 004CA3001F705DD600B690B8 /* Products */;
@@ -229,6 +232,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				004CA3071F705DD600B690B8 /* Base */,
+				15254F7525F0032A000C5668 /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -237,6 +241,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				004CA30C1F705DD600B690B8 /* Base */,
+				15254F7625F0032B000C5668 /* ar */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
