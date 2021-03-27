@@ -9,7 +9,9 @@ let package = Package(
     targets: [
         .target(
             name: "CountryPickerView",
-            path: "CountryPickerView"
+            path: "CountryPickerView",
+            resources: [
+            .process("Resources")]
         )
     ]
 )

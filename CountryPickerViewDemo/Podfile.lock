@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CountryPickerView: 9b093bfffb4b06a69ba6185a798cadbf863720e7
+  CountryPickerView: 680940ad6a502cda951dd1b82547b0c78a03ccd7
 
 PODFILE CHECKSUM: 1cd5c4aa4d0640ed508d2a66a00ff43232db9ee3
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1
