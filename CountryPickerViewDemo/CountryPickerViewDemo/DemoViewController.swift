@@ -32,10 +32,15 @@ class DemoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        let cp = CountryPickerView(frame: CGRect(x: 0, y: 0, width: 120, height: 20))
+        let cp = CountryPickerView(frame: .zero)
+        cp.translatesAutoresizingMaskIntoConstraints = false
+        cp.heightAnchor.constraint(equalToConstant: 34).isActive = true
+        cp.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        cp.containerView.semanticContentAttribute = .forceLeftToRight
+        cp.containerView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 0)
         phoneNumberField.leftView = cp
         phoneNumberField.leftViewMode = .always
-        self.cpvTextField = cp
+        cpvTextField = cp
 
         cpvMain.tag = 1
         cpvTextField.tag = 2
@@ -108,6 +113,9 @@ class DemoViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
+    @IBAction func phoneNumberChanged(_ sender: UITextField) {
+        sender.text = NSString(string: sender.text ?? "").applyingTransform(StringTransform.latinToArabic, reverse: true)
+    }
 }
 
 extension DemoViewController: CountryPickerViewDelegate {
