@@ -45,7 +45,8 @@ public class CountryPickerView: NibView {
         }
     }
     @IBOutlet public weak var countryDetailsLabel: UILabel!
-    
+    @IBOutlet public weak var containerView: UIView!
+
     /// Show/Hide the country code on the view.
     public var showCountryCodeInView = true {
         didSet {
