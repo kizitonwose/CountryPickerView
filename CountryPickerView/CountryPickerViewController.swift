@@ -149,6 +149,9 @@ extension CountryPickerViewController {
         if let color = dataSource.cellLabelColor {
             cell.textLabel?.textColor = color
         }
+        if let color = dataSource.cellBackgroundColor {
+            cell.backgroundColor = color
+        }
         cell.accessoryType = country == countryPickerView.selectedCountry &&
             dataSource.showCheckmarkInList ? .checkmark : .none
         cell.separatorInset = .zero
@@ -311,6 +314,10 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
     
     var cellLabelColor: UIColor? {
         return view.dataSource?.cellLabelColor(in: view)
+    }
+    
+    var cellBackgroundColor: UIColor? {
+        return view.dataSource?.cellBackgroundColor(in: view)
     }
     
     var cellImageViewSize: CGSize {

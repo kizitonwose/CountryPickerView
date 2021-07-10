@@ -50,6 +50,9 @@ public protocol CountryPickerViewDataSource: class {
     /// The desired text color for the country names on the list.
     func cellLabelColor(in countryPickerView: CountryPickerView) -> UIColor?
     
+    /// The desired background color for the cell in the list.
+    func cellBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor?
+    
     /// The desired size for the flag images on the list.
     func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize
     
@@ -112,6 +115,10 @@ public extension CountryPickerViewDataSource {
     }
     
     func cellLabelColor(in countryPickerView: CountryPickerView) -> UIColor? {
+        return nil
+    }
+    
+    func cellBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor? {
         return nil
     }
     
