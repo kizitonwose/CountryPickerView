@@ -50,11 +50,17 @@ public protocol CountryPickerViewDataSource: class {
     /// The desired text color for the country names on the list.
     func cellLabelColor(in countryPickerView: CountryPickerView) -> UIColor?
     
+    /// The desired background color for the cell in the list.
+    func cellBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor?
+    
     /// The desired size for the flag images on the list.
     func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize
     
     /// The desired corner radius for the flag images on the list. Default value is 2
     func cellImageViewCornerRadius(in countryPickerView: CountryPickerView) -> CGFloat
+    
+    /// The desired cell selection style.
+    func cellSelectionStyle(in countryPickerView: CountryPickerView) -> UITableViewCell.SelectionStyle
     
     /// The navigation item title when the internal view controller is pushed/presented.
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
@@ -115,12 +121,20 @@ public extension CountryPickerViewDataSource {
         return nil
     }
     
+    func cellBackgroundColor(in countryPickerView: CountryPickerView) -> UIColor? {
+        return nil
+    }
+    
     func cellImageViewCornerRadius(in countryPickerView: CountryPickerView) -> CGFloat {
         return 2
     }
     
     func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize {
         return CGSize(width: 34, height: 24)
+    }
+    
+    func cellSelectionStyle(in countryPickerView: CountryPickerView) -> UITableViewCell.SelectionStyle {
+        return .default
     }
     
     func navigationTitle(in countryPickerView: CountryPickerView) -> String? {
