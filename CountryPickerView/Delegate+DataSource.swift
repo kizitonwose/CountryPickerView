@@ -59,6 +59,9 @@ public protocol CountryPickerViewDataSource: class {
     /// The desired corner radius for the flag images on the list. Default value is 2
     func cellImageViewCornerRadius(in countryPickerView: CountryPickerView) -> CGFloat
     
+    /// The desired cell selection style.
+    func cellSelectionStyle(in countryPickerView: CountryPickerView) -> UITableViewCell.SelectionStyle
+    
     /// The navigation item title when the internal view controller is pushed/presented.
     func navigationTitle(in countryPickerView: CountryPickerView) -> String?
     
@@ -128,6 +131,10 @@ public extension CountryPickerViewDataSource {
     
     func cellImageViewSize(in countryPickerView: CountryPickerView) -> CGSize {
         return CGSize(width: 34, height: 24)
+    }
+    
+    func cellSelectionStyle(in countryPickerView: CountryPickerView) -> UITableViewCell.SelectionStyle {
+        return .default
     }
     
     func navigationTitle(in countryPickerView: CountryPickerView) -> String? {

@@ -152,6 +152,7 @@ extension CountryPickerViewController {
         if let color = dataSource.cellBackgroundColor {
             cell.backgroundColor = color
         }
+        cell.selectionStyle = dataSource.cellSelectionStyle
         cell.accessoryType = country == countryPickerView.selectedCountry &&
             dataSource.showCheckmarkInList ? .checkmark : .none
         cell.separatorInset = .zero
@@ -326,6 +327,10 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
     
     var cellImageViewCornerRadius: CGFloat {
         return view.dataSource?.cellImageViewCornerRadius(in: view) ?? cellImageViewCornerRadius(in: view)
+    }
+    
+    var cellSelectionStyle: UITableViewCell.SelectionStyle {
+        return view.dataSource?.cellSelectionStyle(in: view) ?? .default
     }
     
     var navigationTitle: String? {
