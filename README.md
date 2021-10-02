@@ -4,6 +4,7 @@
 [![Platform](https://img.shields.io/badge/Platform-iOS-00BCD4.svg)](http://cocoapods.org/pods/CountryPickerView)
 [![Version](https://img.shields.io/cocoapods/v/CountryPickerView.svg?style=flat)](http://cocoapods.org/pods/CountryPickerView)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![SPM compatible](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)](https://swift.org/package-manager)
 [![License](https://img.shields.io/badge/License-MIT-8D6E63.svg)](https://github.com/kizitonwose/CountryPickerView/blob/master/LICENSE.md)
 
 CountryPickerView is a simple, customizable view for selecting countries in iOS apps.
@@ -20,6 +21,11 @@ You can clone/download the repository and run the [demo project](https://github.
 ## Installation
 
 > Note that 3.x releases are Swift 5 compatible. For the Swift 4 compatibility, use 2.x releases. For the Swift 3 compatibility, use 1.x releases.
+
+### Swift Package Manager
+[Swift Package Manager](https://swift.org/package-manager) is a dependency manager built into Xcode.
+
+If you are using Xcode 11 or higher, go to `File / Swift Packages / Add Package Dependency…` and enter package repository URL https://github.com/kizitonwose/CountryPickerView.git then follow the instructions.
 
 ### Cocoapods
 
