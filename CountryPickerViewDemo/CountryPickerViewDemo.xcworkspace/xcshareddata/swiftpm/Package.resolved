@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CountryPickerView",
+        "repositoryURL": "/Users/kizito.nwose/Documents/XcodeProjects/CountryPickerView",
+        "state": {
+          "branch": null,
+          "revision": "a399b65ee00546b633947469a6db818a24ee4664",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -3,6 +3,6 @@ platform :ios, '9.0'
 target 'CountryPickerViewDemo' do
   use_frameworks!
 
-  pod 'CountryPickerView', :path => '../'  
+#  pod 'CountryPickerView', :path => '../'  
 
 end

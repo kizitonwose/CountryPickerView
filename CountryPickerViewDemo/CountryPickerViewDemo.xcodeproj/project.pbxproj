@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		004CA30A1F705DD600B690B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 004CA3091F705DD600B690B8 /* Assets.xcassets */; };
 		004CA30D1F705DD600B690B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004CA30B1F705DD600B690B8 /* LaunchScreen.storyboard */; };
 		725ED841B1989E74241F9377 /* Pods_CountryPickerViewDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C8BC3DAF9C411DCD8D1C9 /* Pods_CountryPickerViewDemo.framework */; };
+		74359D402708AFFA003EBF60 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 74359D3F2708AFFA003EBF60 /* SwiftPackageProductDependency */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74359D402708AFFA003EBF60 /* BuildFile in Frameworks */,
 				725ED841B1989E74241F9377 /* Pods_CountryPickerViewDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,13 +117,15 @@
 				004CA2FC1F705DD600B690B8 /* Frameworks */,
 				004CA2FD1F705DD600B690B8 /* Resources */,
 				509720AE1FDEE189001244B0 /* Embed Frameworks */,
-				430063C7F600C8DB5B847C1B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = CountryPickerViewDemo;
+			packageProductDependencies = (
+				74359D3F2708AFFA003EBF60 /* SwiftPackageProductDependency */,
+			);
 			productName = CountryPickerSample;
 			productReference = 004CA2FF1F705DD600B690B8 /* CountryPickerViewDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -154,6 +158,9 @@
 				ar,
 			);
 			mainGroup = 004CA2F61F705DD600B690B8;
+			packageReferences = (
+				74359D3E2708AFFA003EBF60 /* RemoteSwiftPackageReference */,
+			);
 			productRefGroup = 004CA3001F705DD600B690B8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -177,24 +184,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		430063C7F600C8DB5B847C1B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CountryPickerViewDemo/Pods-CountryPickerViewDemo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CountryPickerView/CountryPickerView.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CountryPickerView.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CountryPickerViewDemo/Pods-CountryPickerViewDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FBD015984CE10E7BD30F91BD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -355,7 +344,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -371,7 +361,10 @@
 				DEVELOPMENT_TEAM = K3JWY7DT4K;
 				INFOPLIST_FILE = CountryPickerViewDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kizitonwose.CountryPickerViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -387,7 +380,10 @@
 				DEVELOPMENT_TEAM = K3JWY7DT4K;
 				INFOPLIST_FILE = CountryPickerViewDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kizitonwose.CountryPickerViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -416,6 +412,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		74359D3E2708AFFA003EBF60 /* RemoteSwiftPackageReference */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/kizito.nwose/Documents/XcodeProjects/CountryPickerView";
+			requirement = {
+				kind = revision;
+				revision = a399b65ee00546b633947469a6db818a24ee4664;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		74359D3F2708AFFA003EBF60 /* SwiftPackageProductDependency */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 74359D3E2708AFFA003EBF60 /* RemoteSwiftPackageReference */;
+			productName = CountryPickerView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 004CA2F71F705DD600B690B8 /* Project object */;
 }
