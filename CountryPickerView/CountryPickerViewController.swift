@@ -50,7 +50,7 @@ public class CountryPickerViewController: UITableViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.backItem?.title = ""
-        //        navigationController?.navigationBar.tintColor = .gray
+        navigationController?.navigationBar.tintColor = .gray
     }
     
     public override func viewDidDisappear(_ animated: Bool) {
