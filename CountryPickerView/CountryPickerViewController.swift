@@ -28,16 +28,35 @@ public class CountryPickerViewController: UITableViewController {
         }
     }
     
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        .default
+    }
+    
     fileprivate var dataSource: CountryPickerViewDataSourceInternal!
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+//        navigationController?.setNavigationBarHidden(false, animated: false)
+//        navigationController?.navigationBar.backItem?.title = ""
+//        navigationController?.navigationBar.tintColor = .gray
+
         prepareTableItems()
         prepareNavItem()
         prepareSearchBar()
     }
-   
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.backItem?.title = ""
+        //        navigationController?.navigationBar.tintColor = .gray
+    }
+    
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
 }
 
 // UI Setup
@@ -73,8 +92,7 @@ extension CountryPickerViewController {
     }
     
     func prepareNavItem() {
-        navigationItem.title = dataSource.navigationTitle
-
+//        navigationItem.title = dataSource.navigationTitle
         // Add a close button if this is the root view controller
         if navigationController?.viewControllers.count == 1 {
             let closeButton = dataSource.closeButtonNavigationItem
@@ -94,9 +112,14 @@ extension CountryPickerViewController {
         searchController?.dimsBackgroundDuringPresentation = false
         searchController?.hidesNavigationBarDuringPresentation = searchBarPosition == .tableViewHeader
         searchController?.definesPresentationContext = true
+        if #available(iOS 13.0, *) {
+            
+//            searchController?.searchBar.backgroundColor = .white
+            searchController?.searchBar.searchTextField.backgroundColor = .white
+            searchController?.searchBar.tintColor = .gray
+        }
         searchController?.searchBar.delegate = self
         searchController?.delegate = self
-
         switch searchBarPosition {
         case .tableViewHeader: tableView.tableHeaderView = searchController?.searchBar
         case .navigationBar: navigationItem.titleView = searchController?.searchBar
@@ -239,8 +262,8 @@ extension CountryPickerViewController: UISearchResultsUpdating {
 extension CountryPickerViewController: UISearchBarDelegate {
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         // Hide the back/left navigationItem button
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
+//        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = false
     }
     
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -254,10 +277,12 @@ extension CountryPickerViewController: UISearchBarDelegate {
 // Fixes an issue where the search bar goes off screen sometimes.
 extension CountryPickerViewController: UISearchControllerDelegate {
     public func willPresentSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.showsCancelButton = false
         self.navigationController?.navigationBar.isTranslucent = true
     }
     
     public func willDismissSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.showsCancelButton = false
         self.navigationController?.navigationBar.isTranslucent = false
     }
 }
@@ -354,5 +379,15 @@ class CountryPickerViewDataSourceInternal: CountryPickerViewDataSource {
     
     var excludedCountries: [Country] {
         return view.dataSource?.excludedCountries(in: view) ?? excludedCountries(in: view)
+    }
+}
+
+extension UIApplication {
+    class var statusBarBackgroundColor: UIColor? {
+        get {
+            return (shared.value(forKey: "statusBar") as? UIView)?.backgroundColor
+        } set {
+            (shared.value(forKey: "statusBar") as? UIView)?.backgroundColor = newValue
+        }
     }
 }
