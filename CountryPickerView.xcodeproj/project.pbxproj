@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		004CA2F01F7056E700B690B8 /* CountryPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 004CA2EE1F7056E700B690B8 /* CountryPickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		004CA3221F70609900B690B8 /* CountryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004CA3211F70609900B690B8 /* CountryPickerView.swift */; };
-		004CA32F1F706DF500B690B8 /* CountryPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004CA32E1F706DF500B690B8 /* CountryPickerView.xib */; };
-		004CA3311F70782400B690B8 /* CountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004CA3301F70782400B690B8 /* CountryPickerViewController.swift */; };
 		004CA3331F70787200B690B8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004CA3321F70787200B690B8 /* Extensions.swift */; };
 		00B095FC1F75AD6200860F82 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B095FB1F75AD6200860F82 /* NibView.swift */; };
+		120462F4287C0D3400C7E471 /* CountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120462F3287C0D3400C7E471 /* CountryPickerViewController.swift */; };
+		120462F6287C0D4D00C7E471 /* CountryPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120462F5287C0D4D00C7E471 /* CountryPickerView.xib */; };
 		50468942203753BF00009BA1 /* Delegate+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50468941203753BF00009BA1 /* Delegate+DataSource.swift */; };
 		743599E0270895CF003EBF60 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743599DF270895CE003EBF60 /* Bundle.swift */; };
 /* End PBXBuildFile section */
@@ -22,10 +22,10 @@
 		004CA2EE1F7056E700B690B8 /* CountryPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryPickerView.h; sourceTree = "<group>"; };
 		004CA2EF1F7056E700B690B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		004CA3211F70609900B690B8 /* CountryPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryPickerView.swift; sourceTree = "<group>"; };
-		004CA32E1F706DF500B690B8 /* CountryPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryPickerView.xib; sourceTree = "<group>"; };
-		004CA3301F70782400B690B8 /* CountryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryPickerViewController.swift; sourceTree = "<group>"; };
 		004CA3321F70787200B690B8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		00B095FB1F75AD6200860F82 /* NibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		120462F3287C0D3400C7E471 /* CountryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountryPickerViewController.swift; path = ../../../../Downloads/CountryPickerViewController.swift; sourceTree = "<group>"; };
+		120462F5287C0D4D00C7E471 /* CountryPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CountryPickerView.xib; path = ../../../../Downloads/CountryPickerView.xib; sourceTree = "<group>"; };
 		50468941203753BF00009BA1 /* Delegate+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delegate+DataSource.swift"; sourceTree = "<group>"; };
 		743599DF270895CE003EBF60 /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		74359C1E2708A5D1003EBF60 /* TG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TG.png; sourceTree = "<group>"; };
@@ -320,11 +320,12 @@
 				7451370726D03FC60067E4EA /* Package.swift */,
 				004CA2EE1F7056E700B690B8 /* CountryPickerView.h */,
 				004CA2EF1F7056E700B690B8 /* Info.plist */,
+				120462F3287C0D3400C7E471 /* CountryPickerViewController.swift */,
 				004CA3211F70609900B690B8 /* CountryPickerView.swift */,
-				004CA3301F70782400B690B8 /* CountryPickerViewController.swift */,
 				004CA3321F70787200B690B8 /* Extensions.swift */,
 				00B095FB1F75AD6200860F82 /* NibView.swift */,
 				50468941203753BF00009BA1 /* Delegate+DataSource.swift */,
+				120462F5287C0D4D00C7E471 /* CountryPickerView.xib */,
 			);
 			path = CountryPickerView;
 			sourceTree = "<group>";
@@ -334,7 +335,6 @@
 			children = (
 				74359D1B2708A5D1003EBF60 /* Data */,
 				74359C1D2708A5D1003EBF60 /* Images */,
-				004CA32E1F706DF500B690B8 /* CountryPickerView.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -679,7 +679,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				004CA32F1F706DF500B690B8 /* CountryPickerView.xib in Resources */,
+				120462F6287C0D4D00C7E471 /* CountryPickerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,7 +693,7 @@
 				50468942203753BF00009BA1 /* Delegate+DataSource.swift in Sources */,
 				743599E0270895CF003EBF60 /* Bundle.swift in Sources */,
 				00B095FC1F75AD6200860F82 /* NibView.swift in Sources */,
-				004CA3311F70782400B690B8 /* CountryPickerViewController.swift in Sources */,
+				120462F4287C0D3400C7E471 /* CountryPickerViewController.swift in Sources */,
 				004CA3331F70787200B690B8 /* Extensions.swift in Sources */,
 				004CA3221F70609900B690B8 /* CountryPickerView.swift in Sources */,
 			);
