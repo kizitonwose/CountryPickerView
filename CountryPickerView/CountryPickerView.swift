@@ -99,14 +99,15 @@ public class CountryPickerView: NibView {
     
     fileprivate var _selectedCountry: Country?
     
-    var selectedCountry: Country! {
+    var selectedCountry: Country {
         get {
             if !usableCountries.isEmpty {
                 return _selectedCountry ?? usableCountries.first(where: { $0.code == Locale.current.regionCode }) ?? usableCountries.first!
             }
             
             let regionCode = Locale.current.regionCode
-            return getCountryByCode(regionCode != nil ? regionCode! : "DE")
+            let defaultCountry = Country(name: "Germany", code: "DE", phoneCode: "+49")
+            return getCountryByCode(regionCode != nil ? regionCode! : "DE") ?? defaultCountry
         }
         
         set {
