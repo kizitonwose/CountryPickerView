@@ -44,17 +44,22 @@ public class CountryPickerViewController: UITableViewController {
 extension CountryPickerViewController {
     
     func prepareTableItems()  {
+        self.tableView.tableFooterView = UIView(frame: .zero)
         if !showOnlyPreferredSection {
-            let countriesArray = countryPickerView.usableCountries
-            let locale = dataSource.localeForCountryNameInList
+            let countriesArray = countryPickerView.countries.filter { (cntry) -> Bool in
+                let contains = self.countryPickerView.hiddenCountries.contains { (ct) -> Bool in
+                    return ct.code == cntry.code
+                }
+                return !contains
+            }
             
             var groupedData = Dictionary<String, [Country]>(grouping: countriesArray) {
-                let name = $0.localizedName(locale) ?? $0.name
+                let name = $0.name
                 return String(name.capitalized[name.startIndex])
             }
             groupedData.forEach{ key, value in
                 groupedData[key] = value.sorted(by: { (lhs, rhs) -> Bool in
-                    return lhs.localizedName(locale) ?? lhs.name < rhs.localizedName(locale) ?? rhs.name
+                    return lhs.name < rhs.name
                 })
             }
             
@@ -70,6 +75,8 @@ extension CountryPickerViewController {
         
         tableView.sectionIndexBackgroundColor = .clear
         tableView.sectionIndexTrackingBackgroundColor = .clear
+        tableView.sectionIndexColor = UIColor(red: 178.0/255.0, green: 2.0/255.0, blue: 15.0/255.0, alpha: 1.0)
+
     }
     
     func prepareNavItem() {

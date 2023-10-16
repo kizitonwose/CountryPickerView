@@ -18,6 +18,8 @@ public struct Country: Equatable {
     public let name: String
     public let code: String
     public let phoneCode: String
+    public var minDigit : Int
+    public var maxDigit : Int
     public func localizedName(_ locale: Locale = Locale.current) -> String? {
         return locale.localizedString(forRegionCode: code)
     }
@@ -25,6 +27,21 @@ public struct Country: Equatable {
         // Cocoapods || SPM
         return UIImage(named: "Images/\(code.uppercased())", in: Bundle._module, compatibleWith: nil) ??
             UIImage.init(named: code.uppercased(), in: Bundle._module, compatibleWith: nil)!
+    }
+    init() {
+        name = ""
+        code = ""
+        phoneCode = ""
+        minDigit = 0
+        maxDigit = 0
+    }
+    
+    internal init(name: String, code: String, phoneCode: String, minDigit: Int, maxDigit:Int) {
+        self.name = name
+        self.code = code
+        self.phoneCode = phoneCode
+        self.minDigit = minDigit
+        self.maxDigit = maxDigit
     }
 }
 
@@ -46,7 +63,8 @@ public class CountryPickerView: NibView {
         }
     }
     @IBOutlet public weak var countryDetailsLabel: UILabel!
-    
+    public var hiddenCountries = [Country]()
+
     /// Show/Hide the country code on the view.
     public var showCountryCodeInView = true {
         didSet {
@@ -184,11 +202,14 @@ public class CountryPickerView: NibView {
                     continue
                 }
                 guard let name = countryObj["name"] as? String,
-                      let code = countryObj["code"] as? String,
-                      let phoneCode = countryObj["dial_code"] as? String else {
-                    continue
+                    let minDigit = countryObj["Min_NSN"] as? Int,
+                    let maxDigit = countryObj["Max_NSN"] as? Int,
+                    let code = countryObj["code"] as? String,
+                    let phoneCode = countryObj["dial_code"] as? String else {
+                        continue
                 }
-                let country = Country(name: name, code: code, phoneCode: phoneCode)
+                
+                let country = Country(name: name, code: code, phoneCode: phoneCode, minDigit: minDigit, maxDigit: maxDigit)
                 countries.append(country)
             }
         }

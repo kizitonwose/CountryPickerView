@@ -6,3 +6,4 @@ CountryPickerView.xcodeproj/xcuserdata
 CountryPickerViewDemo/CountryPickerViewDemo.xcodeproj/xcuserdata
 CountryPickerViewDemo/CountryPickerViewDemo.xcworkspace/xcuserdata
 .swiftpm/
+.DS_Store

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol CountryPickerViewDelegate: class {
+public protocol CountryPickerViewDelegate: AnyObject {
     /// Called when the user selects a country from the list.
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country)
     
@@ -23,7 +23,7 @@ public protocol CountryPickerViewDelegate: class {
     func countryPickerView(_ countryPickerView: CountryPickerView, didShow viewController: CountryPickerViewController)
 }
 
-public protocol CountryPickerViewDataSource: class {
+public protocol CountryPickerViewDataSource: AnyObject {
     /// An array of countries you wish to show at the top of the list.
     /// This is useful if your app is targeted towards people in specific countries.
     /// - requires: The title for the section to be returned in `sectionTitleForPreferredCountries`
